@@ -1,10 +1,12 @@
-import { Sequelize } from 'sequelize';
+import { Sequelize } from 'sequelize-typescript';
 import { dburi, dbName, dbSecret, dbUser } from './config';
 
 // localhost devausta varten
 export const db = new Sequelize(dbName, dbUser, dbSecret, {
   host: dburi,
   dialect: 'mysql',
+  storage: ':memory:',
+  models: [__dirname + '../models'],
   // dialectOptions: {
   //   ssl: {
   //     key: config.CLIENT_KEY,

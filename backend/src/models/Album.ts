@@ -1,56 +1,106 @@
-import { Sequelize } from 'sequelize';
-import { db } from '../config/database';
+import {
+  Table,
+  Column,
+  Model,
+  UpdatedAt,
+  CreatedAt,
+  PrimaryKey
+} from 'sequelize-typescript';
+// import Album from './types';
 
-const Album = db.define(
-  'playlist__album',
-  {
-    id: {
-      type: Sequelize.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
-    },
-    artist_id: {
-      type: Sequelize.INTEGER,
-      references: {
-        model: 'playlist__artist',
-        key: 'id'
-      },
-      allowNull: false
-    },
-    name: {
-      type: Sequelize.STRING,
-      allowNull: false
-    },
-    local: {
-      type: Sequelize.INTEGER(6)
-    },
-    identifier: {
-      type: Sequelize.STRING(150)
-    },
-    label: {
-      type: Sequelize.STRING(150)
-    },
-    year: {
-      type: Sequelize.DATEONLY
-    },
-    spotify_id: {
-      type: Sequelize.STRING(22)
-    },
-    user_id: {
-      type: Sequelize.INTEGER(11)
-    }
-  },
-  {
-    freezeTableName: true,
-    timestamps: true,
-    underscored: true,
-    createdAt: 'created_at',
-    updatedAt: 'updated_at'
-  },
-  {
-    indexes: {
-      unique: false,
-      fields: ['artist_id', 'name']
-    }
-  }
-);
+@Table({
+  timestamps: true,
+  tableName: 'playlist__album'
+})
+export class Album extends Model<Album> {
+  @PrimaryKey
+  @Column
+  id!: number;
+
+  @Column
+  artist_id!: number;
+
+  @Column
+  name!: string;
+
+  @Column
+  local?: number;
+
+  @Column
+  identifier?: string;
+
+  @Column
+  label?: string;
+
+  @Column
+  year?: Date;
+
+  @Column
+  spotify_id?: string;
+
+  @Column
+  user_id?: number;
+
+  @CreatedAt
+  @Column
+  created_at!: Date;
+
+  @UpdatedAt
+  @Column
+  updated_at!: Date;
+}
+
+// const Album = db.define(
+//   'playlist__album',
+//   {
+//     id: {
+//       type: DataTypes.INTEGER,
+//       primaryKey: true,
+//       autoIncrement: true
+//     },
+//     artist_id: {
+//       type: DataTypes.INTEGER,
+//       references: {
+//         model: 'playlist__artist',
+//         key: 'id'
+//       },
+//       allowNull: false
+//     },
+//     name: {
+//       type: DataTypes.STRING,
+//       allowNull: false
+//     },
+//     local: {
+//       type: DataTypes.INTEGER
+//     },
+//     identifier: {
+//       type: DataTypes.STRING(150)
+//     },
+//     label: {
+//       type: DataTypes.STRING(150)
+//     },
+//     year: {
+//       type: DataTypes.DATEONLY
+//     },
+//     spotify_id: {
+//       type: DataTypes.STRING(22)
+//     },
+//     user_id: {
+//       type: DataTypes.INTEGER
+//     }
+//   },
+//   {
+//     tableName: 'playlist__album',
+//     freezeTableName: true,
+//     timestamps: true,
+//     underscored: true,
+//     createdAt: 'created_at',
+//     updatedAt: 'updated_at'
+//   },
+//   {
+//     indexes: {
+//       unique: false,
+//       fields: ['artist_id', 'name']
+//     }
+//   }
+// );
