@@ -4,7 +4,8 @@ import {
   Model,
   UpdatedAt,
   CreatedAt,
-  PrimaryKey
+  DataType,
+  Index
 } from 'sequelize-typescript';
 // import Album from './types';
 
@@ -13,13 +14,23 @@ import {
   tableName: 'playlist__album'
 })
 export class Album extends Model<Album> {
-  @PrimaryKey
-  @Column
+  @Column({
+    primaryKey: true,
+    autoIncrement: true,
+    type: DataType.INTEGER,
+    allowNull: false
+  })
   id!: number;
 
+  @Index({
+    unique: false
+  })
   @Column
   artist_id!: number;
 
+  @Index({
+    unique: false
+  })
   @Column
   name!: string;
 
