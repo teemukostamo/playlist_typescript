@@ -22,3 +22,5 @@ export const dbName: string = process.env.DB_NAME || 'playlist';
 export const dbSecret: string = process.env.DB_SECRET || 'salainen';
 export const dbUser: string = process.env.DB_USER || 'root';
 export const port: string = process.env.PORT || '5000';
+
+export const jwtSecret: string = process.env.SECRET || 'unauthorized';

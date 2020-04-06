@@ -1,17 +1,21 @@
 import { Request, Response, NextFunction } from 'express';
 import ErrorResponse from '../utils/errorResponse';
-// eslint-disable-next-line
-const errorHandler = (
-  err,
+
+export const errorHandler = (
+  err: {
+    message?: string | Array<string>;
+    name?: string;
+    kind?: string;
+    value?: string | number;
+    statusCode?: number;
+  },
   _req: Request,
   res: Response,
   _next: NextFunction
 ) => {
-  console.error(err.message);
-
   let error = { ...err };
   error.message = err.message;
-  // log error to console for dev
+
   console.log(err);
 
   // bad object id
@@ -21,8 +25,13 @@ const errorHandler = (
   }
 
   // validation error
+  // if (err.name === 'ValidationError') {
+  //   const message = Object.values(err.errors).map(val => val.message);
+  //   error = new ErrorResponse(message, 400);
+  // }
+
   if (err.name === 'ValidationError') {
-    const message = Object.values(err.errors).map(val => val.message);
+    const message = 'validation error';
     error = new ErrorResponse(message, 400);
   }
 
@@ -48,11 +57,6 @@ const errorHandler = (
   });
 };
 
-const unknownEndpoint = (_req: Request, res: Response) => {
+export const unknownEndpoint = (_req: Request, res: Response) => {
   res.status(404).send({ error: 'unknown endpoint' });
-};
-
-module.exports = {
-  errorHandler,
-  unknownEndpoint
 };
