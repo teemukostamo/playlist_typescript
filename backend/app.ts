@@ -2,8 +2,10 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 
-// import models
+// import db
 import { db } from './src/config/database';
+
+// import models
 import { Album } from './src/models/Album';
 import { Artist } from './src/models/Artist';
 import { Program } from './src/models/Program';
@@ -18,8 +20,13 @@ import albumsRouter from './src/routes/albums';
 import artistsRouter from './src/routes/artists';
 import programsRouter from './src/routes/programs';
 import reportDetailsRouter from './src/routes/reportdetails';
+import reportsListRouter from './src/routes/reportslist';
+import reportTransferRouter from './src/routes/reporttransfer';
 import reportsRouter from './src/routes/reports';
+import searchRouter from './src/routes/search';
 import top100Router from './src/routes/top100';
+import tracksRouter from './src/routes/tracks';
+import usersRouter from './src/routes/users';
 import loginRouter from './src/routes/login';
 
 // import middleware
@@ -52,8 +59,13 @@ app.use('/api/albums', albumsRouter);
 app.use('/api/artists', artistsRouter);
 app.use('/api/programs', programsRouter);
 app.use('/api/reportdetails', reportDetailsRouter);
+app.use('/api/reportslist', reportsListRouter);
 app.use('/api/reports', reportsRouter);
+app.use('/api/reporttransfer', reportTransferRouter);
+app.use('/api/search', searchRouter);
 app.use('/api/top100', top100Router);
+app.use('/api/tracks', tracksRouter);
+app.use('/api/users', usersRouter);
 app.use('/api/login', loginRouter);
 
 app.get('/ping', (_req, res) => {

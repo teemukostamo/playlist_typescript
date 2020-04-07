@@ -27,7 +27,6 @@ export const verifyUser = asyncHandler(
     try {
       // verify token
       const decoded = jwt.verify(token, jwtSecret);
-      console.log('decoded', decoded);
       req.user = decoded;
       next();
     } catch (error) {
