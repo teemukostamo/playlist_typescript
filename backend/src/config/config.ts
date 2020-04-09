@@ -17,10 +17,25 @@ if (process.env.NODE_ENV !== 'production') {
 //   config.db.name = process.env.TEST_DB_NAME || 'playlist_dev';
 // }
 
-export const dburi: string = process.env.DB_URI || 'localhost';
-export const dbName: string = process.env.DB_NAME || 'playlist';
-export const dbSecret: string = process.env.DB_SECRET || 'salainen';
-export const dbUser: string = process.env.DB_USER || 'root';
-export const port: string = process.env.PORT || '5000';
+const dburi: string = process.env.DB_URI || 'localhost';
+let dbName: string = process.env.DB_NAME || 'playlist';
+const dbSecret: string = process.env.DB_SECRET || 'salainen';
+const dbUser: string = process.env.DB_USER || 'root';
+const port: string = process.env.PORT || '5000';
 
-export const jwtSecret: string = process.env.SECRET || 'unauthorized';
+if (process.env.NODE_ENV === 'test') {
+  dbName = process.env.TEST_DB_NAME || 'playlist-raw';
+}
+
+// const testDbName: string = process.env.TEST_DB_NAME || 'playlist-raw';
+
+const jwtSecret: string = process.env.SECRET || 'unauthorized';
+
+export default {
+  dburi,
+  dbName,
+  dbSecret,
+  dbUser,
+  port,
+  jwtSecret,
+};

@@ -1,9 +1,11 @@
 import { Sequelize } from 'sequelize-typescript';
-import { dburi, dbName, dbSecret, dbUser } from './config';
+import config from './config';
+
+console.log(config.dbName);
 
 // localhost devausta varten
-export const db = new Sequelize(dbName, dbUser, dbSecret, {
-  host: dburi,
+export const db = new Sequelize(config.dbName, config.dbUser, config.dbSecret, {
+  host: config.dburi,
   dialect: 'mysql',
   storage: ':memory:',
   models: [__dirname + '../models'],
@@ -18,6 +20,6 @@ export const db = new Sequelize(dbName, dbUser, dbSecret, {
     max: 5,
     min: 0,
     acquire: 30000,
-    idle: 10000
-  }
+    idle: 10000,
+  },
 });

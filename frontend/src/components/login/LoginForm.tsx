@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Form, Button, Input } from 'semantic-ui-react';
+import { newLogin } from '../../actions/loginActions';
 
 const LoginForm: React.FC = () => {
+  const dispatch = useDispatch();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -11,7 +14,7 @@ const LoginForm: React.FC = () => {
       username,
       password,
     };
-    console.log(user);
+    dispatch(newLogin(user));
   };
 
   return (

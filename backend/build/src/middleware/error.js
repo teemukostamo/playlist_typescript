@@ -18,6 +18,10 @@ exports.errorHandler = (err, _req, res, _next) => {
     //   const message = Object.values(err.errors).map(val => val.message);
     //   error = new ErrorResponse(message, 400);
     // }
+    if (err.name === 'ValidationError') {
+        const message = 'validation error';
+        error = new errorResponse_1.default(message, 400);
+    }
     // jwt error
     if (err.name === 'JsonWebTokenError') {
         const message = 'invalid token';

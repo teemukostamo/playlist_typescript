@@ -55,3 +55,17 @@ exports.getAllAlbumsByArtist = async_1.asyncHandler((req, res, next) => __awaite
     }
     res.status(200).json(albumlist);
 }));
+// @desc    Update artist details
+// @route   PUT /details/:id
+// @access  Private
+exports.updateArtist = async_1.asyncHandler((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const { name, spotify_id } = req.body;
+    const updatedArtist = yield Artist_1.Artist.update({
+        name,
+        spotify_id
+    }, { where: { id: req.params.id } });
+    if (updatedArtist[0] === 0) {
+        return next(new errorResponse_1.default(`no artist found with the id ${req.params.id}`, 404));
+    }
+    res.status(200).json(`${updatedArtist[0]} row('s) affected`);
+}));

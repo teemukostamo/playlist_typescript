@@ -18,20 +18,20 @@ __decorate([
         primaryKey: true,
         autoIncrement: true,
         type: sequelize_typescript_1.DataType.INTEGER,
-        allowNull: false
+        allowNull: false,
     }),
     __metadata("design:type", Number)
 ], Report_Track.prototype, "id", void 0);
 __decorate([
     sequelize_typescript_1.Index({
-        unique: false
+        unique: false,
     }),
     sequelize_typescript_1.Column,
     __metadata("design:type", Number)
 ], Report_Track.prototype, "track_id", void 0);
 __decorate([
     sequelize_typescript_1.Index({
-        unique: false
+        unique: false,
     }),
     sequelize_typescript_1.Column,
     __metadata("design:type", Number)
@@ -43,9 +43,9 @@ __decorate([
 __decorate([
     sequelize_typescript_1.Column({
         type: sequelize_typescript_1.DataType.TEXT,
-        allowNull: true
+        allowNull: true,
     }),
-    __metadata("design:type", Text)
+    __metadata("design:type", String)
 ], Report_Track.prototype, "comment", void 0);
 __decorate([
     sequelize_typescript_1.Column,
@@ -68,7 +68,7 @@ __decorate([
 Report_Track = __decorate([
     sequelize_typescript_1.Table({
         timestamps: true,
-        tableName: 'playlist__report_track'
+        tableName: 'playlist__report_track',
     })
 ], Report_Track);
 exports.Report_Track = Report_Track;

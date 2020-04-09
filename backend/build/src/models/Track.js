@@ -18,27 +18,27 @@ __decorate([
         primaryKey: true,
         autoIncrement: true,
         type: sequelize_typescript_1.DataType.INTEGER,
-        allowNull: false
+        allowNull: false,
     }),
     __metadata("design:type", Number)
 ], Track.prototype, "id", void 0);
 __decorate([
     sequelize_typescript_1.Index({
-        unique: false
+        unique: false,
     }),
     sequelize_typescript_1.Column,
     __metadata("design:type", Number)
 ], Track.prototype, "artist_id", void 0);
 __decorate([
     sequelize_typescript_1.Index({
-        unique: false
+        unique: false,
     }),
     sequelize_typescript_1.Column,
     __metadata("design:type", Number)
 ], Track.prototype, "album_id", void 0);
 __decorate([
     sequelize_typescript_1.Index({
-        unique: false
+        unique: false,
     }),
     sequelize_typescript_1.Column,
     __metadata("design:type", String)
@@ -66,23 +66,23 @@ __decorate([
 __decorate([
     sequelize_typescript_1.Column({
         type: sequelize_typescript_1.DataType.TEXT,
-        allowNull: true
+        allowNull: true,
     }),
-    __metadata("design:type", Text)
+    __metadata("design:type", String)
 ], Track.prototype, "people", void 0);
 __decorate([
     sequelize_typescript_1.Column({
         type: sequelize_typescript_1.DataType.TEXT,
-        allowNull: true
+        allowNull: true,
     }),
-    __metadata("design:type", Text)
+    __metadata("design:type", String)
 ], Track.prototype, "comment", void 0);
 __decorate([
     sequelize_typescript_1.Column({
         type: sequelize_typescript_1.DataType.TEXT,
-        allowNull: true
+        allowNull: true,
     }),
-    __metadata("design:type", Text)
+    __metadata("design:type", String)
 ], Track.prototype, "note", void 0);
 __decorate([
     sequelize_typescript_1.Column,
@@ -102,14 +102,14 @@ __decorate([
 ], Track.prototype, "isrc", void 0);
 __decorate([
     sequelize_typescript_1.Index({
-        unique: false
+        unique: false,
     }),
     sequelize_typescript_1.Column,
     __metadata("design:type", String)
 ], Track.prototype, "file", void 0);
 __decorate([
     sequelize_typescript_1.Index({
-        unique: false
+        unique: false,
     }),
     sequelize_typescript_1.Column,
     __metadata("design:type", String)
@@ -139,7 +139,7 @@ __decorate([
 Track = __decorate([
     sequelize_typescript_1.Table({
         timestamps: true,
-        tableName: 'playlist__track'
+        tableName: 'playlist__track',
     })
 ], Track);
 exports.Track = Track;

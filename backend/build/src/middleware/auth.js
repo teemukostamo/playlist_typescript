@@ -20,7 +20,6 @@ exports.verifyUser = async_1.asyncHandler((req, _res, next) => {
     try {
         // verify token
         const decoded = jsonwebtoken_1.default.verify(token, config_1.jwtSecret);
-        console.log('decoded', decoded);
         req.user = decoded;
         next();
     }

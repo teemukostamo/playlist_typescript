@@ -6,30 +6,30 @@ import {
   Model,
   UpdatedAt,
   CreatedAt,
-  Index
+  Index,
 } from 'sequelize-typescript';
 
 @Table({
   timestamps: true,
-  tableName: 'playlist__report_track'
+  tableName: 'playlist__report_track',
 })
 export class Report_Track extends Model<Report_Track> {
   @Column({
     primaryKey: true,
     autoIncrement: true,
     type: DataType.INTEGER,
-    allowNull: false
+    allowNull: false,
   })
   id!: number;
 
   @Index({
-    unique: false
+    unique: false,
   })
   @Column
   track_id!: number;
 
   @Index({
-    unique: false
+    unique: false,
   })
   @Column
   report_id!: number;
@@ -39,9 +39,9 @@ export class Report_Track extends Model<Report_Track> {
 
   @Column({
     type: DataType.TEXT,
-    allowNull: true
+    allowNull: true,
   })
-  comment?: Text;
+  comment?: string;
 
   @Column
   old_id?: number;

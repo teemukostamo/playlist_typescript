@@ -5,37 +5,37 @@ import {
   UpdatedAt,
   CreatedAt,
   DataType,
-  Index
+  Index,
 } from 'sequelize-typescript';
 // import Album from './types';
 
 @Table({
   timestamps: true,
-  tableName: 'playlist__track'
+  tableName: 'playlist__track',
 })
 export class Track extends Model<Track> {
   @Column({
     primaryKey: true,
     autoIncrement: true,
     type: DataType.INTEGER,
-    allowNull: false
+    allowNull: false,
   })
   id!: number;
 
   @Index({
-    unique: false
+    unique: false,
   })
   @Column
   artist_id!: number;
 
   @Index({
-    unique: false
+    unique: false,
   })
   @Column
   album_id!: number;
 
   @Index({
-    unique: false
+    unique: false,
   })
   @Column
   name!: string;
@@ -57,21 +57,21 @@ export class Track extends Model<Track> {
 
   @Column({
     type: DataType.TEXT,
-    allowNull: true
+    allowNull: true,
   })
-  people?: Text;
+  people?: string;
 
   @Column({
     type: DataType.TEXT,
-    allowNull: true
+    allowNull: true,
   })
-  comment?: Text;
+  comment?: string;
 
   @Column({
     type: DataType.TEXT,
-    allowNull: true
+    allowNull: true,
   })
-  note?: Text;
+  note?: string;
 
   @Column
   record_country?: string;
@@ -86,13 +86,13 @@ export class Track extends Model<Track> {
   isrc?: string;
 
   @Index({
-    unique: false
+    unique: false,
   })
   @Column
   file?: string;
 
   @Index({
-    unique: false
+    unique: false,
   })
   @Column
   file_order?: string;
