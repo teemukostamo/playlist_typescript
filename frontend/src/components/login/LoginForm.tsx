@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Form, Button, Input } from 'semantic-ui-react';
-import { newLogin } from '../../actions/loginActions';
+import { newLogin } from '../../store/login/actions';
 
 const LoginForm: React.FC = () => {
   const dispatch = useDispatch();

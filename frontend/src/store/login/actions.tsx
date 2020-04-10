@@ -1,5 +1,5 @@
-import loginService from '../services/login';
-import { SET_LOADING } from '../types';
+import loginService from './services';
+import { SET_LOADING } from '../../types';
 import { Dispatch } from 'redux';
 
 interface NewLogin {

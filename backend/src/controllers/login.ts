@@ -20,7 +20,6 @@ export const login = async (
 
     // check if user exists, return 401 if not
     const user = await User.findOne({ where: { username } });
-    console.log(user);
     if (!user) {
       return res.status(401).json({
         error: 'user not found!',

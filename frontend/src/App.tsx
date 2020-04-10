@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { Container, Button } from 'semantic-ui-react';
 import LoginForm from './components/login/LoginForm';
-import { initializeUser, logout } from './actions/loginActions';
+import { initializeUser, logout } from './store/login/actions';
 
 const App: React.FC = () => {
   const dispatch = useDispatch();

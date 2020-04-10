@@ -40,6 +40,16 @@ db.authenticate()
   .then(() => console.log('Database connected...'))
   .catch((err: string) => console.log(`Error: ${err}`));
 
+// async function run() {
+//   try {
+//     await db.authenticate();
+//     console.log('Connection has been established successfully.');
+//   } catch (error) {
+//     console.error('Unable to connect to the database:', error);
+//   }
+// }
+// run();
+
 db.addModels([
   Album,
   Artist,
@@ -48,7 +58,7 @@ db.addModels([
   Report_Transfer,
   Report,
   Track,
-  User
+  User,
 ]);
 
 app.use(bodyParser.json());

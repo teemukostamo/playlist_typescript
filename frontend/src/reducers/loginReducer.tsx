@@ -1,3 +1,5 @@
+import { Action, Reducer } from 'redux';
+
 const INIT_USER = 'INIT_USER';
 const LOGIN = 'LOGIN';
 const LOGOUT = 'LOGOUT';
@@ -48,7 +50,10 @@ type LoginActionTypes =
   | InitUserAction
   | LogoutAction;
 
-const loginReducer = (state = initialState, action: LoginActionTypes) => {
+const loginReducer: Reducer<LoginState, Action> = (
+  state = initialState,
+  action: LoginActionTypes
+) => {
   switch (action.type) {
     case INIT_USER:
       return {
