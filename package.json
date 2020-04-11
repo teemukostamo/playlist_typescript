@@ -4,6 +4,9 @@
   "description": "Typescript refactor of playlist app.",
   "main": "backend/build/index",
   "scripts": {
+    "build:ui": "rm -rf frontend/build && cd frontend && npm run build && cp -r build ../backend/src && cp -r build ../backend/build/src",
+    "deploy": "git push heroku master",
+    "deploy:full": "npm run tsc && npm run build:ui && git add . && git commit -m uibuild && git push -u origin master && npm run deploy",
     "dev": "cross-env NODE_ENV=development ts-node-dev ./backend/index.ts",
     "lint": "eslint --ext .ts .",
     "start": "cross-env NODE_ENV=production node ./backend/build/index.js",

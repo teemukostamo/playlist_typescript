@@ -1,4 +1,4 @@
-declare const Buffer;
+// declare const Buffer;
 
 import dotenv from 'dotenv';
 
@@ -12,14 +12,14 @@ const dbSecret: string = process.env.DB_SECRET || 'salainen';
 const dbUser: string = process.env.DB_USER || 'root';
 const port: string = process.env.PORT || '5000';
 
-const client_cert: string =
-  Buffer.from(process.env.CLIENT_CERT, 'base64') || 'undefined';
+// const client_cert: string =
+//   Buffer.from(process.env.CLIENT_CERT, 'base64') || 'undefined';
 
-const client_key: string =
-  Buffer.from(process.env.CLIENT_KEY, 'base64') || 'undefined';
+// const client_key: string =
+//   Buffer.from(process.env.CLIENT_KEY, 'base64') || 'undefined';
 
-const server_ca: string =
-  Buffer.from(process.env.SERVER_CA, 'base64') || 'undefined';
+// const server_ca: string =
+//   Buffer.from(process.env.SERVER_CA, 'base64') || 'undefined';
 
 if (process.env.NODE_ENV === 'test') {
   dbName = process.env.TEST_DB_NAME || 'playlist-raw';
@@ -34,7 +34,7 @@ export default {
   dbUser,
   port,
   jwtSecret,
-  client_cert,
-  client_key,
-  server_ca,
+  // client_cert,
+  // client_key,
+  // server_ca,
 };
