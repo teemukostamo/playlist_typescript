@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-
 import supertest from 'supertest';
 import app from '../../app';
 // import { db } from '../config/database';
@@ -13,22 +12,22 @@ const api = supertest(app);
 //   // delete existing test db
 //   await db.query('DROP DATABASE playlist-raw');
 //   await db.query(path.join(__dirname, 'db/playlist-raw.sql'));
-//   const loginCredentials = {
-//     username: 'nodejstest',
-//     password: 'salainen',
-//   };
-
-//   await api
-//     .post('/api/login')
-//     .send(loginCredentials)
-//     .expect(200)
-//     .expect('Content-Type', /application\/json/);
 // });
 
-test('get pong from ping', async (done) => {
+let token: string;
+
+beforeAll(async () => {
+  const loginCredentials = {
+    username: 'test',
+    password: 'test',
+  };
+  const req = await api.post('/api/login').send(loginCredentials);
+  token = req.body.token;
+});
+
+test('get pong from ping', async () => {
   const response = await api.get('/ping');
   expect(response.text).toBe('pong');
-  done();
 });
 
 test('successful login returns 200', async () => {
@@ -41,4 +40,15 @@ test('successful login returns 200', async () => {
     .send(loginCredentials)
     .expect(200)
     .expect('Content-Type', /application\/json/);
+});
+
+it('should require authorization', async () => {
+  await api.get('/api/users').expect(401);
+});
+
+it('should return list of users', async () => {
+  await api
+    .get('/api/users')
+    .set('Authorization', 'bearer ' + token)
+    .expect(200);
 });

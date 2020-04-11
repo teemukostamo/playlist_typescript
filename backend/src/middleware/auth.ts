@@ -3,7 +3,8 @@ import jwt from 'jsonwebtoken';
 import { asyncHandler } from './async';
 import ErrorResponse from '../utils/errorResponse';
 // import { User } from '../models/User';
-import { jwtSecret } from '../config/config';
+import config from '../config/config';
+// import { jwtSecret } from '../config/config';
 
 interface GetUserAuthInfoRequest extends Request {
   user: unknown;
@@ -26,7 +27,7 @@ export const verifyUser = asyncHandler(
 
     try {
       // verify token
-      const decoded = jwt.verify(token, jwtSecret);
+      const decoded = jwt.verify(token, config.jwtSecret);
       req.user = decoded;
       next();
     } catch (error) {

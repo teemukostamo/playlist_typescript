@@ -6,15 +6,12 @@ import {
   getOneUser,
   addUser,
   updateUser,
-  deleteUser
+  deleteUser,
 } from '../controllers/users';
 
 const usersRouter = Router();
 
-usersRouter
-  .route('/')
-  .get(verifyUser, getAllUsers)
-  .post(verifyUser, addUser);
+usersRouter.route('/').get(verifyUser, getAllUsers).post(verifyUser, addUser);
 
 usersRouter
   .route('/:id')

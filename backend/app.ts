@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import path from 'path';
 
 // import db
 import { db } from './src/config/database';
@@ -40,16 +41,6 @@ db.authenticate()
   .then(() => console.log('Database connected...'))
   .catch((err: string) => console.log(`Error: ${err}`));
 
-// async function run() {
-//   try {
-//     await db.authenticate();
-//     console.log('Connection has been established successfully.');
-//   } catch (error) {
-//     console.error('Unable to connect to the database:', error);
-//   }
-// }
-// run();
-
 db.addModels([
   Album,
   Artist,
@@ -60,6 +51,16 @@ db.addModels([
   Track,
   User,
 ]);
+
+app.use(express.static(path.resolve(__dirname, 'src/build')));
+
+app.get('/', function (_req, res) {
+  res.sendFile(path.resolve(`${__dirname}/src/build/index.html`), (err) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+  });
+});
 
 app.use(bodyParser.json());
 app.use(cors());

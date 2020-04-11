@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const cors_1 = __importDefault(require("cors"));
+const path_1 = __importDefault(require("path"));
 // import db
 const database_1 = require("./src/config/database");
 // import models
@@ -46,8 +47,16 @@ database_1.db.addModels([
     Report_Transfer_1.Report_Transfer,
     Report_1.Report,
     Track_1.Track,
-    User_1.User
+    User_1.User,
 ]);
+app.use(express_1.default.static(path_1.default.resolve(__dirname, 'src/build')));
+app.get('/', function (_req, res) {
+    res.sendFile(path_1.default.resolve(`${__dirname}/src/build/index.html`), (err) => {
+        if (err) {
+            res.status(500).send(err);
+        }
+    });
+});
 app.use(body_parser_1.default.json());
 app.use(cors_1.default());
 app.use(logger_1.logger);

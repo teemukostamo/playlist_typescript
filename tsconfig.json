@@ -64,5 +64,5 @@
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */,
     "typeRoots": ["./backend/types", "node_modules/@types"]
   },
-  "exclude": ["frontend", "types"]
+  "exclude": ["frontend", "types", "build"]
 }
