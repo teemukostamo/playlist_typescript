@@ -19,23 +19,23 @@ const LoginForm: React.FC = () => {
 
   return (
     <div>
-      <h1>RADIO HELSINKI - TEOSTORAPORTOINTI</h1>
-      <h3>Kirjaudu sisään</h3>
+      <h1>RADIO TRACKLIST REPORTING</h1>
+      <h3>Log in</h3>
       <Form onSubmit={handleLogin}>
         <Form.Field
-          label='Käyttäjätunnus'
+          label='username'
           control={Input}
           type='text'
-          placeholder='Käyttäjätunnus...'
+          placeholder='Username...'
           onChange={(e: { target: { value: string } }) =>
             setUsername(e.target.value.trim())
           }
         />
         <Form.Field
-          label='Salasana'
+          label='password'
           control={Input}
           type='password'
-          placeholder='Salasana...'
+          placeholder='Password...'
           onChange={(e: { target: { value: string } }) =>
             setPassword(e.target.value.trim())
           }

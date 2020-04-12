@@ -20,7 +20,7 @@ const port = process.env.PORT || '5000';
 // const server_ca: string =
 //   Buffer.from(process.env.SERVER_CA, 'base64') || 'undefined';
 if (process.env.NODE_ENV === 'test') {
-    dbName = process.env.TEST_DB_NAME || 'playlist-raw';
+    dbName = process.env.TEST_DB_NAME || 'playlist_test';
 }
 const jwtSecret = process.env.SECRET || 'unauthorized';
 exports.default = {

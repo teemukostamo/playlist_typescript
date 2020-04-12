@@ -6,25 +6,7 @@ The subject of my project is to create a song reporting tool for a radio station
 
 ### Install Instructions
 
-- Clone the repository
-- Run `npm install` the project root directory
-- `cd frontend` and run `npm install` in the frontend root directory
-- Import data from `playlist-db.sql` into your MySQL database of choice.
-- Create a `.env` -file into the project root directory with the following values:
-  - `PORT` - default port is 5000
-  - `DB_URI` - default database location is `localhost`
-  - `DB_NAME` - default database name is `playlist_demo`
-  - `DB_SECRET` - your database password
-  - `DB_USER` - your database username
-  - `TEST_DB_NAME` - default test database name is `playlist_test`
-  - `SECRET` - your jsonwebtoken secret
-- To start the backend in development mode, run `npm run dev` in the project root directory
-- To start the compiled build of the backend, run `npm start` in the project root directory
-- To start the frontend, run `npm start` in the frontend directory
-- To create a production build of the frontend, run `npm run build:ui` in the project root directory
-- To deploy the entire project to Heroku, run `npm run deploy:full` in the project root directory. This assumes you have set up Heroku for the repository.
-- To run the backend tests, run `npm run test` in the project root directory
-- To run the frontend tests, run `npm run test` in the frontend directory
+Install instructions is found [here](documentation/install_instructions.md)
 
 ### User manual
 
