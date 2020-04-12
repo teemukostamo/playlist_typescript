@@ -22,7 +22,7 @@ const port: string = process.env.PORT || '5000';
 //   Buffer.from(process.env.SERVER_CA, 'base64') || 'undefined';
 
 if (process.env.NODE_ENV === 'test') {
-  dbName = process.env.TEST_DB_NAME || 'playlist-raw';
+  dbName = process.env.TEST_DB_NAME || 'playlist_test';
 }
 
 const jwtSecret: string = process.env.SECRET || 'unauthorized';
