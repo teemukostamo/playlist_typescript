@@ -41,7 +41,7 @@ const LoginForm: React.FC = () => {
           }
         />
         <Button color='green' type='submit'>
-          Kirjaudu
+          Log in
         </Button>
       </Form>
     </div>

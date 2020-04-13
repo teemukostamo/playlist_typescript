@@ -3,7 +3,7 @@ export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 export const SET_LOADING = 'SET_LOADING';
 
-interface CurrentUser {
+export interface CurrentUser {
   token: string;
   username: string;
   id: number;

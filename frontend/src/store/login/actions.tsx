@@ -1,6 +1,8 @@
 import loginService from './services';
-import { SET_LOADING } from '../../types';
+import { SET_LOADING } from './types';
 import { Dispatch } from 'redux';
+
+import userService from '../user/services';
 
 interface NewLogin {
   username: string;
@@ -16,7 +18,7 @@ export const initializeUser = () => async (dispatch: Dispatch) => {
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON);
       // set token for logged in user
-      // userService.setToken(user.token);
+      userService.setToken(user.token);
       // reportService.setToken(user.token);
       // programService.setToken(user.token);
       // searchService.setToken(user.token);
@@ -53,19 +55,19 @@ export const newLogin = (user: NewLogin) => async (dispatch: Dispatch) => {
     });
   } catch (error) {
     console.log(error);
-    // const content = {
-    //   message: 'wrong username or password',
-    //   type: 'fail'
-    // };
-    // dispatch({
-    //   type: 'SET_NOTIFICATION',
-    //   data: content
-    // });
-    // setTimeout(() => {
-    //   dispatch({
-    //     type: 'CLEAR_NOTIFICATION'
-    //   });
-    // }, 3000);
+    const content = {
+      message: 'wrong username or password',
+      type: 'fail',
+    };
+    dispatch({
+      type: 'SET_NOTIFICATION',
+      data: content,
+    });
+    setTimeout(() => {
+      dispatch({
+        type: 'CLEAR_NOTIFICATION',
+      });
+    }, 3000);
   }
 };
 
