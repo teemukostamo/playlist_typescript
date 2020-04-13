@@ -3,7 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 import { Container, Button } from 'semantic-ui-react';
+import './App.css';
 import Navbar from './components/layout/navbar';
+import Users from './components/users';
+
 import LoginForm from './components/login/LoginForm';
 import { initializeUser, logout } from './store/login/actions';
 import { initializeUsers } from './store/user/actions';
@@ -31,7 +34,7 @@ const App: React.FC = () => {
       </Container>
     );
   }
-  if (login.currentUser.status === null) {
+  if (login.currentUser?.status === null) {
     return (
       <Container>
         <div>Credentials deactivated. Please contact the administrator.</div>
@@ -46,6 +49,39 @@ const App: React.FC = () => {
         <h1>you logged in as {login.currentUser.username}</h1>
         <Button onClick={handleLogoutClick}>logout</Button>
       </div>
+      <Switch>
+        {/* <Route exact path='/' component={Home} />
+        <Route exact path='/reports' component={ReportList} />
+        <Route exact path='/transfer' component={ReportTransferList} />
+        <Route
+          path='/reports/:id'
+          render={({ match }) => {
+            return <ReportWithTracks id={match.params.id} />;
+          }}
+        />
+        <Route
+          path='/artist/:id'
+          render={({ match }) => {
+            return <ArtistDetails id={match.params.id} />;
+          }}
+        />
+        <Route
+          path='/album/:id'
+          render={({ match }) => {
+            return <AlbumDetails id={match.params.id} />;
+          }}
+        />
+        <Route
+          path='/track/:id'
+          render={({ match }) => {
+            return <TrackDetails id={match.params.id} />;
+          }}
+        />
+        <Route exact path='/programs' component={ProgramList} />
+        <Route exact path='/search' component={Search} />
+        <Route exact path='/top100' component={Top100List} /> */}
+        <Route exact path='/users' component={Users} />
+      </Switch>
     </Router>
   );
 };

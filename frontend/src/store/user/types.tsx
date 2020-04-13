@@ -33,6 +33,15 @@ export interface UserToAdd {
   email: string;
 }
 
+export interface AddUserFormValues {
+  username: string;
+  password: string;
+  confirm_password: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+}
+
 export interface UserToUpdate {
   id: number;
   username: string;
