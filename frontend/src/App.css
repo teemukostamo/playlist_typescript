@@ -6,3 +6,10 @@
 .active-user {
   background-color: rgba(136, 247, 134, 0.623);
 }
+
+.fixedTop {
+  position: fixed;
+  top: 0;
+  padding: 2rem;
+  z-index: 999;
+}

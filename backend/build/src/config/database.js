@@ -6,8 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // import mysql2 from 'mysql2'
 const sequelize_typescript_1 = require("sequelize-typescript");
 const config_1 = __importDefault(require("./config"));
-console.log(config_1.default.dbName);
-console.log(config_1.default.dburi);
+console.log('connecting to db ', config_1.default.dbName);
 // const connection = mysql2.createConnection({
 //   host: dbVars.host,
 //   user: dbVars.user,

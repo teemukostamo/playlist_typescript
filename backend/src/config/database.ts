@@ -2,8 +2,7 @@
 import { Sequelize } from 'sequelize-typescript';
 import config from './config';
 
-console.log(config.dbName);
-console.log(config.dburi);
+console.log('connecting to db ', config.dbName);
 
 // const connection = mysql2.createConnection({
 //   host: dbVars.host,

@@ -1,23 +1,17 @@
 import React from 'react';
-import { ErrorMessage, Field, FieldProps, FormikProps } from 'formik';
-import { Dropdown, DropdownProps, Form } from 'semantic-ui-react';
+import { ErrorMessage, Field, FieldProps } from 'formik';
+import { Form } from 'semantic-ui-react';
 
-export enum UserLevel {
-  'DJ' = 1,
-  'Staff' = 2,
-  'Admin' = 3,
+interface SelectFieldOptions {
+  key?: number | string;
+  value: number | string;
+  label: string;
 }
 
-export type UserLevelOptions = {
-  value: UserLevel;
-  label: string;
-};
-
-// props for select field component
 type SelectFieldProps = {
   name: string;
   label: string;
-  options: UserLevelOptions[];
+  options: SelectFieldOptions[];
 };
 
 export const SelectField: React.FC<SelectFieldProps> = ({
@@ -57,6 +51,20 @@ export const TextField: React.FC<TextProps> = ({
   </Form.Field>
 );
 
+export const RequiredTextField: React.FC<TextProps> = ({
+  field,
+  label,
+  placeholder,
+}) => (
+  <Form.Field required>
+    <label>{label}</label>
+    <Field placeholder={placeholder} {...field} type='text' />
+    <div style={{ color: 'red' }}>
+      <ErrorMessage name={field.name} />
+    </div>
+  </Form.Field>
+);
+
 interface PasswordProps extends FieldProps {
   label: string;
   placeholder: string;
@@ -77,28 +85,16 @@ export const PasswordField: React.FC<PasswordProps> = ({
   </Form.Field>
 );
 
-type CheckboxProps = {
-  id: string;
-  name: string;
-  className: string;
-};
-
-export const Checkbox = ({
-  id,
-  name,
-  className,
-}: CheckboxProps): JSX.Element => (
-  <Field
-    name={name}
-    render={({ field }: FieldProps) => (
-      <input
-        id={id}
-        {...field}
-        type='checkbox'
-        className={className}
-        checked={true}
-        name='status'
-      />
-    )}
-  />
+export const RequiredPasswordField: React.FC<PasswordProps> = ({
+  field,
+  label,
+  placeholder,
+}) => (
+  <Form.Field required>
+    <label>{label}</label>
+    <Field placeholder={placeholder} {...field} type='password' />
+    <div style={{ color: 'red' }}>
+      <ErrorMessage name={field.name} />
+    </div>
+  </Form.Field>
 );

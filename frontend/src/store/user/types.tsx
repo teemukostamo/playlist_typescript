@@ -15,8 +15,8 @@ export interface User {
   city?: string;
   country?: string;
   phone?: string;
-  status?: number;
-  level?: number;
+  status: number | null;
+  level: number;
   last_seen?: string;
   reset_key?: string;
   old_id?: number;
@@ -33,6 +33,17 @@ export interface UserToAdd {
   email: string;
 }
 
+export enum UserLevel {
+  'DJ' = 1,
+  'Staff' = 2,
+  'Admin' = 3,
+}
+
+export type UserLevelOptions = {
+  value: UserLevel;
+  label: string;
+};
+
 export interface AddUserFormValues {
   username: string;
   password: string;
@@ -42,13 +53,24 @@ export interface AddUserFormValues {
   email: string;
 }
 
+export interface EditUserFormValues {
+  password: string;
+  confirm_password: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  level: number;
+  status: number | null;
+}
+
 export interface UserToUpdate {
   id: number;
-  username: string;
   password: string;
   first_name: string;
   last_name: string;
   email: string;
+  level: number;
+  status: number | null;
 }
 
 export interface UserState {

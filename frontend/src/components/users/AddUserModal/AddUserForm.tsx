@@ -2,15 +2,23 @@ import React from 'react';
 import { Grid, Button } from 'semantic-ui-react';
 import { Field, Formik, Form } from 'formik';
 
-import {
-  TextField,
-  PasswordField,
-  SelectField,
-  UserLevelOptions,
-  UserLevel,
-} from './FormField';
+// import {
+//   TextField,
+//   PasswordField,
+//   SelectField,
+// } from './FormField';
 
-import { AddUserFormValues } from '../../../store/user/types';
+import {
+  RequiredTextField,
+  RequiredPasswordField,
+  SelectField,
+} from '../../layout/forms/FormFields';
+
+import {
+  AddUserFormValues,
+  UserLevel,
+  UserLevelOptions,
+} from '../../../store/user/types';
 
 interface Props {
   onSubmit: (values: AddUserFormValues) => void;
@@ -71,39 +79,39 @@ const AddUserForm: React.FC<Props> = ({ onSubmit, onCancel }) => {
               label='Username'
               placeholder='Username'
               name='username'
-              component={TextField}
+              component={RequiredTextField}
             />
             <Field
               label='Password'
               placeholder='Password'
               name='password'
               type='password'
-              component={PasswordField}
+              component={RequiredPasswordField}
             />
             <Field
               label='Confirm password'
               placeholder='Confirm password'
               name='confirm_password'
               type='password'
-              component={PasswordField}
+              component={RequiredPasswordField}
             />
             <Field
               label='First name'
               placeholder='First name'
               name='first_name'
-              component={TextField}
+              component={RequiredTextField}
             />
             <Field
               label='Last name'
               placeholder='Last name'
               name='last_name'
-              component={TextField}
+              component={RequiredTextField}
             />
             <Field
               label='Email'
               placeholder='Email'
               name='email'
-              component={TextField}
+              component={RequiredTextField}
             />
             <SelectField label='Level' name='level' options={levelOptions} />
             <Grid>

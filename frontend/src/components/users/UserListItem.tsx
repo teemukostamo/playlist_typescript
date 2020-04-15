@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Table, Icon, Confirm } from 'semantic-ui-react';
-import { LoginState } from '../../store/login/types';
+
+import { updateUser, deleteUser } from '../../store/user/actions';
+import { setNotification } from '../../store/notification/actions';
+
+import EditUserModal from './EditUserModal';
+
+import { EditUserFormValues } from '../../store/user/types';
 import { User } from '../../store/user/types';
 
 interface Props {
@@ -8,11 +15,52 @@ interface Props {
 }
 
 const UserListItem: React.FC<Props> = ({ user }) => {
+  const dispatch = useDispatch();
+  const [openDeleteUser, setDeleteUserOpen] = useState<boolean>(false);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [error, setError] = useState<string | undefined>();
+
+  const cancelDelete = () => {
+    setDeleteUserOpen(false);
+  };
+  const confirmDelete = () => {
+    setDeleteUserOpen(false);
+    dispatch(deleteUser(user.id));
+    // setNotificationConnect(`Käyttäjä ${user.username} poistettu!`, 'success')
+  };
+
+  const openModal = (): void => setModalOpen(true);
+  const closeModal = (): void => {
+    setModalOpen(false);
+    setError(undefined);
+  };
+
+  const submitUpdatedUser = (values: EditUserFormValues) => {
+    try {
+      const userToUpdate = {
+        ...values,
+        id: user.id,
+      };
+      dispatch(updateUser(userToUpdate));
+      dispatch(
+        setNotification(
+          `${userToUpdate.first_name} ${userToUpdate.last_name} updated!`,
+          'success'
+        )
+      );
+      console.log('updating user', userToUpdate);
+      closeModal();
+    } catch (e) {
+      console.error(e.response.data);
+      setError(e.response.data.error);
+    }
+  };
+
   let userLevelOutPrint;
   if (user.level === 1) {
     userLevelOutPrint = 'DJ';
   } else if (user.level === 2) {
-    userLevelOutPrint = 'Toimitus';
+    userLevelOutPrint = 'Staff';
   } else {
     userLevelOutPrint = 'Admin';
   }
@@ -20,18 +68,29 @@ const UserListItem: React.FC<Props> = ({ user }) => {
   let className;
   let userStatusOutPrint;
   if (user.status === null) {
-    userStatusOutPrint = 'Hyllyllä';
+    userStatusOutPrint = 'Inactive';
     className = 'inactive-user';
   } else if (user.status === 1) {
-    userStatusOutPrint = 'Käytössä';
+    userStatusOutPrint = 'Active';
     className = 'active-user';
   }
 
   return (
     <Table.Row>
       <Table.Cell>
-        {/* <EditUserModal user={user} /> */}
-        {user.username}
+        <EditUserModal
+          user={user}
+          modalOpen={modalOpen}
+          onSubmit={submitUpdatedUser}
+          error={error}
+          onClose={closeModal}
+        />
+        <button
+          style={{ border: 'none', cursor: 'pointer', color: 'blue' }}
+          onClick={openModal}
+        >
+          {user.username}
+        </button>
       </Table.Cell>
       <Table.Cell>
         {user.first_name} {user.last_name}
@@ -43,17 +102,19 @@ const UserListItem: React.FC<Props> = ({ user }) => {
       <Table.Cell className={className}>{userStatusOutPrint}</Table.Cell>
       <Table.Cell>{userLevelOutPrint}</Table.Cell>
       <Table.Cell>
-        <Icon color='red' name='delete' />
-
-        {/* <Icon color='red' onClick={() => setOpen(true)} name='delete' />
+        <Icon
+          color='red'
+          onClick={() => setDeleteUserOpen(true)}
+          name='delete'
+        />
         <Confirm
-          content={`Haluatko varmasti poistaa käyttäjän ${user.username}?`}
-          open={open}
+          content={`Are you sure you wish to delete user ${user.username}?`}
+          open={openDeleteUser}
           onCancel={cancelDelete}
           onConfirm={confirmDelete}
-          cancelButton='En sittenkään'
-          confirmButton='Joo kyl'
-        /> */}
+          cancelButton='Cancel delete'
+          confirmButton='Confirm delete'
+        />
       </Table.Cell>
     </Table.Row>
   );

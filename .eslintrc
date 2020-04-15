@@ -4,11 +4,12 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking"
   ],
-  "plugins": ["@typescript-eslint"],
+  "plugins": ["@typescript-eslint", "jest", "cypress"],
   "env": {
     "browser": true,
     "es6": true,
-    "node": true
+    "node": true,
+    "cypress/globals": true
   },
   "rules": {
     "@typescript-eslint/semi": ["error"],
@@ -20,6 +21,8 @@
     "@typescript-eslint/no-explicit-any": 1,
     "@typescript-eslint/camelcase": "off",
     "camelcase": "off",
+    "jsx-quotes": "off",
+    "comma-dangle": "off",
     "no-case-declarations": 0,
     "react/prop-types": 0
   },

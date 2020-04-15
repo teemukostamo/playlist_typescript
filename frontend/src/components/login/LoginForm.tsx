@@ -23,6 +23,7 @@ const LoginForm: React.FC = () => {
       <h3>Log in</h3>
       <Form onSubmit={handleLogin}>
         <Form.Field
+          id='login-username'
           label='username'
           control={Input}
           type='text'
@@ -32,6 +33,7 @@ const LoginForm: React.FC = () => {
           }
         />
         <Form.Field
+          id='login-password'
           label='password'
           control={Input}
           type='password'
@@ -40,7 +42,7 @@ const LoginForm: React.FC = () => {
             setPassword(e.target.value.trim())
           }
         />
-        <Button color='green' type='submit'>
+        <Button id='login-button' color='green' type='submit'>
           Log in
         </Button>
       </Form>

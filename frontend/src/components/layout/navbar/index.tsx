@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { ApplicationState } from '../../../store/index';
+import { ApplicationState } from '../../../store/types';
 import AdminNavbar from './AdminNavbar';
 
 const Navbar: React.FC = () => {

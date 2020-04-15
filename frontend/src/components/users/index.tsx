@@ -1,14 +1,17 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { ApplicationState } from '../../store/index';
+import { useSelector, useDispatch } from 'react-redux';
+import { ApplicationState } from '../../store/types';
 import { Button, Icon, Container } from 'semantic-ui-react';
 import UserList from './UserList';
 import AddUserModal from './AddUserModal';
 import { AddUserFormValues } from '../../store/user/types';
+import { createUser } from '../../store/user/actions';
+import { setNotification } from '../../store/notification/actions';
 
 const Users: React.FC = () => {
   const users = useSelector((state: ApplicationState) => state.user);
   const login = useSelector((state: ApplicationState) => state.login);
+  const dispatch = useDispatch();
 
   const [modalOpen, setModalOpen] = React.useState<boolean>(false);
   const [error, setError] = React.useState<string | undefined>();
@@ -19,16 +22,13 @@ const Users: React.FC = () => {
     setError(undefined);
   };
 
-  const submitNewUser = async (values: AddUserFormValues) => {
+  const submitNewUser = (values: AddUserFormValues) => {
     try {
-      // const { data: newPatient } = await axios.post<Patient>(
-      //   `${apiBaseUrl}/patients`,
-      //   values
-      // );
-      // dispatch(addPatient(newPatient));
-      console.log('adding user', values);
+      dispatch(createUser(values));
+      dispatch(setNotification(`User ${values.username} created!`, 'success'));
       closeModal();
     } catch (e) {
+      dispatch(setNotification('Failed to create user!', 'fail'));
       console.error(e.response.data);
       setError(e.response.data.error);
     }
