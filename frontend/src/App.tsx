@@ -7,6 +7,7 @@ import './App.css';
 
 import Navbar from './components/layout/navbar';
 import Footer from './components/layout/footer';
+import Programs from './components/programs';
 import Users from './components/users';
 import LoginForm from './components/login/LoginForm';
 import Notification from './components/layout/notification/Notification';
@@ -56,10 +57,7 @@ const App: React.FC = () => {
       <div className='App'>
         <Navbar />
         <Notification notification={notification} />
-        <h1>
-          you logged in as
-          {login.currentUser.username}
-        </h1>
+        <h1>you logged in as {login.currentUser.username}</h1>
         <Button onClick={handleLogoutClick}>logout</Button>
       </div>
       <Switch>
@@ -90,9 +88,10 @@ const App: React.FC = () => {
             return <TrackDetails id={match.params.id} />;
           }}
         />
-        <Route exact path='/programs' component={ProgramList} />
+        
         <Route exact path='/search' component={Search} />
         <Route exact path='/top100' component={Top100List} /> */}
+        <Route exact path='/programs' component={Programs} />
         <Route exact path='/users' component={Users} />
       </Switch>
       <Footer />

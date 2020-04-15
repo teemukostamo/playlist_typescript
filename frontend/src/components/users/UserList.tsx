@@ -16,7 +16,6 @@ const UserList: React.FC<Props> = ({ login, users }) => {
       <Container>
         <div style={{ marginTop: '1rem', marginBottom: '1rem' }}>
           <h3 style={{ display: 'inline' }}>Users</h3>
-          {/* <AddUserModal /> */}
         </div>
         <Table striped>
           <Table.Header>

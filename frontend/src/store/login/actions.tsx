@@ -2,6 +2,7 @@ import loginService from './services';
 import { SET_LOADING } from './types';
 import { Dispatch } from 'redux';
 
+import programService from '../program/services';
 import userService from '../user/services';
 
 interface NewLogin {
@@ -20,7 +21,7 @@ export const initializeUser = () => async (dispatch: Dispatch) => {
       // set token for logged in user
       userService.setToken(user.token);
       // reportService.setToken(user.token);
-      // programService.setToken(user.token);
+      programService.setToken(user.token);
       // searchService.setToken(user.token);
       // trackService.setToken(user.token);
       // artistService.setToken(user.token);
@@ -35,7 +36,7 @@ export const initializeUser = () => async (dispatch: Dispatch) => {
     //   type: LOGIN_ERROR,
     //   payload: err.response.statusText,
     // });
-    console.log(err);
+    console.log('error initializing user', err);
   }
 };
 
@@ -47,7 +48,6 @@ export const newLogin = (user: NewLogin) => async (dispatch: Dispatch) => {
     const newUser = await loginService.login(user);
     console.log(newUser);
     window.localStorage.setItem('loggedUser', JSON.stringify(newUser));
-
     dispatch({
       type: 'LOGIN',
       data: newUser,
