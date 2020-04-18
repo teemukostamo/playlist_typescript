@@ -67,7 +67,7 @@ const UserListItem: React.FC<Props> = ({ user }) => {
 
   let className;
   let userStatusOutPrint;
-  if (user.status === null) {
+  if (user.status === null || user.status === 0) {
     userStatusOutPrint = 'Inactive';
     className = 'inactive-user';
   } else if (user.status === 1) {

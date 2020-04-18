@@ -1,10 +1,54 @@
-.inactive-user {
-  background-color: rgba(236, 37, 37, 0.397);
-  font-style: italic;
+/* @font-face {
+  font-family: 'RHFont-semibold';
+  src: url('fonts/FONTTI_rh_Pitch-Semibold.otf');
 }
 
-.active-user {
-  background-color: rgba(136, 247, 134, 0.623);
+@font-face {
+  font-family: 'RHFont-light';
+  src: url('fonts/FONTTI_rh_Pitch-Light.otf');
+}
+
+@font-face {
+  font-family: 'RHFont-bold';
+  src: url('fonts/FONTTI_rh_Pano-Bold.otf');
+}
+
+@font-face {
+  font-family: 'RHFont-condensed';
+  src: url('fonts/FONTTI_rh_DomaineDisplayCondensed-Medium.otf');
+} */
+
+/* body {
+  font-family: 'RHFont-semibold', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'RHFont-semibold', sans-serif;
+} */
+
+.segment {
+  overflow-y: auto;
+}
+
+.button {
+  font-family: 'RHFont-bold', sans-serif;
+}
+
+i {
+  cursor: pointer;
+}
+
+.rerun {
+  color: red;
+  font-style: italic;
+  padding-left: 1.5rem;
+}
+
+.active-program {
+  background-color: rgba(136, 247, 134, 0.3);
 }
 
 .fixedTop {
@@ -12,4 +56,31 @@
   top: 0;
   padding: 2rem;
   z-index: 999;
+}
+
+.searchResults {
+  height: 50vh;
+  overflow-y: scroll;
+}
+
+.link-btn {
+  border: 0;
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: teal;
+}
+
+.userinfo {
+  text-align: justify;
+  width: auto;
+  float: right !important;
+}
+
+.inactive-user {
+  background-color: rgba(236, 37, 37, 0.397);
+  font-style: italic;
+}
+
+.active-user {
+  background-color: rgba(136, 247, 134, 0.623);
 }

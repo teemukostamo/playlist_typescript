@@ -30,7 +30,24 @@ export interface NewProgramType {
   identifier?: string;
   name: string;
   site: number;
-  user_id: number;
+  user_id?: number;
+}
+
+export interface AddProgramFormValues {
+  display: number;
+  identifier?: string;
+  name: string;
+  site: number;
+  user_id?: number;
+}
+
+export interface EditProgramFormValues {
+  id: number;
+  display: number;
+  identifier?: string;
+  name: string;
+  site: number;
+  user_id?: number;
 }
 
 export interface UpdateProgramType {
@@ -39,13 +56,13 @@ export interface UpdateProgramType {
   identifier?: string;
   name: string;
   site: number;
-  user_id: number;
+  user_id?: number;
 }
 
 export interface MergeProgramParams {
   type: string;
-  merge: string;
-  mergeTo: string;
+  merge: number;
+  mergeTo: number;
 }
 
 // program action types

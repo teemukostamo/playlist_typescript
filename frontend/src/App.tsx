@@ -8,6 +8,7 @@ import './App.css';
 import Navbar from './components/layout/navbar';
 import Footer from './components/layout/footer';
 import Programs from './components/programs';
+import Top100 from './components/top100';
 import Users from './components/users';
 import LoginForm from './components/login/LoginForm';
 import Notification from './components/layout/notification/Notification';
@@ -89,8 +90,8 @@ const App: React.FC = () => {
           }}
         />
         
-        <Route exact path='/search' component={Search} />
-        <Route exact path='/top100' component={Top100List} /> */}
+        <Route exact path='/search' component={Search} /> */}
+        <Route exact path='/top100' component={Top100} />
         <Route exact path='/programs' component={Programs} />
         <Route exact path='/users' component={Users} />
       </Switch>

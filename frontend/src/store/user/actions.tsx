@@ -11,13 +11,11 @@ import {
 } from './types';
 
 export const initializeUsers = () => async (dispatch: Dispatch) => {
-  console.log('function ran');
   try {
     dispatch({
       type: SET_LOADING,
     });
     const users = await userService.getAll();
-    console.log(users);
     dispatch({
       type: INIT_USER_LIST,
       data: users,

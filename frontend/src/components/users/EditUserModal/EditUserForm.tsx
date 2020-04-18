@@ -45,6 +45,8 @@ const AddUserForm: React.FC<Props> = ({ onSubmit, onCancel, user }) => {
       }}
       onSubmit={onSubmit}
       validate={(values) => {
+        console.log(values.level);
+        console.log(values.status);
         const requiredError = 'Field is required';
         const errors: { [field: string]: string } = {};
         if (values.password !== values.confirm_password) {

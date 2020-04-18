@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Form, Button, Input } from 'semantic-ui-react';
 import { newLogin } from '../../store/login/actions';
 
