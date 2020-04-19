@@ -2,8 +2,8 @@ import React from 'react';
 import { Button } from 'semantic-ui-react';
 import { Formik } from 'formik';
 import { Datepicker, Form, Select } from 'react-formik-ui';
-import moment from 'moment';
 import { Top100QueryType } from '../../store/search/types';
+import moment from 'moment';
 
 const listOptions = [
   {
@@ -56,11 +56,7 @@ const Top100SearchForm: React.FC<Props> = ({ onSubmit }) => {
               dateFormat='dd.MM.yyyy'
               placeholder='dd.mm.yyyy'
             />{' '}
-            <Button
-              type='submit'
-              style={{ display: 'inline-block' }}
-              color='green'
-            >
+            <Button type='submit' color='green'>
               Submit
             </Button>
           </Form>

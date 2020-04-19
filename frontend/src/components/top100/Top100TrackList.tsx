@@ -13,10 +13,10 @@ const Top100ArtistList: React.FC<Props> = ({ top100 }) => {
     <Table striped>
       <Table.Header>
         <Table.Row>
-          <Table.Cell>Artisti</Table.Cell>
-          <Table.Cell>Albumi</Table.Cell>
-          <Table.Cell>Biisi</Table.Cell>
-          <Table.Cell>Soittokerrat</Table.Cell>
+          <Table.Cell>Artist</Table.Cell>
+          <Table.Cell>Album</Table.Cell>
+          <Table.Cell>Track</Table.Cell>
+          <Table.Cell>Play count</Table.Cell>
           <Table.Cell></Table.Cell>
         </Table.Row>
       </Table.Header>

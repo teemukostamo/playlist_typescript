@@ -8,6 +8,7 @@ import './App.css';
 import Navbar from './components/layout/navbar';
 import Footer from './components/layout/footer';
 import Programs from './components/programs';
+import ReportList from './components/reportList/ReportList';
 import Top100 from './components/top100';
 import Users from './components/users';
 import LoginForm from './components/login/LoginForm';
@@ -23,7 +24,6 @@ const App: React.FC = () => {
   const notification = useSelector(
     (state: ApplicationState) => state.notification
   );
-  console.log('login state', login);
 
   useEffect(() => {
     dispatch(initializeUser());
@@ -63,7 +63,7 @@ const App: React.FC = () => {
       </div>
       <Switch>
         {/* <Route exact path='/' component={Home} />
-        <Route exact path='/reports' component={ReportList} />
+        <Route exact path='/reports' component={ReportsByMonth} />
         <Route exact path='/transfer' component={ReportTransferList} />
         <Route
           path='/reports/:id'
@@ -91,6 +91,8 @@ const App: React.FC = () => {
         />
         
         <Route exact path='/search' component={Search} /> */}
+        <Route exact path='/reports' component={ReportList} />
+
         <Route exact path='/top100' component={Top100} />
         <Route exact path='/programs' component={Programs} />
         <Route exact path='/users' component={Users} />

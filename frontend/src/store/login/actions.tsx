@@ -2,9 +2,13 @@ import loginService from './services';
 import { SET_LOADING } from './types';
 import { Dispatch } from 'redux';
 
+import albumService from '../album/services';
+import artistService from '../artist/services';
 import programService from '../program/services';
+import reportService from '../report/services';
 import reportListService from '../reportList/services';
 import searchService from '../search/services';
+import trackService from '../track/services';
 import userService from '../user/services';
 
 interface NewLogin {
@@ -22,13 +26,13 @@ export const initializeUser = () => async (dispatch: Dispatch) => {
       const user = JSON.parse(loggedUserJSON);
       // set token for logged in user
       userService.setToken(user.token);
-      // reportService.setToken(user.token);
+      reportService.setToken(user.token);
       reportListService.setToken(user.token);
       programService.setToken(user.token);
       searchService.setToken(user.token);
-      // trackService.setToken(user.token);
-      // artistService.setToken(user.token);
-      // albumService.setToken(user.token);
+      trackService.setToken(user.token);
+      artistService.setToken(user.token);
+      albumService.setToken(user.token);
       dispatch({
         type: 'INIT_USER',
         data: user,

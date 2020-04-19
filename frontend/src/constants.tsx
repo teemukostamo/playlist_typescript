@@ -527,3 +527,83 @@ export const levelOptions = [
     value: 3,
   },
 ];
+
+// month options
+export const reportMonthOptions = [
+  {
+    key: '01',
+    label: 'Tammikuu',
+    value: '01',
+  },
+  {
+    key: '02',
+    label: 'Helmikuu',
+    value: '02',
+  },
+  {
+    key: '03',
+    label: 'Maaliskuu',
+    value: '03',
+  },
+  {
+    key: '04',
+    label: 'Huhtikuu',
+    value: '04',
+  },
+  {
+    key: '05',
+    label: 'Toukokuu',
+    value: '05',
+  },
+  {
+    key: '06',
+    label: 'Kesäkuu',
+    value: '06',
+  },
+  {
+    key: '07',
+    label: 'Heinäkuu',
+    value: '07',
+  },
+  {
+    key: '08',
+    label: 'Elokuu',
+    value: '08',
+  },
+  {
+    key: '09',
+    label: 'Syyskuu',
+    value: '09',
+  },
+  {
+    key: '10',
+    label: 'Lokakuu',
+    value: '10',
+  },
+  {
+    key: '11',
+    label: 'Marraskuu',
+    value: '11',
+  },
+  {
+    key: '12',
+    label: 'Joulukuu',
+    value: '12',
+  },
+];
+
+// year options
+const dateNow = new Date().getFullYear() + 1;
+const years = [];
+// eslint-disable-next-line no-plusplus
+for (let i = 2001; i <= dateNow; i++) {
+  years.push(i);
+}
+let yearOptions = years.map((option) => ({
+  key: option.toString(),
+  label: option.toString(),
+  value: option.toString(),
+}));
+yearOptions = yearOptions.reverse();
+
+export const reportYearOptions = yearOptions;

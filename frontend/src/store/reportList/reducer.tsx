@@ -22,7 +22,7 @@ const initialState: ReportListState = {
   loading: false,
   filterStatusValue: null,
   filterUserValue: null,
-  filterByText: null,
+  filterByText: '',
   error: null,
 };
 

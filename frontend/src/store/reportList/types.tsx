@@ -43,7 +43,7 @@ export interface ReportListState {
   lastTransfer: ReportTransfer | null;
   filterStatusValue: number | null;
   filterUserValue: number | null;
-  filterByText: string | null;
+  filterByText: string;
   error: string | null;
   loading: boolean;
 }
@@ -116,3 +116,8 @@ export type ReportListActionTypes =
   | FilterByTextAction
   | DeleteReportAction
   | SetLoadingAction;
+
+export interface ReportListSelectionDate {
+  reportYear: string;
+  reportMonth: string;
+}
