@@ -1,37 +1,17 @@
 import React from 'react';
 import { Grid, Button } from 'semantic-ui-react';
 import { Field, Formik, Form } from 'formik';
-import {
-  TextField,
-  PasswordField,
-  SelectField,
-} from '../../layout/forms/FormFields';
+import { TextField, PasswordField } from '../../layout/forms/FormFields';
 
-import {
-  EditUserFormValues,
-  User,
-  UserLevelOptions,
-  UserLevel,
-} from '../../../store/user/types';
+import { CurrentUserFormValues, User } from '../../../store/user/types';
 
 interface Props {
-  onSubmit: (values: EditUserFormValues) => void;
+  onSubmit: (values: CurrentUserFormValues) => void;
   onCancel: () => void;
   user: User;
 }
 
-const levelOptions: UserLevelOptions[] = [
-  { value: UserLevel.DJ, label: 'DJ' },
-  { value: UserLevel.Staff, label: 'Staff' },
-  { value: UserLevel.Admin, label: 'Admin' },
-];
-
-const statusOptions = [
-  { value: 1, label: 'Active' },
-  { value: 0, label: 'Inactive' },
-];
-
-const EditUserForm: React.FC<Props> = ({ onSubmit, onCancel, user }) => {
+const CurrentUserForm: React.FC<Props> = ({ onSubmit, onCancel, user }) => {
   return (
     <Formik
       initialValues={{
@@ -40,8 +20,6 @@ const EditUserForm: React.FC<Props> = ({ onSubmit, onCancel, user }) => {
         first_name: user.first_name,
         last_name: user.last_name,
         email: user.email,
-        level: user.level,
-        status: user.status,
       }}
       onSubmit={onSubmit}
       validate={(values) => {
@@ -99,8 +77,6 @@ const EditUserForm: React.FC<Props> = ({ onSubmit, onCancel, user }) => {
               name='email'
               component={TextField}
             />
-            <SelectField label='Level' name='level' options={levelOptions} />
-            <SelectField label='Status' name='status' options={statusOptions} />
             <Grid>
               <Grid.Column floated='left' width={5}>
                 <Button type='button' onClick={onCancel} color='red'>
@@ -125,4 +101,4 @@ const EditUserForm: React.FC<Props> = ({ onSubmit, onCancel, user }) => {
   );
 };
 
-export default EditUserForm;
+export default CurrentUserForm;

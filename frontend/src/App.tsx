@@ -7,6 +7,7 @@ import './App.css';
 
 import Navbar from './components/layout/navbar';
 import Footer from './components/layout/footer';
+import Home from './components/layout/home';
 import Programs from './components/programs';
 import ReportList from './components/reportList/ReportList';
 import Top100 from './components/top100';
@@ -16,6 +17,8 @@ import Notification from './components/layout/notification/Notification';
 
 import { initializeUser, logout } from './store/login/actions';
 import { initializeUsers } from './store/user/actions';
+import { initializePrograms, getAllPrograms } from './store/program/actions';
+
 import { ApplicationState } from './store/types';
 
 const App: React.FC = () => {
@@ -28,13 +31,13 @@ const App: React.FC = () => {
   useEffect(() => {
     dispatch(initializeUser());
     dispatch(initializeUsers());
+    dispatch(initializePrograms());
+    dispatch(getAllPrograms());
     axios.get<void>('/ping');
     // eslint-disable-next-line
   }, [login.currentUser?.token]);
 
-  const handleLogoutClick = () => {
-    dispatch(logout());
-  };
+  console.log(login);
 
   if (login.currentUser === null) {
     return (
@@ -44,11 +47,12 @@ const App: React.FC = () => {
       </Container>
     );
   }
-  if (login.currentUser?.status === null) {
+  if (login.currentUser?.status === null || login.currentUser?.status === 0) {
     return (
       <Container>
-        <div>Credentials deactivated. Please contact the administrator.</div>
         <LoginForm />
+        <div>Credentials deactivated. Please contact the administrator.</div>
+
         <Footer />
       </Container>
     );
@@ -58,12 +62,9 @@ const App: React.FC = () => {
       <div className='App'>
         <Navbar />
         <Notification notification={notification} />
-        <h1>you logged in as {login.currentUser.username}</h1>
-        <Button onClick={handleLogoutClick}>logout</Button>
       </div>
       <Switch>
-        {/* <Route exact path='/' component={Home} />
-        <Route exact path='/reports' component={ReportsByMonth} />
+        {/* 
         <Route exact path='/transfer' component={ReportTransferList} />
         <Route
           path='/reports/:id'
@@ -91,8 +92,8 @@ const App: React.FC = () => {
         />
         
         <Route exact path='/search' component={Search} /> */}
+        <Route exact path='/' component={Home} />
         <Route exact path='/reports' component={ReportList} />
-
         <Route exact path='/top100' component={Top100} />
         <Route exact path='/programs' component={Programs} />
         <Route exact path='/users' component={Users} />

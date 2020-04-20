@@ -33,26 +33,29 @@ const Users: React.FC = () => {
       setError(e.response.data.error);
     }
   };
-  return (
-    <Container>
-      <Button
-        floated='right'
-        color='green'
-        style={{ marginBottom: '0.5rem' }}
-        onClick={() => openModal()}
-      >
-        <Icon name='add' />
-        Add a new user
-      </Button>
-      <AddUserModal
-        modalOpen={modalOpen}
-        onSubmit={submitNewUser}
-        error={error}
-        onClose={closeModal}
-      />
-      <UserList users={users.users} login={login} />
-    </Container>
-  );
+  if (login.currentUser?.level === 3) {
+    return (
+      <Container>
+        <Button
+          floated='right'
+          color='green'
+          style={{ marginBottom: '0.5rem' }}
+          onClick={() => openModal()}
+        >
+          <Icon name='add' />
+          Add a new user
+        </Button>
+        <AddUserModal
+          modalOpen={modalOpen}
+          onSubmit={submitNewUser}
+          error={error}
+          onClose={closeModal}
+        />
+        <UserList users={users.users} />
+      </Container>
+    );
+  }
+  return null;
 };
 
 export default Users;

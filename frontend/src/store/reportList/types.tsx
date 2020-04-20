@@ -57,7 +57,7 @@ export interface ReportTransferParams {
 
 export interface DeleteInProgressReportParams {
   report_id: number;
-  user_id: number;
+  user_id: number | undefined;
 }
 
 // reportlist action types

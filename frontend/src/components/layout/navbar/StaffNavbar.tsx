@@ -12,7 +12,7 @@ interface Props {
   currentUser: CurrentUser;
 }
 
-const AdminNavbar: React.FC<Props> = ({ currentUser }) => {
+const StaffNavbar: React.FC<Props> = ({ currentUser }) => {
   const dispatch = useDispatch();
   const getLoggedInUserInfo = () => {
     return <CurrentUserModal currentUser={currentUser} />;
@@ -74,11 +74,6 @@ const AdminNavbar: React.FC<Props> = ({ currentUser }) => {
             <h4>PROGRAMS</h4>
           </Link>
         </Menu.Item>
-        <Menu.Item link>
-          <Link to='/users'>
-            <h4>USERS</h4>
-          </Link>
-        </Menu.Item>
         <Menu.Item position='right'>
           <Dropdown
             trigger={trigger}
@@ -93,4 +88,4 @@ const AdminNavbar: React.FC<Props> = ({ currentUser }) => {
   );
 };
 
-export default AdminNavbar;
+export default StaffNavbar;

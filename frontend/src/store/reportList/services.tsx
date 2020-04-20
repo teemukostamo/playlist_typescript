@@ -32,7 +32,7 @@ const getAllByDateByUser = async (date: string, user: number) => {
 };
 
 // get all in progress reports of one user
-const getAllInProgress = async (id: number) => {
+const getAllInProgress = async (id: number | undefined) => {
   const config = {
     headers: { Authorization: token },
   };

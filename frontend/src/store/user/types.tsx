@@ -20,8 +20,8 @@ export interface User {
   last_seen?: string;
   reset_key?: string;
   old_id?: number;
-  created_at: Date;
-  updated_at: Date;
+  created_at?: Date;
+  updated_at?: Date;
 }
 export type Users = Array<User>;
 
@@ -61,6 +61,14 @@ export interface EditUserFormValues {
   email: string;
   level: number;
   status: number | null;
+}
+
+export interface CurrentUserFormValues {
+  password: string;
+  confirm_password: string;
+  first_name: string;
+  last_name: string;
+  email: string;
 }
 
 export interface UserToUpdate {

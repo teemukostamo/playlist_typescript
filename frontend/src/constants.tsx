@@ -532,62 +532,62 @@ export const levelOptions = [
 export const reportMonthOptions = [
   {
     key: '01',
-    label: 'Tammikuu',
+    label: 'January',
     value: '01',
   },
   {
     key: '02',
-    label: 'Helmikuu',
+    label: 'February',
     value: '02',
   },
   {
     key: '03',
-    label: 'Maaliskuu',
+    label: 'March',
     value: '03',
   },
   {
     key: '04',
-    label: 'Huhtikuu',
+    label: 'April',
     value: '04',
   },
   {
     key: '05',
-    label: 'Toukokuu',
+    label: 'May',
     value: '05',
   },
   {
     key: '06',
-    label: 'Kesäkuu',
+    label: 'June',
     value: '06',
   },
   {
     key: '07',
-    label: 'Heinäkuu',
+    label: 'July',
     value: '07',
   },
   {
     key: '08',
-    label: 'Elokuu',
+    label: 'August',
     value: '08',
   },
   {
     key: '09',
-    label: 'Syyskuu',
+    label: 'September',
     value: '09',
   },
   {
     key: '10',
-    label: 'Lokakuu',
+    label: 'October',
     value: '10',
   },
   {
     key: '11',
-    label: 'Marraskuu',
+    label: 'November',
     value: '11',
   },
   {
     key: '12',
-    label: 'Joulukuu',
+    label: 'December',
     value: '12',
   },
 ];

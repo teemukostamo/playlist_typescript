@@ -1,5 +1,12 @@
 import loginService from './services';
-import { SET_LOADING } from './types';
+import {
+  INIT_USER,
+  LOGIN,
+  LOGOUT,
+  SET_LOADING,
+  UPDATE_CURRENT_USER,
+  CurrentUser,
+} from './types';
 import { Dispatch } from 'redux';
 
 import albumService from '../album/services';
@@ -34,7 +41,7 @@ export const initializeUser = () => async (dispatch: Dispatch) => {
       artistService.setToken(user.token);
       albumService.setToken(user.token);
       dispatch({
-        type: 'INIT_USER',
+        type: INIT_USER,
         data: user,
       });
     }
@@ -53,10 +60,9 @@ export const newLogin = (user: NewLogin) => async (dispatch: Dispatch) => {
       type: SET_LOADING,
     });
     const newUser = await loginService.login(user);
-    console.log(newUser);
     window.localStorage.setItem('loggedUser', JSON.stringify(newUser));
     dispatch({
-      type: 'LOGIN',
+      type: LOGIN,
       data: newUser,
       loading: false,
     });
@@ -81,6 +87,15 @@ export const newLogin = (user: NewLogin) => async (dispatch: Dispatch) => {
 export const logout = () => async (dispatch: Dispatch) => {
   window.localStorage.removeItem('loggedUser');
   dispatch({
-    type: 'LOGOUT',
+    type: LOGOUT,
+  });
+};
+
+export const updateCurrentUser = (updatedCurrentUser: CurrentUser) => async (
+  dispatch: Dispatch
+) => {
+  dispatch({
+    type: UPDATE_CURRENT_USER,
+    data: updatedCurrentUser,
   });
 };

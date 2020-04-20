@@ -5,6 +5,7 @@ import {
   INIT_USER,
   LOGIN,
   LOGOUT,
+  UPDATE_CURRENT_USER,
   SET_LOADING,
 } from './types';
 
@@ -25,6 +26,12 @@ const loginReducer: Reducer<LoginState, Action> = (
         loading: false,
       };
     case LOGIN:
+      return {
+        ...state,
+        currentUser: action.data,
+        loading: false,
+      };
+    case UPDATE_CURRENT_USER:
       return {
         ...state,
         currentUser: action.data,

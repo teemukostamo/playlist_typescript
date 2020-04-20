@@ -32,7 +32,7 @@ const ProgramList: React.FC<Props> = ({ login, program }) => {
             <Table.Row>
               <Table.Cell>ID</Table.Cell>
               <Table.Cell>Program name</Table.Cell>
-              <Table.Cell>Program identifier</Table.Cell>
+              <Table.Cell>Additional info</Table.Cell>
             </Table.Row>
           </Table.Header>
           <Table.Body>

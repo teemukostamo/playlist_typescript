@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Container } from 'semantic-ui-react';
 import { ApplicationState } from '../../store/types';

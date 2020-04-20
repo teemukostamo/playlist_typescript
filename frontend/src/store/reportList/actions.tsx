@@ -102,7 +102,9 @@ export const getAllReportsByDateByUser = (date: string, user: number) => async (
 };
 
 // get all in progress by current user for front page
-export const getAllInProgress = (id: number) => async (dispatch: Dispatch) => {
+export const getAllInProgress = (id: number | undefined) => async (
+  dispatch: Dispatch
+) => {
   try {
     dispatch({
       type: SET_LOADING,

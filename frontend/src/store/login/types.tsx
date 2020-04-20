@@ -1,4 +1,5 @@
 export const INIT_USER = 'INIT_USER';
+export const UPDATE_CURRENT_USER = 'UPDATE_CURRENT_USER';
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 export const SET_LOADING = 'SET_LOADING';
@@ -33,6 +34,11 @@ interface LogoutAction {
   type: typeof LOGOUT;
 }
 
+interface UpdateCurrentUserAction {
+  type: typeof UPDATE_CURRENT_USER;
+  data: CurrentUser;
+}
+
 interface SetLoadingAction {
   type: typeof SET_LOADING;
 }
@@ -41,4 +47,5 @@ export type LoginActionTypes =
   | SetLoadingAction
   | NewLoginAction
   | InitUserAction
-  | LogoutAction;
+  | LogoutAction
+  | UpdateCurrentUserAction;
