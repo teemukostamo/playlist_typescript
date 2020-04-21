@@ -13,9 +13,11 @@ import {
   MERGE_TRACKS,
   AddTrackToDbAndReportType,
   AddTrackToDbType,
+  UpdateTrackType,
   MergeTrackParamsType,
   ChangeAlbumParams,
   ChangeArtistParams,
+  // UpdateTrackFormValuesType,
   // ADD_TRACK_TO_REPORT
 } from './types';
 
@@ -92,17 +94,18 @@ export const addTrackToAlbumAndReport = (
   }
 };
 
-export const updateTrack = (trackToUpdate: AddTrackToDbType) => async (
+export const updateTrack = (trackToUpdate: UpdateTrackType) => async (
   dispatch: Dispatch
 ) => {
   try {
     dispatch({
       type: SET_LOADING,
     });
-    const updatedTrack = await trackService.updateTrack(trackToUpdate);
+    console.log('track to update at action', trackToUpdate);
+    await trackService.updateTrack(trackToUpdate);
     dispatch({
       type: UPDATE_TRACK,
-      data: updatedTrack,
+      data: trackToUpdate,
     });
   } catch (error) {
     console.log('trackActions updateTrack error: ', error);

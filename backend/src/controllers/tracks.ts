@@ -47,7 +47,7 @@ export const getOneTrack = asyncHandler(
         new ErrorResponse(`no track found with the id ${req.params.id}`, 404)
       );
     }
-    res.status(200).json(track);
+    res.status(200).json(track[0]);
   }
 );
 

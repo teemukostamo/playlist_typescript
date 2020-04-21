@@ -4,6 +4,8 @@ import {
   AddTrackToDbAndReportType,
   ChangeAlbumParams,
   ChangeArtistParams,
+  UpdateTrackType,
+  // UpdateTrackFormValuesType,
 } from './types';
 const baseUrl = '/api/tracks';
 let token: string | null = null;
@@ -47,7 +49,8 @@ const addTrackToAlbum = async (trackToAdd: AddTrackToDbType) => {
   return response.data;
 };
 
-const updateTrack = async (trackToUpdate: AddTrackToDbType) => {
+const updateTrack = async (trackToUpdate: UpdateTrackType) => {
+  console.log('track to update at service', trackToUpdate);
   const config = {
     headers: { Authorization: token },
   };

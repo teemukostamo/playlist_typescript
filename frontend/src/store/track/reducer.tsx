@@ -4,6 +4,7 @@ import {
   GET_ONE_TRACK_HISTORY,
   CLEAR_CURRENT_TRACK,
   SET_LOADING,
+  UPDATE_TRACK,
   CHANGE_ALBUM,
   CHANGE_ARTIST,
   TrackState,
@@ -27,10 +28,16 @@ const trackReducer: Reducer<TrackState, Action> = (
         currentTrack: action.data,
         loading: false,
       };
+    case UPDATE_TRACK:
+      return {
+        ...state,
+        currentTrack: action.data,
+        loading: false,
+      };
     case GET_ONE_TRACK_HISTORY:
       return {
         ...state,
-        playhistory: action.data,
+        playHistory: action.data,
         loading: false,
       };
     case CLEAR_CURRENT_TRACK:

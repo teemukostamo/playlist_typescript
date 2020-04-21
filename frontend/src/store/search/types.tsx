@@ -79,6 +79,11 @@ export interface MergeArtistsParamsType {
   newName: string;
 }
 
+export interface AdvancedSearchParamsType {
+  query: string;
+  kind: string;
+}
+
 export interface SearchState {
   top100: Array<Top100Type>;
   top100Query: Top100QueryType | null;

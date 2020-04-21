@@ -22,6 +22,7 @@ export const getOneAlbum = (id: number) => async (dispatch: Dispatch) => {
       type: SET_LOADING,
     });
     const album = await albumService.getOneAlbum(id);
+    console.log('albumactions getonealbum', album);
     dispatch({
       type: GET_ONE_ALBUM,
       data: album,

@@ -68,14 +68,14 @@ const reportReducer: Reducer<ReportState, Action> = (
         ...state,
         report: [...state.report, action.data],
       };
-    case UPDATE_TRACK:
-      return {
-        ...state,
-        report: state.report.map((track) =>
-          track.track_id === action.data.track_id ? action.data : track
-        ),
-        loading: false,
-      };
+    // case UPDATE_TRACK:
+    //   return {
+    //     ...state,
+    //     report: state.report.map((track) =>
+    //       track.track_id === action.data.track_id ? action.data : track
+    //     ),
+    //     loading: false,
+    //   };
     case SET_EDIT_TRACK_ID:
       return {
         ...state,

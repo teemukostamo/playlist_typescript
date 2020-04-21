@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Button } from 'semantic-ui-react';
-import { Field, Formik, Form } from 'formik';
+import { Formik, Form } from 'formik';
 import { SelectField } from '../layout/forms/FormFields';
 import { ReportListSelectionDate } from '../../store/reportList/types';
 import { reportMonthOptions, reportYearOptions } from '../../constants';

@@ -20,7 +20,7 @@ export interface Track {
   artist_id: number;
   label: string | null;
   cat_id: string | null;
-  lengtt: number;
+  length: number;
   disc_no: number | null;
   track_no: number | null;
   people: string | null;
@@ -37,7 +37,7 @@ export interface AddTrackToDbType {
   album_name: string;
   label: string;
   cat_id: string;
-  year: string;
+  year: string | number;
   disc_no: number;
   track_no: number;
   length: number;
@@ -46,7 +46,54 @@ export interface AddTrackToDbType {
   people: string | null;
   comment: string | null;
   isrc: string | null;
-  user_id: number;
+}
+
+export interface UpdateTrackType {
+  artist_name: string;
+  album_name: string;
+  track_title: string;
+  track_id: number;
+  length: number;
+  country: number;
+  record_country: string | null;
+  people: string | null;
+  disc_no: number | null;
+  track_no: number | null;
+  year: string | number | null | undefined;
+  label: string | null;
+  cat_id: string | null;
+  isrc: string | null;
+  comment: string | null;
+  user_id: number | null | undefined;
+  artist_id: number;
+  album_id: number;
+  sortable_rank: number | null;
+  report_track_id: number | null;
+}
+
+export interface UpdateTrackFormValuesType {
+  track_title: string;
+  artist: string;
+  album: string;
+  track_id: number;
+  album_id: number;
+  artist_id: number;
+  label: string | null;
+  cat_id: string | null;
+  length: number;
+  minutes: number;
+  seconds: number;
+  disc_no: number | null;
+  track_no: number | null;
+  people: string | null;
+  isrc: string | null;
+  year: string | number | null | undefined;
+  comment: string | null;
+  record_country: string | null;
+  country: number;
+  user_id: number | null | undefined;
+  sortable_rank: number | null;
+  report_track_id: number | null;
 }
 
 export interface AddTrackToDbAndReportType {
@@ -65,7 +112,6 @@ export interface AddTrackToDbAndReportType {
   comment: string | null;
   isrc: string | null;
   report_id: number;
-  user_id: number;
   sortable_rank: number;
 }
 
@@ -87,6 +133,7 @@ export interface PlayHistoryEntry {
   report_id: number;
   program_date: string;
   track_id: number;
+  result?: string | null | undefined;
 }
 
 export interface ChangeArtist {
@@ -115,6 +162,11 @@ export interface TrackState {
 // track action types
 interface GetOneTrackAction {
   type: typeof GET_ONE_TRACK;
+  data: Track;
+}
+
+interface UpdateTrackAction {
+  type: typeof UPDATE_TRACK;
   data: Track;
 }
 
@@ -147,4 +199,5 @@ export type TrackActionTypes =
   | ClearCurrentTrackAction
   | SetLoadingAction
   | ChangeAlbumAction
-  | ChangeArtistAction;
+  | ChangeArtistAction
+  | UpdateTrackAction;

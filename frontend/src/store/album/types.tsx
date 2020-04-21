@@ -45,7 +45,7 @@ export interface UpdateAlbumParams {
   name: string;
   label: string | null;
   cat_id: string | null;
-  year: string | null;
+  year: string | number;
   spotify_id: string | null;
 }
 

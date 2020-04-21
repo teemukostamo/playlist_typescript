@@ -27,7 +27,7 @@ export const getOneAlbum = asyncHandler(
       WHERE al.id = ${req.params.id}
     `,
       {
-        type: QueryTypes.SELECT
+        type: QueryTypes.SELECT,
       }
     );
     if (album.length === 0) {
@@ -35,7 +35,7 @@ export const getOneAlbum = asyncHandler(
         new ErrorResponse(`no album found with the id ${req.params.id}`, 404)
       );
     }
-    res.status(200).json(album);
+    res.status(200).json(album[0]);
   }
 );
 
@@ -62,7 +62,7 @@ export const getAlbumTracklist = asyncHandler(
      order by track_no asc, track_title asc
     `,
       {
-        type: QueryTypes.SELECT
+        type: QueryTypes.SELECT,
       }
     );
     if (album.length === 0) {
@@ -86,7 +86,7 @@ export const updateAlbum = asyncHandler(
         label,
         identifier: cat_id,
         year,
-        spotify_id
+        spotify_id,
       },
       { where: { id: req.params.id } }
     );
@@ -107,7 +107,7 @@ export const changeArtist = asyncHandler(
     const { album_id, artist_id } = req.body;
     const changedArtist = await Album.update(
       {
-        artist_id
+        artist_id,
       },
       { where: { id: album_id } }
     );
