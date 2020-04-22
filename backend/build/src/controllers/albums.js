@@ -34,12 +34,12 @@ exports.getOneAlbum = async_1.asyncHandler((req, res, next) => __awaiter(void 0,
       INNER JOIN playlist__album as al ON al.artist_id = ar.id
       WHERE al.id = ${req.params.id}
     `, {
-        type: sequelize_1.QueryTypes.SELECT
+        type: sequelize_1.QueryTypes.SELECT,
     });
     if (album.length === 0) {
         return next(new errorResponse_1.default(`no album found with the id ${req.params.id}`, 404));
     }
-    res.status(200).json(album);
+    res.status(200).json(album[0]);
 }));
 // @desc    Get one album's tracklist & album occurrence in reports count
 // @route   GET /tracklist/:id
@@ -61,7 +61,7 @@ exports.getAlbumTracklist = async_1.asyncHandler((req, res, next) => __awaiter(v
      group by track_id
      order by track_no asc, track_title asc
     `, {
-        type: sequelize_1.QueryTypes.SELECT
+        type: sequelize_1.QueryTypes.SELECT,
     });
     if (album.length === 0) {
         return next(new errorResponse_1.default(`no album found with the id ${req.params.id}`, 404));
@@ -78,7 +78,7 @@ exports.updateAlbum = async_1.asyncHandler((req, res, next) => __awaiter(void 0,
         label,
         identifier: cat_id,
         year,
-        spotify_id
+        spotify_id,
     }, { where: { id: req.params.id } });
     if (updatedAlbum[0] === 0) {
         return next(new errorResponse_1.default(`no album found with the id ${req.params.id}`, 404));
@@ -91,7 +91,7 @@ exports.updateAlbum = async_1.asyncHandler((req, res, next) => __awaiter(void 0,
 exports.changeArtist = async_1.asyncHandler((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const { album_id, artist_id } = req.body;
     const changedArtist = yield Album_1.Album.update({
-        artist_id
+        artist_id,
     }, { where: { id: album_id } });
     if (changedArtist[0] === 0) {
         return next(new errorResponse_1.default(`no album found with the id ${album_id}`, 404));

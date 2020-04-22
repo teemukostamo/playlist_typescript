@@ -47,10 +47,10 @@ exports.getReportTracks = async_1.asyncHandler((req, res, next) => __awaiter(voi
      WHERE rt.report_id = ${req.params.id}
      ORDER BY sortable_rank asc
       `, {
-        type: sequelize_1.QueryTypes.SELECT
+        type: sequelize_1.QueryTypes.SELECT,
     });
     if (report.length === 0) {
-        return next(new errorResponse_1.default(`no report found with the id ${req.params.id}`, 404));
+        return next(new errorResponse_1.default(`no tracks found with the id ${req.params.id}`, 404));
     }
     res.status(200).json(report);
 }));
@@ -63,7 +63,7 @@ exports.addTrackToReport = async_1.asyncHandler((req, res) => __awaiter(void 0, 
         track_id,
         report_id,
         length,
-        sortable_rank
+        sortable_rank,
     });
     res.status(201).json(newReportTrack);
 }));
@@ -72,13 +72,13 @@ exports.addTrackToReport = async_1.asyncHandler((req, res) => __awaiter(void 0, 
 // @access  Private
 exports.deleteTrackFromReport = async_1.asyncHandler((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const report_track = yield Report_Track_1.Report_Track.findOne({
-        where: { id: req.params.id }
+        where: { id: req.params.id },
     });
     if (!report_track) {
         return next(new errorResponse_1.default(`no report_track found with the id ${req.params.id}`, 404));
     }
     yield Report_Track_1.Report_Track.destroy({
-        where: { id: req.params.id }
+        where: { id: req.params.id },
     });
     res.status(204).json({});
 }));
@@ -87,13 +87,13 @@ exports.deleteTrackFromReport = async_1.asyncHandler((req, res, next) => __await
 // @access  Private
 exports.updateSortableRanks = async_1.asyncHandler((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const report_track = yield Report_Track_1.Report_Track.findOne({
-        where: { id: req.params.id }
+        where: { id: req.params.id },
     });
     if (!report_track) {
         return next(new errorResponse_1.default(`no report_track found with the id ${req.params.id}`, 404));
     }
     const updatedReportTrack = yield Report_Track_1.Report_Track.update({
-        sortable_rank: req.body.sortable_rank
+        sortable_rank: req.body.sortable_rank,
     }, { where: { id: req.params.id } });
     res.status(200).json(`${updatedReportTrack[0]} rows affected`);
 }));
@@ -112,12 +112,12 @@ exports.getSiteTracklist = async_1.asyncHandler((req, res) => __awaiter(void 0, 
      ORDER BY re.program_date desc
      LIMIT 15
   `, {
-        type: sequelize_1.QueryTypes.SELECT
+        type: sequelize_1.QueryTypes.SELECT,
     });
     if (dateTimes.length === 0) {
         return res.status(404).json('false');
     }
-    const dateArr = dateTimes.map(dt => `${dt.program_date} ${dt.program_start_time}`);
+    const dateArr = dateTimes.map((dt) => `${dt.program_date} ${dt.program_start_time}`);
     let result = {};
     yield Promise.all(dateArr.map((date) => __awaiter(void 0, void 0, void 0, function* () {
         const tracks = yield database_1.db.query(`
@@ -137,7 +137,7 @@ exports.getSiteTracklist = async_1.asyncHandler((req, res) => __awaiter(void 0, 
       AND re.program_date = "${date.substring(0, 10)}"
       ORDER BY rt.sortable_rank
       `, {
-            type: sequelize_1.QueryTypes.SELECT
+            type: sequelize_1.QueryTypes.SELECT,
         });
         result = Object.assign(Object.assign({}, result), { [date]: tracks });
         return result;

@@ -50,7 +50,7 @@ exports.getOneTrack = async_1.asyncHandler((req, res, next) => __awaiter(void 0,
     if (track.length === 0) {
         return next(new errorResponse_1.default(`no track found with the id ${req.params.id}`, 404));
     }
-    res.status(200).json(track);
+    res.status(200).json(track[0]);
 }));
 // @desc    Get play history of one track
 // @route   GET /history/:id
