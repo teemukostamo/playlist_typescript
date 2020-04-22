@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Container, Grid, Dimmer, Loader } from 'semantic-ui-react';
-import CreateNewReportForm from '../../report/CreateNewReportForm';
+import CreateNewReport from '../../report/CreateNewReport';
 import InProgressReportsList from '../../reportList/InProgressReportList';
 import { getAllInProgress } from '../../../store/reportList/actions';
 
@@ -32,7 +32,7 @@ const Home: React.FC = () => {
       <h2>Playlist reporting</h2>
       <Grid divided='vertically'>
         <Grid.Row columns={2}>
-          <CreateNewReportForm />
+          <CreateNewReport />
           <InProgressReportsList inProgress={reportList.inProgress} />
         </Grid.Row>
       </Grid>

@@ -40,12 +40,12 @@ export const getReportTracks = asyncHandler(
      ORDER BY sortable_rank asc
       `,
       {
-        type: QueryTypes.SELECT
+        type: QueryTypes.SELECT,
       }
     );
     if (report.length === 0) {
       return next(
-        new ErrorResponse(`no report found with the id ${req.params.id}`, 404)
+        new ErrorResponse(`no tracks found with the id ${req.params.id}`, 404)
       );
     }
     res.status(200).json(report);
@@ -62,7 +62,7 @@ export const addTrackToReport = asyncHandler(
       track_id,
       report_id,
       length,
-      sortable_rank
+      sortable_rank,
     });
     res.status(201).json(newReportTrack);
   }
@@ -74,7 +74,7 @@ export const addTrackToReport = asyncHandler(
 export const deleteTrackFromReport = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const report_track = await Report_Track.findOne({
-      where: { id: req.params.id }
+      where: { id: req.params.id },
     });
     if (!report_track) {
       return next(
@@ -85,7 +85,7 @@ export const deleteTrackFromReport = asyncHandler(
       );
     }
     await Report_Track.destroy({
-      where: { id: req.params.id }
+      where: { id: req.params.id },
     });
     res.status(204).json({});
   }
@@ -97,7 +97,7 @@ export const deleteTrackFromReport = asyncHandler(
 export const updateSortableRanks = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const report_track = await Report_Track.findOne({
-      where: { id: req.params.id }
+      where: { id: req.params.id },
     });
     if (!report_track) {
       return next(
@@ -109,7 +109,7 @@ export const updateSortableRanks = asyncHandler(
     }
     const updatedReportTrack = await Report_Track.update(
       {
-        sortable_rank: req.body.sortable_rank
+        sortable_rank: req.body.sortable_rank,
       },
       { where: { id: req.params.id } }
     );
@@ -140,7 +140,7 @@ export const getSiteTracklist = asyncHandler(
      LIMIT 15
   `,
       {
-        type: QueryTypes.SELECT
+        type: QueryTypes.SELECT,
       }
     );
 
@@ -149,13 +149,13 @@ export const getSiteTracklist = asyncHandler(
     }
 
     const dateArr = dateTimes.map(
-      dt => `${dt.program_date} ${dt.program_start_time}`
+      (dt) => `${dt.program_date} ${dt.program_start_time}`
     );
 
     let result = {};
 
     await Promise.all(
-      dateArr.map(async date => {
+      dateArr.map(async (date) => {
         const tracks = await db.query(
           `
         SELECT ar.name as artist
@@ -175,12 +175,12 @@ export const getSiteTracklist = asyncHandler(
       ORDER BY rt.sortable_rank
       `,
           {
-            type: QueryTypes.SELECT
+            type: QueryTypes.SELECT,
           }
         );
         result = {
           ...result,
-          [date]: tracks
+          [date]: tracks,
         };
         return result;
       })

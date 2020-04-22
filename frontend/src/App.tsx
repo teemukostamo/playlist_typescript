@@ -14,12 +14,13 @@ import Navbar from './components/layout/navbar';
 import Notification from './components/layout/notification/Notification';
 import Programs from './components/programs';
 import ReportList from './components/reportList/ReportList';
+import ReportTrackIndex from './components/report';
 import Search from './components/search';
 import Top100 from './components/top100';
 import Track from './components/track';
 import Users from './components/users';
 
-import { initializeUser, logout } from './store/login/actions';
+import { initializeUser } from './store/login/actions';
 import { initializeUsers } from './store/user/actions';
 import { initializePrograms, getAllPrograms } from './store/program/actions';
 
@@ -54,7 +55,6 @@ const App: React.FC = () => {
       <Container>
         <LoginForm />
         <div>Credentials deactivated. Please contact the administrator.</div>
-
         <Footer />
       </Container>
     );
@@ -66,16 +66,7 @@ const App: React.FC = () => {
         <Notification notification={notification} />
       </div>
       <Switch>
-        {/* 
-        <Route exact path='/transfer' component={ReportTransferList} />
-        <Route
-          path='/reports/:id'
-          render={({ match }) => {
-            return <ReportWithTracks id={match.params.id} />;
-          }}
-        />
-        
-         */}
+        {/* <Route exact path='/transfer' component={ReportTransferList} /> */}
         <Route exact path='/' component={Home} />
         <Route
           path='/album/:id'
@@ -93,6 +84,12 @@ const App: React.FC = () => {
           path='/track/:id'
           render={({ match }) => {
             return <Track id={match.params.id} />;
+          }}
+        />
+        <Route
+          path='/reports/:id'
+          render={({ match }) => {
+            return <ReportTrackIndex id={match.params.id} />;
           }}
         />
         <Route exact path='/reports' component={ReportList} />

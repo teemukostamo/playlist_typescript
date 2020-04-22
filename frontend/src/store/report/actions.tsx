@@ -16,6 +16,7 @@ import {
   CREATE_NEW_PROGRAM_ON_NEW_REPORT,
   SET_LOADING,
   CLEAR_CHECKED_FOR_DELETE,
+  CreateNewReportFormTypes,
 } from './types';
 import reportService from './services';
 import programService from '../program/services';
@@ -102,42 +103,49 @@ export const getReportDetails = (id: number) => async (dispatch: Dispatch) => {
   }
 };
 
-// export const createReport = newReport => async dispatch => {
-//   try {
-//     dispatch({
-//       type: SET_LOADING
-//     });
-//     if (newReport.program_id === '' && newReport.new_program_name !== '') {
-//       const newProgram = {
-//         name: newReport.new_program_name,
-//         user_id: newReport.user_id
-//       };
-//       const program = await programService.createProgram(newProgram);
-//       dispatch({
-//         type: CREATE_NEW_PROGRAM_ON_NEW_REPORT,
-//         data: program
-//       });
-//       const newReportWithNewProgram = {
-//         ...newReport,
-//         program_id: program.id,
-//         display: 1
-//       };
-//       const report = await reportService.createReport(newReportWithNewProgram);
-//       dispatch({
-//         type: CREATE_REPORT,
-//         data: report
-//       });
-//     } else {
-//       const report = await reportService.createReport(newReport);
-//       dispatch({
-//         type: CREATE_REPORT,
-//         data: report
-//       });
-//     }
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+export const createReport = (newReport: CreateNewReportFormTypes) => async (
+  dispatch: Dispatch
+) => {
+  try {
+    dispatch({
+      type: SET_LOADING,
+    });
+    // if (newReport.program_id === '' && newReport.new_program_name !== '') {
+    //   const newProgram = {
+    //     name: newReport.new_program_name,
+    //     user_id: newReport.user_id
+    //   };
+    //   const program = await programService.createProgram(newProgram);
+    //   dispatch({
+    //     type: CREATE_NEW_PROGRAM_ON_NEW_REPORT,
+    //     data: program
+    //   });
+    //   const newReportWithNewProgram = {
+    //     ...newReport,
+    //     program_id: program.id,
+    //     display: 1
+    //   };
+    //   const report = await reportService.createReport(newReportWithNewProgram);
+    //   dispatch({
+    //     type: CREATE_REPORT,
+    //     data: report
+    //   });
+    // } else {
+    //   const report = await reportService.createReport(newReport);
+    //   dispatch({
+    //     type: CREATE_REPORT,
+    //     data: report
+    //   });
+    // }
+    const report = await reportService.createReport(newReport);
+    dispatch({
+      type: CREATE_REPORT,
+      data: report,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 // export const copyReport = (
 //   reportDetailsToCopy,

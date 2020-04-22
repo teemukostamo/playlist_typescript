@@ -1,5 +1,9 @@
 import axios from 'axios';
-import { AddTrackToReportParams, ReportDetails } from './types';
+import {
+  AddTrackToReportParams,
+  ReportDetails,
+  CreateNewReportFormTypes,
+} from './types';
 
 const baseUrl = '/api/reports';
 
@@ -71,13 +75,13 @@ const getReportDetails = async (id: number) => {
 };
 
 // create new report
-// const createReport = async newReport => {
-//   const config = {
-//     headers: { Authorization: token }
-//   };
-//   const response = await axios.post('/api/reportdetails', newReport, config);
-//   return response.data;
-// };
+const createReport = async (newReport: CreateNewReportFormTypes) => {
+  const config = {
+    headers: { Authorization: token },
+  };
+  const response = await axios.post('/api/reportdetails', newReport, config);
+  return response.data;
+};
 
 // update existing report details
 const updateReport = async (updatedReport: ReportDetails) => {
@@ -101,6 +105,6 @@ export default {
   // updateSortableRank,
   getOne,
   getReportDetails,
-  // createReport,
+  createReport,
   updateReport,
 };

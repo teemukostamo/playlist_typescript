@@ -1,7 +1,7 @@
 import React from 'react';
-import { Button } from 'semantic-ui-react';
-import { Formik } from 'formik';
-import { Datepicker, Form, Select } from 'react-formik-ui';
+import { Button, Grid } from 'semantic-ui-react';
+import { Formik, Form } from 'formik';
+import { Datepicker, Select } from 'react-formik-ui';
 import { Top100QueryType } from '../../store/search/types';
 import moment from 'moment';
 
@@ -41,18 +41,22 @@ const Top100SearchForm: React.FC<Props> = ({ onSubmit }) => {
     >
       {() => {
         return (
-          <Form mode='structured'>
+          <Form className='form ui'>
             {/* <SelectField label='Get' name='list' options={listOptions} />{' '} */}
-            <Select name='list' label='Get Top 100' options={listOptions} />
+            <Grid>
+              <Grid.Column width={2}>
+                <Select name='list' label='Get Top 100' options={listOptions} />
+              </Grid.Column>
+            </Grid>
+            <label>starting</label>
             <Datepicker
               name='start_date'
-              label='Starting'
               dateFormat='dd.MM.yyyy'
               placeholder='dd.mm.yyyy'
             />{' '}
+            <label>ending</label>
             <Datepicker
               name='end_date'
-              label='Ending'
               dateFormat='dd.MM.yyyy'
               placeholder='dd.mm.yyyy'
             />{' '}

@@ -82,6 +82,22 @@ export interface ReportDetails {
   last_name: string;
 }
 
+export interface CreateNewReportFormTypes {
+  program_name: string | undefined;
+  program_no: number | null;
+  program_dj: string;
+  program_date: string;
+  program_start_time: string | undefined;
+  program_end_time: string | undefined;
+  program_id: number;
+  rerun: number | null;
+  status: number;
+  user_id: number;
+  username: string;
+  first_name: string;
+  last_name: string;
+}
+
 export interface ReportState {
   report: Array<ReportItem>;
   playlog: Array<PlaylogItem>;

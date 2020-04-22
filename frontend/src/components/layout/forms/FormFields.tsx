@@ -2,7 +2,7 @@ import React from 'react';
 import { ErrorMessage, Field, FieldProps } from 'formik';
 import { Form } from 'semantic-ui-react';
 
-interface SelectFieldOptions {
+export interface SelectFieldOptions {
   key?: number | string;
   value: number | string;
   label: string;
