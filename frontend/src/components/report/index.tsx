@@ -1,13 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Header, Container, Grid, Popup, Icon } from 'semantic-ui-react';
-import { getOneReport, getReportDetails } from '../../store/report/actions';
+import ReactDragListView from 'react-drag-listview';
+import {
+  Header,
+  Container,
+  Button,
+  Grid,
+  Popup,
+  Icon,
+} from 'semantic-ui-react';
+import {
+  getOneReport,
+  getReportDetails,
+  deleteChecked,
+  updateSortableRank,
+} from '../../store/report/actions';
 
 import ReportTrackList from './ReportWithTracks/ReportTrackList';
 import AddTracksToReport from './AddTracksToReport';
 import ReportDetailsIndex from './ReportDetails';
 
 import { ApplicationState } from '../../store/types';
+import { ReportItem } from '../../store/report/types';
 
 interface Props {
   id: number;
@@ -15,21 +29,60 @@ interface Props {
 
 const ReportTrackIndex: React.FC<Props> = ({ id }) => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getOneReport(id));
-    dispatch(getReportDetails(id));
-    // eslint-disable-next-line
-  }, []);
-  console.log(id);
   const report = useSelector((state: ApplicationState) => state.report);
   const login = useSelector((state: ApplicationState) => state.login);
-  console.log(report);
+  const [dragState, setDragState] = useState<Array<ReportItem>>(report.report);
+
+  useEffect(() => {
+    dispatch(getReportDetails(id));
+    dispatch(getOneReport(id));
+    // eslint-disable-next-line
+  }, [report.playlog]);
+
+  // fetch tracks after sorting changes
+  useEffect(() => {
+    dispatch(updateSortableRank(dragState));
+    // eslint-disable-next-line
+  }, [dragState]);
+
+  const clickDeleteChecked = () => {
+    const remainingTracks = report.report.filter((item) => {
+      return !report.checkedForDelete.includes(item.report_track_id);
+    });
+    dispatch(deleteChecked(report.checkedForDelete, id, remainingTracks));
+  };
+
+  const deleteCheckedButton = (
+    <Button
+      color='red'
+      onClick={clickDeleteChecked}
+      style={{
+        marginLeft: '1rem',
+        marginBottom: '1rem',
+        marginTop: '1rem',
+      }}
+    >
+      Poista valitut
+    </Button>
+  );
+  const array = report.report;
+  const dragProps = {
+    onDragEnd(fromIndex: number, toIndex: number) {
+      const item = array.splice(fromIndex, 1)[0];
+      array.splice(toIndex, 0, item);
+      setDragState(array);
+    },
+    nodeSelector: 'tr',
+    handleSelector: 'i.arrows',
+  };
+
   if (
     login.currentUser?.level === 1 &&
     login.currentUser.id !== report.reportDetails?.user_id
   ) {
     return null;
   }
+
   if (report.report.length === 0) {
     return (
       <Container>
@@ -43,7 +96,10 @@ const ReportTrackIndex: React.FC<Props> = ({ id }) => {
   return (
     <Container>
       <Header>Report</Header>
-      <ReportTrackList report={report.report} />
+      <ReactDragListView {...dragProps}>
+        <ReportTrackList report={report} />
+      </ReactDragListView>
+      {deleteCheckedButton}
       <AddTracksToReport />
       <ReportDetailsIndex />
     </Container>

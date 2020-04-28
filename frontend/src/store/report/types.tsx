@@ -100,7 +100,7 @@ export interface CreateNewReportFormTypes {
 
 export interface ReportState {
   report: Array<ReportItem>;
-  playlog: Array<PlaylogItem>;
+  playlog: Array<ReportItem>;
   editTrackId: number | null;
   reportDetails: ReportDetails | null;
   newReport: ReportDetails | null;
@@ -132,8 +132,7 @@ interface GetOneReportAction {
 
 interface PlaylogAction {
   type: typeof GET_PLAYLOG_TRACKS;
-  playlog: Array<PlaylogItem>;
-  report: Array<ReportItem>;
+  data: Array<ReportItem>;
 }
 
 interface AddTrackToReportAction {
@@ -213,7 +212,7 @@ export type ReportActionTypes =
 
 export interface AddTrackToReportParams {
   track_id: number;
-  report_id: number;
+  report_id?: number;
   length: number;
   sortable_rank: number;
 }
@@ -222,4 +221,85 @@ export interface DeleteTrackFromReportParams {
   report_track_id: number;
   report_id: number;
   remainingTracks: Array<ReportItem>;
+}
+
+//
+interface Result {
+  description: string;
+  key: number;
+  length: number;
+  title: string;
+  value: number;
+}
+
+export interface AutocompleteResultType {
+  result: Result;
+}
+
+export interface PlaylogParams {
+  studioId: string;
+  date: string;
+  startTime: string;
+  endTime: string;
+  report_id: number;
+  sortable_rank_start: number;
+}
+
+export interface PlaylogRawData {
+  date: string;
+  id: string;
+  composer: string;
+  artist: string;
+  artist_fi: null | string;
+  additional_artist: null | string;
+  conductor: null | string;
+  song: string;
+  song_fi: null | string;
+  label: string;
+  matrix: string;
+  isrc: string;
+  album: string;
+  side: string;
+  tracknumber: string;
+  length: string;
+  year: string;
+  recording_country: string;
+}
+
+export interface PlaylogNewArray {
+  album_name: string;
+  artist_name: string;
+  cat_id: string;
+  disc_no: number;
+  track_no: number;
+  isrc: string;
+  record_country: string;
+  country: null | number;
+  play_time: string;
+  djonline_id: string;
+  label: string;
+  length: number;
+  track_title: string;
+  year: string;
+  // sortable_rank: searchParams.sortable_rank_start + index + 1,
+  report_id: number;
+}
+
+export interface PlaylogNewArrayWithSortable {
+  album_name: string;
+  artist_name: string;
+  cat_id: string;
+  disc_no: number;
+  track_no: number;
+  isrc: string;
+  record_country: string;
+  country: null | number;
+  play_time: string;
+  djonline_id: string;
+  label: string;
+  length: number;
+  track_title: string;
+  year: string;
+  sortable_rank: number;
+  report_id: number;
 }

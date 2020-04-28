@@ -1,17 +1,10 @@
 import React from 'react';
-import {
-  Container,
-  Table,
-  Dimmer,
-  Loader,
-  Button,
-  Header,
-} from 'semantic-ui-react';
+import { Table } from 'semantic-ui-react';
 import ReportTrackListItem from './ReportTrackListItem';
-import { ReportItem } from '../../../store/report/types';
+import { ReportState } from '../../../store/report/types';
 
 interface Props {
-  report: Array<ReportItem>;
+  report: ReportState;
 }
 
 const ReportTrackList: React.FC<Props> = ({ report }) => {
@@ -29,8 +22,12 @@ const ReportTrackList: React.FC<Props> = ({ report }) => {
         </Table.Row>
       </Table.Header>
       <Table.Body>
-        {report.map((track) => (
-          <ReportTrackListItem key={track.report_track_id} track={track} />
+        {report.report.map((track) => (
+          <ReportTrackListItem
+            key={track.report_track_id}
+            track={track}
+            report={report}
+          />
         ))}
       </Table.Body>
       <Table.Footer>

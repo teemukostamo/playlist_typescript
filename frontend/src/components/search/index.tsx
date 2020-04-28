@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Container, Header } from 'semantic-ui-react';
 import SearchForm from './SearchForm';
 import SearchResults from './SearchResults';
+import AddTrackModal from './AddTrackModal';
 
 import { ApplicationState } from '../../store/types';
 
@@ -12,6 +13,7 @@ const Search: React.FC = () => {
   return (
     <Container>
       <Header>Search</Header>
+      <AddTrackModal />
       <SearchForm />
       <SearchResults search={search} />
     </Container>

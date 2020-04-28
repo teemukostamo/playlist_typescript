@@ -9,6 +9,7 @@ import {
   GET_ONE_REPORT,
   GET_REPORT_DETAILS,
   SET_EDIT_TRACK_ID,
+  GET_PLAYLOG_TRACKS,
   CREATE_REPORT,
   UPDATE_REPORT,
   CHECK_FOR_DELETE,
@@ -17,6 +18,7 @@ import {
   SET_LOADING,
   CLEAR_CHECKED_FOR_DELETE,
   CreateNewReportFormTypes,
+  PlaylogParams,
 } from './types';
 import reportService from './services';
 import programService from '../program/services';
@@ -223,12 +225,13 @@ export const deleteChecked = (
     dispatch({
       type: SET_LOADING,
     });
+    console.log('function fired');
     idsToDelete.forEach(async (id: number) => {
       await reportService.deleteTrackFromReport(id);
     });
-    // await reportService.updateSortableRank(remainingTracks);
-    // const report = await reportService.getOne(report_id);
-    // console.log(report);
+    await reportService.updateSortableRank(remainingTracks);
+    const report = await reportService.getOne(Number(report_id));
+    console.log(report);
     dispatch({
       type: GET_ONE_REPORT,
       data: remainingTracks,
@@ -242,25 +245,45 @@ export const deleteChecked = (
 };
 
 // eslint-disable-next-line camelcase
-// export const updateSortableRank = newOrder => async dispatch => {
-//   try {
-//     dispatch({
-//       type: SET_LOADING
-//     });
-//     await reportService.updateSortableRank(newOrder);
-//     const updatedSortableRanks = [];
-//     newOrder.forEach((track, index) => {
-//       const item = {
-//         ...track,
-//         sortable_rank: index + 1
-//       };
-//       updatedSortableRanks.push(item);
-//     });
-//     dispatch({
-//       type: GET_ONE_REPORT,
-//       data: updatedSortableRanks
-//     });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+export const updateSortableRank = (newOrder: Array<ReportItem>) => async (
+  dispatch: Dispatch
+) => {
+  try {
+    dispatch({
+      type: SET_LOADING,
+    });
+    await reportService.updateSortableRank(newOrder);
+    const updatedSortableRanks: Array<ReportItem> = [];
+    newOrder.forEach((track, index) => {
+      const item = {
+        ...track,
+        sortable_rank: index + 1,
+      };
+      updatedSortableRanks.push(item);
+    });
+    dispatch({
+      type: GET_ONE_REPORT,
+      data: updatedSortableRanks,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getPlaylogTracks = (searchParams: PlaylogParams) => async (
+  dispatch: Dispatch
+) => {
+  try {
+    dispatch({
+      type: SET_LOADING,
+    });
+    const tracks = await reportService.checkPlaylogTracks(searchParams);
+    console.log('returnArray at report action', tracks);
+    dispatch({
+      type: GET_PLAYLOG_TRACKS,
+      data: tracks,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};

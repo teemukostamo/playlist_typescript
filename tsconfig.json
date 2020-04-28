@@ -62,7 +62,8 @@
 
     /* Advanced Options */
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */,
-    "typeRoots": ["./backend/types", "node_modules/@types"]
+    "typeRoots": ["./backend/types", "node_modules/@types"],
+    "resolveJsonModule": true
   },
   "exclude": ["frontend", "types", "build"]
 }

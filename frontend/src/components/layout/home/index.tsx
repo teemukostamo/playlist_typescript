@@ -12,15 +12,15 @@ const Home: React.FC = () => {
   const reportList = useSelector((state: ApplicationState) => state.reportList);
   const program = useSelector((state: ApplicationState) => state.program);
   const login = useSelector((state: ApplicationState) => state.login);
-  console.log(reportList);
+
   useEffect(() => {
     dispatch(getAllInProgress(login.currentUser?.id));
     // eslint-disable-next-line
-  }, []);
+  }, [login.currentUser]);
+
   if (program.activePrograms === null) {
     return (
       <Container>
-        <h2>Playlist reporting</h2>
         <Dimmer active>
           <Loader>Loading active programs...</Loader>
         </Dimmer>{' '}
@@ -29,7 +29,6 @@ const Home: React.FC = () => {
   }
   return (
     <Container>
-      <h2>Playlist reporting</h2>
       <Grid divided='vertically'>
         <Grid.Row columns={2}>
           <CreateNewReport />

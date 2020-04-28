@@ -38,6 +38,7 @@ export interface Top100Type {
   artist: string;
   album_id: number;
   artist_id: number;
+  length: number;
 }
 
 export interface Top100QueryType {

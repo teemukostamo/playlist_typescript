@@ -1,6 +1,7 @@
 import React from 'react';
 import { Table } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import AddTrackToCurrentReport from '../track/AddTrackToCurrentReport';
 
 import { Top100Type } from '../../store/search/types';
 
@@ -34,11 +35,11 @@ const Top100ArtistList: React.FC<Props> = ({ top100 }) => {
             </Table.Cell>
             <Table.Cell>{t.count}</Table.Cell>
             <Table.Cell>
-              {/* <AddToCurrentReport
-                    track_title={t.track_title}
-                    track_id={t.track_id}
-                    length={t.length}
-                  /> */}
+              <AddTrackToCurrentReport
+                track_title={t.track_title}
+                track_id={t.track_id}
+                length={t.length}
+              />
             </Table.Cell>
           </Table.Row>
         ))}

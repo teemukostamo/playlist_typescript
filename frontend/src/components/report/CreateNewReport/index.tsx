@@ -43,7 +43,7 @@ const CreateNewReport: React.FC = () => {
   return (
     <Grid.Column>
       <Container>
-        <Header>Create new report form here</Header>
+        <Header>Create a new report</Header>
         <CreateNewReportForm
           onSubmit={submitNewReport}
           currentUser={login.currentUser}

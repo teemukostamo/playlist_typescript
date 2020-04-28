@@ -19,6 +19,7 @@ import { User } from './src/models/User';
 // import routers
 import albumsRouter from './src/routes/albums';
 import artistsRouter from './src/routes/artists';
+import playlogRouter from './src/routes/playlog';
 import programsRouter from './src/routes/programs';
 import reportDetailsRouter from './src/routes/reportdetails';
 import reportsListRouter from './src/routes/reportslist';
@@ -68,6 +69,7 @@ app.use(logger);
 
 app.use('/api/albums', albumsRouter);
 app.use('/api/artists', artistsRouter);
+app.use('/api/playlog', playlogRouter);
 app.use('/api/programs', programsRouter);
 app.use('/api/reportdetails', reportDetailsRouter);
 app.use('/api/reportslist', reportsListRouter);

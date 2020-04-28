@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Grid } from 'semantic-ui-react';
 import { Formik, Form } from 'formik';
 import { Datepicker, Select } from 'react-formik-ui';
+import { SelectField } from '../layout/forms/FormFields';
 import { Top100QueryType } from '../../store/search/types';
 import moment from 'moment';
 
@@ -42,24 +43,28 @@ const Top100SearchForm: React.FC<Props> = ({ onSubmit }) => {
       {() => {
         return (
           <Form className='form ui'>
-            {/* <SelectField label='Get' name='list' options={listOptions} />{' '} */}
             <Grid>
               <Grid.Column width={2}>
-                <Select name='list' label='Get Top 100' options={listOptions} />
+                {/* <Select name='list' label='Get Top 100' options={listOptions} /> */}
+                <SelectField label='Get' name='list' options={listOptions} />
+              </Grid.Column>
+              <Grid.Column width={4}>
+                <label>starting</label>
+                <Datepicker
+                  name='start_date'
+                  dateFormat='dd.MM.yyyy'
+                  placeholder='dd.mm.yyyy'
+                />
+              </Grid.Column>
+              <Grid.Column width={4}>
+                <label>ending</label>
+                <Datepicker
+                  name='end_date'
+                  dateFormat='dd.MM.yyyy'
+                  placeholder='dd.mm.yyyy'
+                />{' '}
               </Grid.Column>
             </Grid>
-            <label>starting</label>
-            <Datepicker
-              name='start_date'
-              dateFormat='dd.MM.yyyy'
-              placeholder='dd.mm.yyyy'
-            />{' '}
-            <label>ending</label>
-            <Datepicker
-              name='end_date'
-              dateFormat='dd.MM.yyyy'
-              placeholder='dd.mm.yyyy'
-            />{' '}
             <Button type='submit' color='green'>
               Submit
             </Button>

@@ -246,18 +246,18 @@ export const recordCountryOptions = [
 export const countryOptions = [
   {
     key: 1,
-    label: 'Suomi',
+    label: 'Finland',
     value: 1,
   },
   {
     key: 2,
-    label: 'Muu',
+    label: 'Other than Finland',
     value: 2,
   },
   {
     key: 0,
-    label: 'Ei tietoa',
-    value: null,
+    label: 'Unknown',
+    value: 0,
   },
 ];
 
@@ -589,6 +589,25 @@ export const reportMonthOptions = [
     key: '12',
     label: 'December',
     value: '12',
+  },
+];
+
+// report status options
+export const reportStatusOptions = [
+  {
+    key: 0,
+    label: 'In progress',
+    value: 0,
+  },
+  {
+    key: 1,
+    label: 'Ready',
+    value: 1,
+  },
+  {
+    key: 9,
+    label: 'Deleted',
+    value: 9,
   },
 ];
 

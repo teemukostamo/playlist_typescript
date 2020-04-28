@@ -1,7 +1,19 @@
 import React from 'react';
-import { Button, Grid, Dimmer, Loader, Header } from 'semantic-ui-react';
+import {
+  Button,
+  Grid,
+  Dimmer,
+  Loader,
+  Header,
+  GridColumn,
+} from 'semantic-ui-react';
 import { Formik, Form, Field } from 'formik';
-import { TextField, NumberField } from '../layout/forms/FormFields';
+import {
+  TextField,
+  NumberField,
+  SelectField,
+  TextAreaField,
+} from '../layout/forms/FormFields';
 import { Track, UpdateTrackFormValuesType } from '../../store/track/types';
 import { countryOptions, recordCountryOptions } from '../../constants';
 
@@ -18,6 +30,13 @@ const TrackDetailsForm: React.FC<Props> = ({ currentTrack, onSubmit }) => {
       </Dimmer>
     );
   }
+  let initialPeople = '';
+  if (currentTrack.people) {
+    initialPeople = currentTrack.people
+      .replace(/\| /, '')
+      .replace(/\| /g, '\n')
+      .replace(/ \|/, '');
+  }
   console.log('current track at track details form', currentTrack);
   return (
     <Grid columns={2}>
@@ -32,16 +51,16 @@ const TrackDetailsForm: React.FC<Props> = ({ currentTrack, onSubmit }) => {
             length: currentTrack.length,
             minutes: Math.floor(currentTrack.length / 60),
             seconds: currentTrack.length % 60,
-            country: currentTrack.country,
+            country: currentTrack.country || 0,
             record_country: currentTrack.record_country,
-            people: currentTrack.people,
-            disc_no: currentTrack.disc_no,
+            people: initialPeople || '',
+            disc_no: currentTrack.disc_no || 1,
             track_no: currentTrack.track_no,
             year: Number(currentTrack.year?.substring(0, 4)) || '',
             label: currentTrack.label,
             cat_id: currentTrack.cat_id,
             isrc: currentTrack.isrc,
-            comment: currentTrack.comment,
+            comment: currentTrack.comment || '',
             user_id: null,
             artist_id: currentTrack.artist_id,
             album_id: currentTrack.album_id,
@@ -74,37 +93,72 @@ const TrackDetailsForm: React.FC<Props> = ({ currentTrack, onSubmit }) => {
                   name='album'
                   component={TextField}
                 />
+
                 <Field
                   label='Track title'
                   placeholder='Track title...'
                   name='track_title'
                   component={TextField}
                 />
+                <Grid>
+                  <Grid.Column width={8}>
+                    <Field
+                      label='Length - minutes'
+                      name='minutes'
+                      component={NumberField}
+                      min={0}
+                      max={999}
+                    />
+                  </Grid.Column>
+                  <Grid.Column width={8}>
+                    <Field
+                      label='Length - seconds'
+                      name='seconds'
+                      component={NumberField}
+                      min={0}
+                      max={59}
+                    />
+                  </Grid.Column>
+                </Grid>
+                <Grid>
+                  <Grid.Column width={8}>
+                    <Field
+                      label='Track #'
+                      name='track_no'
+                      component={NumberField}
+                      min={0}
+                      max={999}
+                    />
+                  </Grid.Column>
+                  <Grid.Column width={8}>
+                    <Field
+                      label='Disc #'
+                      name='disc_no'
+                      component={NumberField}
+                      min={0}
+                      max={99}
+                    />
+                  </Grid.Column>
+                  <Grid.Column width={8}>
+                    <SelectField
+                      label='Country'
+                      name='country'
+                      options={countryOptions}
+                    />
+                  </Grid.Column>
+                  <Grid.Column width={8}>
+                    <SelectField
+                      label='Recorded in'
+                      name='record_country'
+                      options={recordCountryOptions}
+                    />
+                  </Grid.Column>
+                </Grid>
                 <Field
-                  label='Minutes'
-                  name='minutes'
-                  component={NumberField}
-                  min={0}
-                  max={999}
-                />
-                <Field
-                  label='Seconds'
-                  name='seconds'
-                  component={NumberField}
-                  min={0}
-                  max={59}
-                />
-                <Field
-                  label='Label'
-                  placeholder='Label...'
-                  name='label'
-                  component={TextField}
-                />
-                <Field
-                  label='Catalog ID'
-                  placeholder='Catalog ID...'
-                  name='cat_id'
-                  component={TextField}
+                  label='Composers - one per line'
+                  placeholder='LAST NAME FIRST NAME'
+                  name='people'
+                  component={TextAreaField}
                 />
                 <Field
                   label='Year'
@@ -117,6 +171,12 @@ const TrackDetailsForm: React.FC<Props> = ({ currentTrack, onSubmit }) => {
                   label='Spotify id'
                   placeholder='Spotify id'
                   name='spotify_id'
+                  component={TextField}
+                />
+                <Field
+                  label='Comment'
+                  placeholder='Any additional information'
+                  name='comment'
                   component={TextField}
                 />
                 <Button

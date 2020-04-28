@@ -25,6 +25,7 @@ export interface TracklistItem {
   track_title: string;
   artist_name: string;
   report_occurrence: number;
+  length: number;
 }
 
 export interface AlbumState {

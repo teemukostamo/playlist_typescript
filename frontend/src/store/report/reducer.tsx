@@ -46,8 +46,8 @@ const reportReducer: Reducer<ReportState, Action> = (
     case GET_PLAYLOG_TRACKS:
       return {
         ...state,
-        report: [...state.report, ...action.report],
-        playlog: action.playlog,
+        report: [...state.report, ...action.data],
+        playlog: action.data,
         loading: false,
       };
     case GET_REPORT_DETAILS:

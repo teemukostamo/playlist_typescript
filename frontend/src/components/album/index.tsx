@@ -5,8 +5,7 @@ import { getOneAlbum, updateAlbum } from '../../store/album/actions';
 import { setNotification } from '../../store/notification/actions';
 import AlbumDetailsForm from './AlbumDetailsForm';
 import TracksInAnAlbum from './TracksInAnAlbum';
-// import AddTrackToAlbum from './AddTrackToAlbum';
-
+import AddTrackToAlbum from './AddTrackToAlbum';
 import { ApplicationState } from '../../store/types';
 import { UpdateAlbumParams } from '../../store/album/types';
 
@@ -17,9 +16,8 @@ interface Props {
 const Album: React.FC<Props> = ({ id }) => {
   const dispatch = useDispatch();
   const album = useSelector((state: ApplicationState) => state.album);
-  console.log(album);
   const report = useSelector((state: ApplicationState) => state.report);
-  console.log(report);
+
   useEffect(() => {
     dispatch(getOneAlbum(id));
     // eslint-disable-next-line
@@ -46,9 +44,7 @@ const Album: React.FC<Props> = ({ id }) => {
 
   return (
     <Container>
-      {/* <AddTrackToAlbum album={album.currentAlbum} report={report} /> */}
-      {/*
-       */}
+      <AddTrackToAlbum currentAlbum={album.currentAlbum} report={report} />
       <AlbumDetailsForm
         onSubmit={updateAlbumDetails}
         currentAlbum={album.currentAlbum}

@@ -121,3 +121,23 @@ export const NumberField: React.FC<NumberProps> = ({
     </div>
   </Form.Field>
 );
+
+interface TextAreaProps extends FieldProps {
+  label: string;
+  placeholder: string;
+  type: string;
+}
+
+export const TextAreaField: React.FC<TextAreaProps> = ({
+  field,
+  label,
+  placeholder,
+}) => (
+  <Form.Field>
+    <label>{label}</label>
+    <Field placeholder={placeholder} {...field} component='textarea' />
+    <div style={{ color: 'red' }}>
+      <ErrorMessage name={field.name} />
+    </div>
+  </Form.Field>
+);

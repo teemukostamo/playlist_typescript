@@ -48,6 +48,25 @@ export interface AddTrackToDbType {
   isrc: string | null;
 }
 
+export interface AddTrackToDbAndReportType {
+  track_title: string;
+  artist_name: string;
+  album_name: string;
+  label: string;
+  cat_id: string;
+  year: string;
+  disc_no: number;
+  track_no: number;
+  length: number;
+  country: number;
+  record_country: string;
+  people: string | null;
+  comment: string | null;
+  isrc: string | null;
+  report_id: number;
+  sortable_rank: number;
+}
+
 export interface UpdateTrackType {
   artist_name: string;
   album_name: string;
@@ -96,23 +115,35 @@ export interface UpdateTrackFormValuesType {
   report_track_id: number | null;
 }
 
-export interface AddTrackToDbAndReportType {
+export interface AddNewTrackFormValuesType {
   track_title: string;
   artist_name: string;
   album_name: string;
   label: string;
   cat_id: string;
-  year: string;
+  year: string | number;
   disc_no: number;
   track_no: number;
-  length: number;
+  minutes: number;
+  seconds: number;
   country: number;
   record_country: string;
   people: string | null;
   comment: string | null;
   isrc: string | null;
-  report_id: number;
-  sortable_rank: number;
+}
+
+export interface AddNewTrackToAlbumFormValuesType {
+  track_title: string;
+  disc_no: number;
+  track_no: number;
+  minutes: number;
+  seconds: number;
+  country: number;
+  record_country: string;
+  people: string | null;
+  comment: string | null;
+  isrc: string | null;
 }
 
 export interface ChangeAlbumParams {

@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 // import MergeArtists from './MergeArtists';
 // import MergeAlbums from './MergeAlbums';
 // import MergeTracks from './MergeTracks';
-// import AddToCurrentReport from '../track/AddToCurrentReport';
-
+import AddTrackToCurrentReport from '../track/AddTrackToCurrentReport';
 import { AdvancedResultsType } from '../../store/search/types';
 
 interface Props {
@@ -43,11 +42,11 @@ const SearchResultItem: React.FC<Props> = ({ result }) => {
         <Link to={`../reports/${result.report_id}`}>{result.program_date}</Link>
       </Table.Cell>
       <Table.Cell>
-        {/* <AddToCurrentReport
+        <AddTrackToCurrentReport
           track_title={result.track_title}
           track_id={result.track_id}
           length={result.length}
-        /> */}
+        />
       </Table.Cell>
     </Table.Row>
   );

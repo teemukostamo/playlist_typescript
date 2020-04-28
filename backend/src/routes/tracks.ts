@@ -9,8 +9,8 @@ import {
   updateTrack,
   addAndReport,
   addNewTrack,
-  addDjonlineTracks,
-  addTrackToAlbum
+  addPlaylogTracks,
+  addTrackToAlbum,
 } from '../controllers/tracks';
 
 const tracksRouter = Router();
@@ -22,7 +22,7 @@ tracksRouter.route('/updateartist').put(verifyUser, changeArtist);
 tracksRouter.route('/').put(verifyUser, updateTrack);
 tracksRouter.route('/addandreport').post(verifyUser, addAndReport);
 tracksRouter.route('/addtodb').post(verifyUser, addNewTrack);
-tracksRouter.route('/djonline').post(verifyUser, addDjonlineTracks);
+tracksRouter.route('/playlog').post(verifyUser, addPlaylogTracks);
 tracksRouter.route('/addtracktoalbum').post(verifyUser, addTrackToAlbum);
 
 export default tracksRouter;

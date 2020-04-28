@@ -24,7 +24,6 @@ const CreateNewReportForm: React.FC<Props> = ({
   currentUser,
   programOptions,
 }) => {
-  console.log(programOptions);
   return (
     <Formik
       initialValues={{

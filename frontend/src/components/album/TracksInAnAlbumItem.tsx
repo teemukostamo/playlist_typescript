@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Table } from 'semantic-ui-react';
 // import MergeAlbumTracksModal from './MergeAlbumTracksModal';
 // import AddToCurrentReport from '../track/AddToCurrentReport';
+import AddTrackToCurrentReport from '../track/AddTrackToCurrentReport';
 
 import { TracklistItem } from '../../store/album/types';
 
@@ -31,12 +32,11 @@ const TracksInAnAlbumItem: React.FC<Props> = ({ track }) => {
       <Table.Cell>{track.isrc}</Table.Cell>
       <Table.Cell>{track.report_occurrence}</Table.Cell>
       <Table.Cell>
-        {/* <AddToCurrentReport
+        <AddTrackToCurrentReport
           track_title={track.track_title}
           track_id={track.track_id}
           length={track.length}
-        /> */}
-        add to current report button here
+        />
       </Table.Cell>
     </Table.Row>
   );

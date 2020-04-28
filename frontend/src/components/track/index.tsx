@@ -22,14 +22,10 @@ interface Props {
 }
 
 const Track: React.FC<Props> = ({ id }) => {
-  console.log(id);
   const dispatch = useDispatch();
   const track = useSelector((state: ApplicationState) => state.track);
   const login = useSelector((state: ApplicationState) => state.login);
-  console.log(track);
-  console.log('track at track', track);
   const report = useSelector((state: ApplicationState) => state.report);
-  console.log(report);
   useEffect(() => {
     dispatch(getOneTrack(id));
     dispatch(getOneTrackHistory(id));
@@ -47,6 +43,12 @@ const Track: React.FC<Props> = ({ id }) => {
   }
 
   const submitUpdateTrack = (values: UpdateTrackFormValuesType) => {
+    let regexPeople;
+    if (values.people) {
+      regexPeople = `| ${values.people.replace(/\n/g, ' | ')} |`;
+    } else {
+      regexPeople = null;
+    }
     const trackToUpdate = {
       artist_name: values.artist,
       album_name: values.album,
@@ -55,7 +57,7 @@ const Track: React.FC<Props> = ({ id }) => {
       length: values.minutes * 60 + values.seconds,
       country: values.country,
       record_country: values.record_country,
-      people: values.people,
+      people: regexPeople,
       disc_no: values.disc_no,
       track_no: values.track_no,
       year: values.year?.toString(),

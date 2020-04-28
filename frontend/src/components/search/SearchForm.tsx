@@ -3,13 +3,8 @@ import { useDispatch } from 'react-redux';
 import { Formik, Form, Field } from 'formik';
 import { SelectField, TextField } from '../layout/forms/FormFields';
 import { Button, Grid } from 'semantic-ui-react';
-// import AddTrackBtn from './AddTrackBtn';
 import { advancedSearch } from '../../store/search/actions';
 import { AdvancedSearchParamsType } from '../../store/search/types';
-
-interface Props {
-  onSubmit: (values: AdvancedSearchParamsType) => void;
-}
 
 const SearchForm = () => {
   const dispatch = useDispatch();
@@ -72,12 +67,6 @@ const SearchForm = () => {
             );
           }}
         </Formik>
-      </Grid.Column>
-      <Grid.Column>
-        <span style={{ float: 'right' }}>
-          {/* <AddTrackBtn /> */}
-          <Button>Add a track</Button>
-        </span>
       </Grid.Column>
     </Grid>
   );
