@@ -11,6 +11,6 @@ tracksRouter.route('/updateartist').put(auth_1.verifyUser, tracks_1.changeArtist
 tracksRouter.route('/').put(auth_1.verifyUser, tracks_1.updateTrack);
 tracksRouter.route('/addandreport').post(auth_1.verifyUser, tracks_1.addAndReport);
 tracksRouter.route('/addtodb').post(auth_1.verifyUser, tracks_1.addNewTrack);
-tracksRouter.route('/djonline').post(auth_1.verifyUser, tracks_1.addDjonlineTracks);
+tracksRouter.route('/playlog').post(auth_1.verifyUser, tracks_1.addPlaylogTracks);
 tracksRouter.route('/addtracktoalbum').post(auth_1.verifyUser, tracks_1.addTrackToAlbum);
 exports.default = tracksRouter;

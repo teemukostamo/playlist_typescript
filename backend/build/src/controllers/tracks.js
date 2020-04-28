@@ -644,10 +644,10 @@ exports.addTrackToAlbum = async_1.asyncHandler((req, res) => __awaiter(void 0, v
     };
     res.status(201).json(trackToReturn);
 }));
-// @desc    Check if tracks fetched from djonline exist in db. Add new tracks to db and all to current report
-// @route   POST /djonline
+// @desc    Check if tracks fetched from playlog exist in db. Add new tracks to db and all to current report
+// @route   POST /playlog
 // @access  Private
-exports.addDjonlineTracks = async_1.asyncHandler((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+exports.addPlaylogTracks = async_1.asyncHandler((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     // destructure values from req.body
     let { 
     // eslint-disable-next-line prefer-const
@@ -727,12 +727,8 @@ exports.addDjonlineTracks = async_1.asyncHandler((req, res, next) => __awaiter(v
             record_country,
             sortable_rank,
             people: newTrack.people,
-            comment,
             isrc,
-            report_id,
             report_track_id: newReportTrack.id,
-            user_id: newTrack.user_id,
-            spotify_id: newTrack.spotify_id,
         };
         console.log('adding to report track', newReportTrack);
         console.log('track to return', trackToReturn);
@@ -802,12 +798,8 @@ exports.addDjonlineTracks = async_1.asyncHandler((req, res, next) => __awaiter(v
                 record_country,
                 sortable_rank,
                 people: newTrack.people,
-                comment,
                 isrc,
-                report_id,
                 report_track_id: newReportTrack.id,
-                user_id: newTrack.user_id,
-                spotify_id: newTrack.spotify_id,
             };
             console.log('track to return', trackToReturn);
             res.status(201).json(trackToReturn);
@@ -853,10 +845,7 @@ exports.addDjonlineTracks = async_1.asyncHandler((req, res, next) => __awaiter(v
                     people: track.people,
                     comment,
                     isrc,
-                    report_id,
                     report_track_id: newReportTrack.id,
-                    user_id: track.user_id,
-                    spotify_id: track.spotify_id,
                 };
                 console.log('track to return', trackToReturn);
                 return res.status(200).json(trackToReturn);
@@ -903,12 +892,8 @@ exports.addDjonlineTracks = async_1.asyncHandler((req, res, next) => __awaiter(v
                 record_country,
                 sortable_rank,
                 people: newTrack.people,
-                comment,
                 isrc,
-                report_id,
                 report_track_id: newReportTrack.id,
-                user_id: newTrack.user_id,
-                spotify_id: newTrack.spotify_id,
             };
             console.log('track to return', trackToReturn);
             res.status(201).json(trackToReturn);

@@ -21,6 +21,7 @@ const User_1 = require("./src/models/User");
 // import routers
 const albums_1 = __importDefault(require("./src/routes/albums"));
 const artists_1 = __importDefault(require("./src/routes/artists"));
+const playlog_1 = __importDefault(require("./src/routes/playlog"));
 const programs_1 = __importDefault(require("./src/routes/programs"));
 const reportdetails_1 = __importDefault(require("./src/routes/reportdetails"));
 const reportslist_1 = __importDefault(require("./src/routes/reportslist"));
@@ -62,6 +63,7 @@ app.use(cors_1.default());
 app.use(logger_1.logger);
 app.use('/api/albums', albums_1.default);
 app.use('/api/artists', artists_1.default);
+app.use('/api/playlog', playlog_1.default);
 app.use('/api/programs', programs_1.default);
 app.use('/api/reportdetails', reportdetails_1.default);
 app.use('/api/reportslist', reportslist_1.default);
