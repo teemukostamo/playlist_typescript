@@ -58,6 +58,33 @@ app.get('/', function (_req, res) {
         }
     });
 });
+app.get('/reports*', (_req, res) => {
+    res.sendFile(path_1.default.resolve(`${__dirname}/build/index.html`));
+});
+app.get('/top100*', (_req, res) => {
+    res.sendFile(path_1.default.resolve(`${__dirname}/build/index.html`));
+});
+app.get('/search*', (_req, res) => {
+    res.sendFile(path_1.default.resolve(`${__dirname}/build/index.html`));
+});
+app.get('/transfer*', (_req, res) => {
+    res.sendFile(path_1.default.resolve(`${__dirname}/build/index.html`));
+});
+app.get('/users*', (_req, res) => {
+    res.sendFile(path_1.default.resolve(`${__dirname}/build/index.html`));
+});
+app.get('/propgrams*', (_req, res) => {
+    res.sendFile(path_1.default.resolve(`${__dirname}/build/index.html`));
+});
+app.get('/artist*', (_req, res) => {
+    res.sendFile(path_1.default.resolve(`${__dirname}/build/index.html`));
+});
+app.get('/album*', (_req, res) => {
+    res.sendFile(path_1.default.resolve(`${__dirname}/build/index.html`));
+});
+app.get('/track*', (_req, res) => {
+    res.sendFile(path_1.default.resolve(`${__dirname}/build/index.html`));
+});
 app.use(body_parser_1.default.json());
 app.use(cors_1.default());
 app.use(logger_1.logger);
