@@ -12,10 +12,7 @@ import TrackDetailsForm from './TrackDetailsForm';
 import PlayHistory from './PlayHistory';
 
 import { ApplicationState } from '../../store/types';
-import {
-  UpdateTrackType,
-  UpdateTrackFormValuesType,
-} from '../../store/track/types';
+import { UpdateTrackFormValuesType } from '../../store/track/types';
 
 interface Props {
   id: number;
@@ -25,7 +22,6 @@ const Track: React.FC<Props> = ({ id }) => {
   const dispatch = useDispatch();
   const track = useSelector((state: ApplicationState) => state.track);
   const login = useSelector((state: ApplicationState) => state.login);
-  const report = useSelector((state: ApplicationState) => state.report);
   useEffect(() => {
     dispatch(getOneTrack(id));
     dispatch(getOneTrackHistory(id));

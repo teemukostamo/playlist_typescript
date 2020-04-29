@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form } from 'formik';
 import { SelectField } from '../layout/forms/FormFields';
 import { Grid } from 'semantic-ui-react';
 import { sortAdvancedResults } from '../../store/search/actions';

@@ -19,7 +19,6 @@ const CurrentReport: React.FC<Props> = ({ reportDetails }) => {
         color: 'white',
         float: 'right',
         marginTop: 'auto',
-        // marginLeft: 'auto',
         marginRight: '0.6rem',
         marginBottom: '0.7rem',
       }}

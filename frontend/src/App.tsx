@@ -15,6 +15,7 @@ import Notification from './components/layout/notification/Notification';
 import Programs from './components/programs';
 import ReportList from './components/reportList/ReportList';
 import ReportTrackIndex from './components/report';
+import ReportTransfer from './components/reportTransfer';
 import Search from './components/search';
 import Top100 from './components/top100';
 import Track from './components/track';
@@ -66,7 +67,6 @@ const App: React.FC = () => {
         <Notification notification={notification} />
       </div>
       <Switch>
-        {/* <Route exact path='/transfer' component={ReportTransferList} /> */}
         <Route exact path='/' component={Home} />
         <Route
           path='/album/:id'
@@ -93,6 +93,7 @@ const App: React.FC = () => {
           }}
         />
         <Route exact path='/reports' component={ReportList} />
+        <Route exact path='/transfer' component={ReportTransfer} />
         <Route exact path='/top100' component={Top100} />
         <Route exact path='/search' component={Search} />
         <Route exact path='/programs' component={Programs} />

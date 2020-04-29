@@ -35,9 +35,9 @@ export interface AddTrackToDbType {
   track_title: string;
   artist_name: string;
   album_name: string;
-  label: string;
-  cat_id: string;
-  year: string | number;
+  label: string | null;
+  cat_id: string | null;
+  year: string | number | null;
   disc_no: number;
   track_no: number;
   length: number;
@@ -52,9 +52,9 @@ export interface AddTrackToDbAndReportType {
   track_title: string;
   artist_name: string;
   album_name: string;
-  label: string;
-  cat_id: string;
-  year: string;
+  label: string | null;
+  cat_id: string | null;
+  year: string | number | null;
   disc_no: number;
   track_no: number;
   length: number;
@@ -63,7 +63,7 @@ export interface AddTrackToDbAndReportType {
   people: string | null;
   comment: string | null;
   isrc: string | null;
-  report_id: number;
+  report_id: number | undefined;
   sortable_rank: number;
 }
 

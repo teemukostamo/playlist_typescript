@@ -10,7 +10,6 @@ interface Props {
 }
 
 const ReportPeriodSelectionForm: React.FC<Props> = ({ onSubmit }) => {
-  console.log(reportYearOptions);
   return (
     <Formik
       initialValues={{
@@ -32,13 +31,17 @@ const ReportPeriodSelectionForm: React.FC<Props> = ({ onSubmit }) => {
               </Grid.Column>
               <Grid.Column width={4}>
                 <SelectField
-                  label='Select month'
+                  label='Select year'
                   name='reportYear'
                   options={reportYearOptions}
                 />
               </Grid.Column>
               <Grid.Column width={4}>
-                <Button type='submit' floated='right' color='green'>
+                <Button
+                  type='submit'
+                  color='green'
+                  style={{ marginTop: '1.6rem' }}
+                >
                   Get reports
                 </Button>
               </Grid.Column>

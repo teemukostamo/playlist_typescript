@@ -31,8 +31,8 @@ const CreateNewReportForm: React.FC<Props> = ({
         program_no: 0,
         program_dj: `${currentUser?.first_name} ${currentUser?.last_name}`,
         program_date: moment(new Date()).format('YYYY-MM-DD'),
-        program_start_time: undefined,
-        program_end_time: undefined,
+        program_start_time: '',
+        program_end_time: '',
         program_id: 0,
         rerun: null,
         status: 0,
@@ -45,15 +45,24 @@ const CreateNewReportForm: React.FC<Props> = ({
       validate={(values) => {
         console.log(values);
         const requiredError = 'Field is required';
+        const invalidTimeError = 'Check start and end times!';
         const errors: { [field: string]: string } = {};
         if (!values.program_dj) {
-          errors.name = requiredError;
+          errors.program_dj = requiredError;
         }
-        if (values.program_start_time === undefined) {
-          errors.name = requiredError;
+        if (values.program_start_time === '') {
+          errors.program_start_time = requiredError;
         }
-        if (values.program_end_time === undefined) {
-          errors.name = requiredError;
+        if (values.program_end_time === '') {
+          errors.program_end_time = requiredError;
+        }
+
+        if (
+          parseInt(values.program_end_time) <=
+            parseInt(values.program_start_time) &&
+          values.program_end_time !== '23:59'
+        ) {
+          errors.program_end_time = invalidTimeError;
         }
         return errors;
       }}
@@ -80,8 +89,8 @@ const CreateNewReportForm: React.FC<Props> = ({
               component={TextField}
             />
             <Grid>
-              <Grid.Column width={5}>
-                <label>Program date</label>
+              <Grid.Column width={5} style={{ marginTop: '0.3rem' }}>
+                <label style={{ fontWeight: 'bold' }}>Program date</label>
                 <Datepicker
                   name='program_date'
                   dateFormat='dd.MM.yyyy'

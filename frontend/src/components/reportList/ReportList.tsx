@@ -9,21 +9,25 @@ import {
   Responsive,
 } from 'semantic-ui-react';
 import moment from 'moment';
-import { ApplicationState } from '../../store/types';
+
 import ReportPeriodSelectionForm from './ReportPeriodSelectionForm';
 import ReportListItem from './ReportListItem';
-import { ReportListSelectionDate } from '../../store/reportList/types';
+import FilterReportList from './FilterReportList';
+
 import {
   getAllReportsByDate,
   getAllReportsByDateByUser,
 } from '../../store/reportList/actions';
 
-const ReportList = () => {
-  const login = useSelector((state: ApplicationState) => state.login);
-  const reportList = useSelector((state: ApplicationState) => state.reportList);
-  console.log(reportList);
+import { ApplicationState } from '../../store/types';
+import { ReportListSelectionDate } from '../../store/reportList/types';
 
+const ReportList = () => {
   const dispatch = useDispatch();
+  const login = useSelector((state: ApplicationState) => state.login);
+  const user = useSelector((state: ApplicationState) => state.user);
+  const reportList = useSelector((state: ApplicationState) => state.reportList);
+
   // initial reports list
   useEffect(() => {
     if (login.currentUser?.level === 1) {
@@ -110,9 +114,9 @@ const ReportList = () => {
 
   return (
     <Container>
-      {/* <ReportFilterForm /> */}
       <h3>Reports {reportListTimeDate}</h3>
       <ReportPeriodSelectionForm onSubmit={onSubmit} />
+      <FilterReportList user={user} login={login} />
       <Table striped>
         <Table.Header>
           <Table.Row>

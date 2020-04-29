@@ -23,7 +23,6 @@ interface Props {
 
 const AddTrackToAlbumForm: React.FC<Props> = ({
   reportDetails,
-  currentAlbum,
   addToAlbumAndReport,
   onSubmit,
   onClose,

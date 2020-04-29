@@ -73,4 +73,4 @@ Staff-user may browse all reports by all users. If a show is re-aired, the repor
 
 #### Programs
 
-Ohjelmat -sivulla käyttäjä voi muokata ohjelman tietoja. Aktiiviset ohjelmat näkyvät vihreällä pohjalla. Vaihtamalla ohjelman tilaksi aktiivinen ko. ohjelma saadaan näkyviin listalla josta valitaan uuden raportin ohjelma. Klikkaamalla listan vasemmassa reunassa olevaa ID-numeroa duplikaattiohjelma voidaan yhdistää toiseen ohjelmaan. Luo uusi ohjelma -painikkeella luodaan uusi ohjelma.
+New programs may be added on the Programs page. Programs with active status are visible in front page's Create new report form's program listing.

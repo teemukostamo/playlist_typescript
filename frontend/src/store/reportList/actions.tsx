@@ -156,14 +156,16 @@ export const deleteReport = (id: number) => async (dispatch: Dispatch) => {
   }
 };
 
-export const filterByUserId = (id: number) => (dispatch: Dispatch) => {
+export const filterByUserId = (id: number | null) => (dispatch: Dispatch) => {
   dispatch({
     type: FILTER_BY_USER_ID,
     data: id,
   });
 };
 
-export const filterByStatus = (status: number) => (dispatch: Dispatch) => {
+export const filterByStatus = (status: number | null) => (
+  dispatch: Dispatch
+) => {
   dispatch({
     type: FILTER_BY_STATUS,
     data: status,

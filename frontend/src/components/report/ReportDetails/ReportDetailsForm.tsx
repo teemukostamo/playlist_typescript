@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import moment from 'moment';
-import { Formik, Form, Field } from 'formik';
-import { Datepicker } from 'react-formik-ui';
+import { Formik, Field } from 'formik';
+import { Datepicker, Checkbox, Form } from 'react-formik-ui';
 import { Button, Grid, Popup, Icon, Header } from 'semantic-ui-react';
 import {
   SelectField,
@@ -22,19 +22,23 @@ interface Props {
   programOptions: Array<SelectFieldOptions>;
   userOptions: Array<SelectFieldOptions>;
   reportDetails: ReportDetails;
+  onRerunChange: () => void;
+  rerun: number | null | undefined;
 }
 
 const ReportDetailsForm: React.FC<Props> = ({
   onSubmit,
+  onRerunChange,
   programOptions,
   userOptions,
   reportDetails,
+  rerun,
 }) => {
   return (
     <Grid divided='vertically'>
       <Grid.Row columns={2}>
         <Grid.Column>
-          <Header>Raportin tiedot:</Header>
+          <Header>Report details:</Header>
           <Formik
             initialValues={{
               id: reportDetails.id,
@@ -58,6 +62,7 @@ const ReportDetailsForm: React.FC<Props> = ({
             validate={(values) => {
               console.log(values);
               const requiredError = 'Field is required';
+              const invalidTimeError = 'Check start and end times!';
               const errors: { [field: string]: string } = {};
               if (!values.program_dj) {
                 errors.name = requiredError;
@@ -67,6 +72,13 @@ const ReportDetailsForm: React.FC<Props> = ({
               }
               if (values.program_end_time === undefined) {
                 errors.name = requiredError;
+              }
+              if (
+                parseInt(values.program_end_time) <=
+                  parseInt(values.program_start_time) &&
+                values.program_end_time !== '23:59'
+              ) {
+                errors.program_end_time = invalidTimeError;
               }
               return errors;
             }}
@@ -92,8 +104,8 @@ const ReportDetailsForm: React.FC<Props> = ({
                     name='program_dj'
                     component={TextField}
                   />
-                  <Grid>
-                    <Grid.Column width={5}>
+                  <Grid style={{ marginBottom: '0.5rem' }}>
+                    <Grid.Column width={5} style={{ marginTop: '0.3rem' }}>
                       <label>Program date</label>
                       <Datepicker
                         name='program_date'
@@ -125,6 +137,12 @@ const ReportDetailsForm: React.FC<Props> = ({
                     label='User'
                     name='user_id'
                     options={userOptions}
+                  />
+                  <Checkbox
+                    name='rerun'
+                    label='Rerun'
+                    onChange={onRerunChange}
+                    checked={!!rerun}
                   />
                   <Button
                     style={{ marginTop: '1rem' }}

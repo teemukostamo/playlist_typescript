@@ -37,6 +37,16 @@ const ReportTrackIndex: React.FC<Props> = ({ id }) => {
     dispatch(getReportDetails(id));
     dispatch(getOneReport(id));
     // eslint-disable-next-line
+  }, []);
+
+  useEffect(() => {
+    let timer1 = setTimeout(() => {
+      dispatch(getOneReport(id));
+    }, 1000);
+    return () => {
+      clearTimeout(timer1);
+    };
+    // eslint-disable-next-line
   }, [report.playlog]);
 
   // fetch tracks after sorting changes
@@ -62,7 +72,7 @@ const ReportTrackIndex: React.FC<Props> = ({ id }) => {
         marginTop: '1rem',
       }}
     >
-      Poista valitut
+      Delete Selected
     </Button>
   );
   const array = report.report;

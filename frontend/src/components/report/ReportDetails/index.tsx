@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Segment, Dimmer, Loader } from 'semantic-ui-react';
-import moment from 'moment';
+import { Segment } from 'semantic-ui-react';
 import { updateReport } from '../../../store/report/actions';
 import { setNotification } from '../../../store/notification/actions';
 import ReportDetailsForm from './ReportDetailsForm';
@@ -9,16 +8,23 @@ import ReportDetailsForm from './ReportDetailsForm';
 import { ReportDetails } from '../../../store/report/types';
 import { ApplicationState } from '../../../store/types';
 
-// interface Props {
-//   reportDetails: ReportDetails | null;
-// }
-
 const ReportDetailsIndex: React.FC = () => {
   const dispatch = useDispatch();
   const report = useSelector((state: ApplicationState) => state.report);
   const user = useSelector((state: ApplicationState) => state.user);
   const program = useSelector((state: ApplicationState) => state.program);
-  const login = useSelector((state: ApplicationState) => state.login);
+  const [rerun, setRerun] = useState<number | null | undefined>(
+    report.reportDetails?.rerun
+  );
+  console.log(rerun);
+
+  const getRerun = () => {
+    if (!rerun) {
+      setRerun(1);
+    } else {
+      setRerun(null);
+    }
+  };
 
   if (
     report.reportDetails === null ||
@@ -44,12 +50,15 @@ const ReportDetailsIndex: React.FC = () => {
   }));
 
   const saveChanges = (values: ReportDetails) => {
-    console.log(values);
-    dispatch(updateReport(values));
+    const reportToUpdate = {
+      ...values,
+      rerun,
+    };
+    console.log('report to update', reportToUpdate);
+    dispatch(updateReport(reportToUpdate));
     dispatch(setNotification('Report details updated', 'success'));
   };
 
-  // console.log(reportDetails);
   return (
     <div>
       <ReportDetailsForm
@@ -57,6 +66,8 @@ const ReportDetailsIndex: React.FC = () => {
         onSubmit={saveChanges}
         programOptions={programOptions}
         userOptions={userOptions}
+        onRerunChange={getRerun}
+        rerun={rerun}
       />
     </div>
   );

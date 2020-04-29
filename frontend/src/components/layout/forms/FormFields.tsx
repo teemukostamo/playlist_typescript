@@ -65,6 +65,20 @@ export const RequiredTextField: React.FC<TextProps> = ({
   </Form.Field>
 );
 
+export const DisabledTextField: React.FC<TextProps> = ({
+  field,
+  label,
+  placeholder,
+}) => (
+  <Form.Field disabled>
+    <label>{label}</label>
+    <Field placeholder={placeholder} {...field} type='text' />
+    <div style={{ color: 'red' }}>
+      <ErrorMessage name={field.name} />
+    </div>
+  </Form.Field>
+);
+
 interface PasswordProps extends FieldProps {
   label: string;
   placeholder: string;
@@ -133,7 +147,7 @@ export const TextAreaField: React.FC<TextAreaProps> = ({
   label,
   placeholder,
 }) => (
-  <Form.Field>
+  <Form.Field style={{ marginTop: '1rem' }}>
     <label>{label}</label>
     <Field placeholder={placeholder} {...field} component='textarea' />
     <div style={{ color: 'red' }}>

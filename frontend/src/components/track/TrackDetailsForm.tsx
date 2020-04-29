@@ -1,15 +1,9 @@
 import React from 'react';
-import {
-  Button,
-  Grid,
-  Dimmer,
-  Loader,
-  Header,
-  GridColumn,
-} from 'semantic-ui-react';
+import { Button, Grid, Dimmer, Loader, Header } from 'semantic-ui-react';
 import { Formik, Form, Field } from 'formik';
 import {
   TextField,
+  DisabledTextField,
   NumberField,
   SelectField,
   TextAreaField,
@@ -85,13 +79,13 @@ const TrackDetailsForm: React.FC<Props> = ({ currentTrack, onSubmit }) => {
                   label='Artist'
                   placeholder='Artist'
                   name='artist'
-                  component={TextField}
+                  component={DisabledTextField}
                 />
                 <Field
                   label='Album'
                   placeholder='Album'
                   name='album'
-                  component={TextField}
+                  component={DisabledTextField}
                 />
 
                 <Field

@@ -1,3 +1,3 @@
 # Documentation for developers
 
-lorem loerm
+Documentation for developers will be here soon!

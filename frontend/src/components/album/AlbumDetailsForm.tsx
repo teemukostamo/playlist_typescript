@@ -13,14 +13,14 @@ const AlbumDetailsForm: React.FC<Props> = ({ currentAlbum, onSubmit }) => {
   if (currentAlbum === null) {
     return (
       <Dimmer>
-        <Loader>Loading artist...</Loader>
+        <Loader>Loading album...</Loader>
       </Dimmer>
     );
   }
   return (
     <Grid columns={2}>
       <Grid.Column>
-        <Header>Artist info</Header>
+        <Header>Album info</Header>
         <Formik
           initialValues={{
             id: currentAlbum.album_id,

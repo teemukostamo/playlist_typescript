@@ -74,7 +74,7 @@ export interface ReportDetails {
   program_end_time: string;
   id: number;
   program_id: number;
-  rerun: number | null;
+  rerun: number | null | undefined;
   status: number;
   user_id: number;
   username: string;

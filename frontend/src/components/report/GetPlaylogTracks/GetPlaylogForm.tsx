@@ -1,9 +1,9 @@
-import React, { useState, MouseEvent } from 'react';
+import React from 'react';
 import moment from 'moment';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form } from 'formik';
 import { Datepicker } from 'react-formik-ui';
-import { Button, Grid, Popup, Icon, Header } from 'semantic-ui-react';
-import { SelectField, SelectFieldOptions } from '../../layout/forms/FormFields';
+import { Button, Grid } from 'semantic-ui-react';
+import { SelectField } from '../../layout/forms/FormFields';
 import { startTimeOptions, endTimeOptions } from '../../../constants';
 
 import { ReportDetails } from '../../../store/report/types';

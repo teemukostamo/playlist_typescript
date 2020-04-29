@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { Header, Container, Grid, Popup, Icon } from 'semantic-ui-react';
 import CreateNewReportForm from './CreateNewReportForm';
 import { createReport } from '../../../store/report/actions';
@@ -14,6 +15,7 @@ const CreateNewReport: React.FC = () => {
 
   const program = useSelector((state: ApplicationState) => state.program);
   const login = useSelector((state: ApplicationState) => state.login);
+  const report = useSelector((state: ApplicationState) => state.report);
 
   const programOptions = program.activePrograms.map((program) => ({
     key: program.id,
@@ -37,8 +39,13 @@ const CreateNewReport: React.FC = () => {
         'success'
       )
     );
+    setRedirect(true);
     dispatch(createReport(reportToCreate));
   };
+
+  if (redirect && report.newReport !== null) {
+    return <Redirect to={`reports/${report.newReport.id}`} />;
+  }
 
   return (
     <Grid.Column>

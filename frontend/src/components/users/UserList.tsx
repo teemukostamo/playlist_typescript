@@ -1,6 +1,5 @@
 import React from 'react';
 import { Container, Table } from 'semantic-ui-react';
-import { LoginState } from '../../store/login/types';
 import { Users, User } from '../../store/user/types';
 
 import UserListItem from './UserListItem';

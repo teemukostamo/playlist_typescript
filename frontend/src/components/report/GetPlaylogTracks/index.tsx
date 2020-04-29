@@ -28,6 +28,10 @@ const GetPlaylogTracks: React.FC = () => {
   return (
     <React.Fragment>
       <Header>Get tracks from playlog</Header>
+      <div style={{ color: 'red', marginBottom: '2rem' }}>
+        In the demo app playlog data is only available on dates between
+        2020-03-01 - 2020-03-31
+      </div>
       <GetPlaylogForm
         onSubmit={submitGetplaylogTracks}
         reportDetails={report.reportDetails}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Grid } from 'semantic-ui-react';
 import { Formik, Form } from 'formik';
-import { Datepicker, Select } from 'react-formik-ui';
+import { Datepicker } from 'react-formik-ui';
 import { SelectField } from '../layout/forms/FormFields';
 import { Top100QueryType } from '../../store/search/types';
 import moment from 'moment';

@@ -63,6 +63,34 @@ app.get('/', function (_req, res) {
   });
 });
 
+app.get('/reports*', (_req, res) => {
+  res.sendFile(path.resolve(`${__dirname}/build/index.html`));
+});
+app.get('/top100*', (_req, res) => {
+  res.sendFile(path.resolve(`${__dirname}/build/index.html`));
+});
+app.get('/search*', (_req, res) => {
+  res.sendFile(path.resolve(`${__dirname}/build/index.html`));
+});
+app.get('/transfer*', (_req, res) => {
+  res.sendFile(path.resolve(`${__dirname}/build/index.html`));
+});
+app.get('/users*', (_req, res) => {
+  res.sendFile(path.resolve(`${__dirname}/build/index.html`));
+});
+app.get('/propgrams*', (_req, res) => {
+  res.sendFile(path.resolve(`${__dirname}/build/index.html`));
+});
+app.get('/artist*', (_req, res) => {
+  res.sendFile(path.resolve(`${__dirname}/build/index.html`));
+});
+app.get('/album*', (_req, res) => {
+  res.sendFile(path.resolve(`${__dirname}/build/index.html`));
+});
+app.get('/track*', (_req, res) => {
+  res.sendFile(path.resolve(`${__dirname}/build/index.html`));
+});
+
 app.use(bodyParser.json());
 app.use(cors());
 app.use(logger);
