@@ -36,7 +36,6 @@ const ReportTransferGenerator: React.FC<Props> = ({
       period: moment(pickerDate).format('YYYY-MM'),
       filename: `${moment(new Date()).format('YYYYMMDDhhmmss')}.txt`,
     };
-    console.log(params);
     dispatch(generateReportTransfer(params));
   };
 
