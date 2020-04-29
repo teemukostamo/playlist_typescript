@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Formik, Form } from 'formik';
 import { Datepicker } from 'react-formik-ui';
-import { Button, Header, Container, Dimmer, Loader } from 'semantic-ui-react';
+import { Button, Container, Dimmer, Loader } from 'semantic-ui-react';
 import moment from 'moment';
 import {
   getAllReportsByDate,
@@ -22,12 +22,14 @@ const ReportTransferGenerator: React.FC<Props> = ({
   currentUser,
 }) => {
   const dispatch = useDispatch();
-  const [pickerDate, setPickerDate] = useState('');
+  const [pickerDate, setPickerDate] = useState(
+    moment(new Date()).format('YYYY-MM')
+  );
 
-  // useEffect(() => {
-  //   dispatch(getAllReportsByDate(moment(pickerDate).format('YYYY-MM')));
-  //   // eslint-disable-next-line
-  // }, [pickerDate]);
+  useEffect(() => {
+    dispatch(getAllReportsByDate(moment(pickerDate).format('YYYY-MM')));
+    // eslint-disable-next-line
+  }, [pickerDate]);
 
   const getTransferFile = () => {
     const params = {
@@ -61,7 +63,7 @@ const ReportTransferGenerator: React.FC<Props> = ({
   return (
     <Formik
       initialValues={{
-        pickerDate,
+        pickerDate: '',
       }}
       onSubmit={getTransferFile}
       validate={(values) => {

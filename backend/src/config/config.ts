@@ -1,5 +1,3 @@
-// declare const Buffer;
-
 import dotenv from 'dotenv';
 
 if (process.env.NODE_ENV !== 'production') {
@@ -34,7 +32,4 @@ export default {
   dbUser,
   port,
   jwtSecret,
-  // client_cert,
-  // client_key,
-  // server_ca,
 };
