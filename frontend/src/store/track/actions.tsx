@@ -2,6 +2,7 @@ import { Dispatch } from 'redux';
 import {
   ADD_NEW_TRACK,
   ADD_TRACK_TO_ALBUM,
+  ADD_TRACK_TO_REPORT,
   UPDATE_TRACK,
   SET_LOADING,
   GET_ONE_TRACK,
@@ -23,6 +24,7 @@ import {
 
 import trackService from './services';
 import searchService from '../search/services';
+import reportService from '../report/services';
 
 // add a new track and save it to current report
 export const addNewTrack = (trackToAdd: AddTrackToDbAndReportType) => async (
@@ -76,19 +78,19 @@ export const addTrackToAlbumAndReport = (
       length: trackToAdd.length,
       sortable_rank: trackToAdd.sortable_rank,
     };
-    // const report = await reportService.addTrackToReport(trackToReport);
-    // const trackToReducer = {
-    //   ...report,
-    //   ...track
-    // };
-    // dispatch({
-    //   type: ADD_TRACK_TO_ALBUM,
-    //   data: track
-    // });
-    // dispatch({
-    //   type: ADD_TRACK_TO_REPORT,
-    //   data: trackToReducer
-    // });
+    const report = await reportService.addTrackToReport(trackToReport);
+    const trackToReducer = {
+      ...report,
+      ...track,
+    };
+    dispatch({
+      type: ADD_TRACK_TO_ALBUM,
+      data: track,
+    });
+    dispatch({
+      type: ADD_TRACK_TO_REPORT,
+      data: trackToReducer,
+    });
   } catch (error) {
     console.log('trackActions addTrackToAlbumAndReport error: ', error);
   }

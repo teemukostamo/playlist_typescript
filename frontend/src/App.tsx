@@ -46,6 +46,7 @@ const App: React.FC = () => {
   if (login.currentUser === null) {
     return (
       <Container>
+        <Notification notification={notification} />
         <LoginForm />
         <Footer />
       </Container>
@@ -54,6 +55,7 @@ const App: React.FC = () => {
   if (login.currentUser?.status === null || login.currentUser?.status === 0) {
     return (
       <Container>
+        <Notification notification={notification} />
         <LoginForm />
         <div>Credentials deactivated. Please contact the administrator.</div>
         <Footer />

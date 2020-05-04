@@ -1,4 +1,4 @@
-# Install Instructions (for Node v12 & MySQL v5.7)
+# Install Instructions (app created with Node v12 & MySQL v5.7)
 
 - Clone the repository
 - Run `npm install` the project root directory
@@ -18,4 +18,7 @@
 - To create a production build of the frontend, run `npm run build:ui` in the project root directory
 - To deploy the entire project to Heroku, run `npm run deploy:full` in the project root directory. This assumes you have set up a Heroku remote for the repository.
 - To run the backend tests, run `npm run test` in the project root directory
-- To run the end to end test, first start the backend in test mode by running `npm run start:test` in the project root directory. Then `cd` into the frontend directory and run `npm start`. Open another terminal window in the frontend directory and run `npm run cypress:open`.
+- To run the end to end test:
+  - start the backend in test mode by running `npm run start:test` in the project root directory
+  - `cd` into the frontend directory and run `npm start`
+  - Open another terminal window in the frontend directory and run `npm run cypress:open`

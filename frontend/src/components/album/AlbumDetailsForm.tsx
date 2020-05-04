@@ -1,7 +1,11 @@
 import React from 'react';
 import { Button, Grid, Dimmer, Loader, Header } from 'semantic-ui-react';
 import { Formik, Form, Field } from 'formik';
-import { TextField, NumberField } from '../layout/forms/FormFields';
+import {
+  TextField,
+  DisabledTextField,
+  NumberField,
+} from '../layout/forms/FormFields';
 import { Album, UpdateAlbumParams } from '../../store/album/types';
 
 interface Props {
@@ -24,6 +28,7 @@ const AlbumDetailsForm: React.FC<Props> = ({ currentAlbum, onSubmit }) => {
         <Formik
           initialValues={{
             id: currentAlbum.album_id,
+            artist: currentAlbum.artist_name,
             name: currentAlbum.album_name,
             label: currentAlbum.label || '',
             cat_id: currentAlbum.cat_id || '',
@@ -44,6 +49,12 @@ const AlbumDetailsForm: React.FC<Props> = ({ currentAlbum, onSubmit }) => {
           {({ isValid }) => {
             return (
               <Form className='form ui'>
+                <Field
+                  label='Artist'
+                  placeholder='Artist'
+                  name='artist'
+                  component={DisabledTextField}
+                />
                 <Field
                   label='Album name'
                   placeholder='Name'

@@ -154,7 +154,12 @@ const AddTrackToAlbumForm: React.FC<Props> = ({
             <Grid>
               {saveButton}
               <Grid.Column floated='right' width={6}>
-                <Button type='button' onClick={onClose} color='red'>
+                <Button
+                  floated='right'
+                  type='button'
+                  onClick={onClose}
+                  color='red'
+                >
                   Cancel
                 </Button>
               </Grid.Column>
