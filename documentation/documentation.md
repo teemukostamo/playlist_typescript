@@ -1,3 +1,3 @@
 # Documentation for developers
 
-Documentation for developers will be here soon!
+[API documentation](https://htmlpreview.github.io/?https://github.com/teemukostamo/playlist_typescript/blob/master/documentation/backend_documentation.html)
