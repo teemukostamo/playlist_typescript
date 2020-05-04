@@ -18,7 +18,7 @@ interface Props {
 }
 
 interface FilterUser {
-  userId: number | null;
+  userId: number | null | undefined;
 }
 
 interface FilterText {
@@ -86,7 +86,7 @@ const FilterReportList: React.FC<Props> = ({ user, login }) => {
       <Grid.Column width={4}>
         <Formik
           initialValues={{
-            userId: null,
+            userId: undefined,
           }}
           onSubmit={onUserChange}
           validate={(values) => {

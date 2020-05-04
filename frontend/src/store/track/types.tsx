@@ -115,6 +115,29 @@ export interface UpdateTrackFormValuesType {
   report_track_id: number | null;
 }
 
+export interface UpdateReportTrackFormValuesType {
+  track_title: string;
+  artist: string;
+  album: string;
+  track_id: number;
+  album_id: number;
+  artist_id: number;
+  label: string | null;
+  cat_id: string | null;
+  length: number;
+  minutes: number;
+  seconds: number;
+  disc_no: number | null;
+  track_no: number | null;
+  people: string | null;
+  isrc: string | null;
+  year: string | number | null | undefined;
+  record_country: string | null;
+  country: number;
+  sortable_rank: number | null;
+  report_track_id: number | null;
+}
+
 export interface AddNewTrackFormValuesType {
   track_title: string;
   artist_name: string;

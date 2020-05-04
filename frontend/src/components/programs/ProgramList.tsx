@@ -26,7 +26,7 @@ const ProgramList: React.FC<Props> = ({ login, program }) => {
         <div style={{ marginTop: '1rem', marginBottom: '1rem' }}>
           <h3 style={{ display: 'inline' }}>Programs</h3>
         </div>
-        <Table striped>
+        <Table>
           <Table.Header>
             <Table.Row>
               <Table.Cell>ID</Table.Cell>

@@ -13,8 +13,8 @@ const ReportPeriodSelectionForm: React.FC<Props> = ({ onSubmit }) => {
   return (
     <Formik
       initialValues={{
-        reportYear: '2020',
-        reportMonth: '01',
+        reportYear: '',
+        reportMonth: '',
       }}
       onSubmit={onSubmit}
     >

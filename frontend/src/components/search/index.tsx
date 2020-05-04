@@ -12,8 +12,8 @@ const Search: React.FC = () => {
 
   return (
     <Container>
-      <Header>Search</Header>
       <AddTrackModal />
+      <Header>Search for tracks / artists / albums</Header>
       <SearchForm />
       <SearchResults search={search} />
     </Container>

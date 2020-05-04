@@ -14,6 +14,6 @@ describe('Frontend ', function () {
     cy.get('#login-password').type('test');
     cy.get('#login-button').click();
 
-    cy.contains('you logged in as test');
+    cy.contains('Create a new report');
   });
 });

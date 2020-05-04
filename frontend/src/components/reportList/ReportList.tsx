@@ -5,6 +5,7 @@ import {
   Container,
   Table,
   Dimmer,
+  Header,
   Loader,
   Responsive,
 } from 'semantic-ui-react';
@@ -68,7 +69,7 @@ const ReportList = () => {
   if (reportList.reportList === null || reportList.loading) {
     return (
       <Dimmer active>
-        <Loader content='Ladataan...' />
+        <Loader content='Loading...' />
       </Dimmer>
     );
   }
@@ -76,8 +77,8 @@ const ReportList = () => {
   if (reportList.reportList.length === 0) {
     return (
       <Container>
-        <h2>No reports in the selected time period</h2>
         <ReportPeriodSelectionForm onSubmit={onSubmit} />
+        <Header>No reports in the selected time period.</Header>
       </Container>
     );
   }
@@ -114,8 +115,9 @@ const ReportList = () => {
 
   return (
     <Container>
-      <h3>Reports {reportListTimeDate}</h3>
+      <Header>Get reports by month</Header>
       <ReportPeriodSelectionForm onSubmit={onSubmit} />
+      <h4>Reports from {reportListTimeDate}</h4>
       <FilterReportList user={user} login={login} />
       <Table striped>
         <Table.Header>

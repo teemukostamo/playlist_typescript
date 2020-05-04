@@ -8,10 +8,10 @@ import {
   TextField,
   NumberField,
   TextAreaField,
-} from '../../layout/forms/FormFields';
-import { countryOptions, recordCountryOptions } from '../../../constants';
+} from '../../../layout/forms/FormFields';
+import { countryOptions, recordCountryOptions } from '../../../../constants';
 
-import { AddNewTrackFormValuesType } from '../../../store/track/types';
+import { AddNewTrackFormValuesType } from '../../../../store/track/types';
 
 interface Props {
   onCancel: () => void;
@@ -19,7 +19,11 @@ interface Props {
   error?: string;
 }
 
-const AddTrackForm: React.FC<Props> = ({ onSubmit, onCancel, error }) => {
+const AddAndReportNewTrackForm: React.FC<Props> = ({
+  onSubmit,
+  onCancel,
+  error,
+}) => {
   return (
     <Formik
       initialValues={{
@@ -180,4 +184,4 @@ const AddTrackForm: React.FC<Props> = ({ onSubmit, onCancel, error }) => {
   );
 };
 
-export default AddTrackForm;
+export default AddAndReportNewTrackForm;

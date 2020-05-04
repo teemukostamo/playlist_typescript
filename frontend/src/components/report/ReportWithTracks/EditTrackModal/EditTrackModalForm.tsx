@@ -8,36 +8,56 @@ import {
   TextField,
   NumberField,
   TextAreaField,
-} from '../../layout/forms/FormFields';
-import { countryOptions, recordCountryOptions } from '../../../constants';
+} from '../../../layout/forms/FormFields';
+import { countryOptions, recordCountryOptions } from '../../../../constants';
 
-import { AddNewTrackFormValuesType } from '../../../store/track/types';
+import { ReportItem, ReportState } from '../../../../store/report/types';
+import { UpdateReportTrackFormValuesType } from '../../../../store/track/types';
 
 interface Props {
   onCancel: () => void;
-  onSubmit: (values: AddNewTrackFormValuesType) => void;
+  onSubmit: (values: UpdateReportTrackFormValuesType) => void;
+  track: ReportItem;
   error?: string;
 }
 
-const AddTrackForm: React.FC<Props> = ({ onSubmit, onCancel, error }) => {
+const EditTrackModalForm: React.FC<Props> = ({
+  onSubmit,
+  onCancel,
+  track,
+  error,
+}) => {
+  console.log('track at form', track);
+  let initialPeople = '';
+  if (track.people) {
+    initialPeople = track.people
+      .replace(/\| /, '')
+      .replace(/\| /g, '\n')
+      .replace(/ \|/, '');
+  }
   return (
     <Formik
       initialValues={{
-        track_title: '',
-        artist_name: '',
-        album_name: '',
-        label: '',
-        cat_id: '',
-        year: '',
-        disc_no: 1,
-        track_no: 1,
-        minutes: 0,
-        seconds: 0,
-        country: 0,
-        record_country: '',
-        people: '',
-        comment: '',
-        isrc: '',
+        track_title: track.track_title,
+        artist: track.artist_name,
+        album: track.album_name,
+        track_id: track.track_id,
+        album_id: track.album_id,
+        artist_id: track.artist_id,
+        label: track.label,
+        cat_id: track.cat_id,
+        length: track.length,
+        minutes: Math.floor(track.length / 60),
+        seconds: track.length % 60,
+        disc_no: track.disc_no || 1,
+        track_no: track.track_no || 1,
+        people: initialPeople || '',
+        isrc: track.isrc || '',
+        year: Number(track.year?.substring(0, 4)) || '',
+        record_country: track.record_country || '',
+        country: track.country || 0,
+        sortable_rank: track.sortable_rank,
+        report_track_id: track.report_track_id,
       }}
       onSubmit={onSubmit}
       validate={(values) => {
@@ -46,10 +66,10 @@ const AddTrackForm: React.FC<Props> = ({ onSubmit, onCancel, error }) => {
         if (!values.track_title || values.track_title === '') {
           errors.track_title = requiredError;
         }
-        if (!values.album_name || values.album_name === '') {
+        if (!values.album || values.album === '') {
           errors.album_name = requiredError;
         }
-        if (!values.artist_name || values.artist_name === '') {
+        if (!values.artist || values.artist === '') {
           errors.artist_name = requiredError;
         }
         return errors;
@@ -61,13 +81,13 @@ const AddTrackForm: React.FC<Props> = ({ onSubmit, onCancel, error }) => {
             <Field
               label='Artist'
               placeholder='Artist'
-              name='artist_name'
+              name='artist'
               component={RequiredTextField}
             />
             <Field
               label='Album'
               placeholder='Album'
-              name='album_name'
+              name='album'
               component={RequiredTextField}
             />
 
@@ -144,25 +164,13 @@ const AddTrackForm: React.FC<Props> = ({ onSubmit, onCancel, error }) => {
               min={1900}
               max={2900}
             />
-            <Field
-              label='Spotify id'
-              placeholder='Spotify id'
-              name='spotify_id'
-              component={TextField}
-            />
-            <Field
-              label='Comment'
-              placeholder='Any additional information'
-              name='comment'
-              component={TextField}
-            />
             <Button
               type='submit'
               floated='left'
               color='green'
               disabled={!isValid || !dirty}
             >
-              Add
+              Update track info
             </Button>
             <Button
               floated='right'
@@ -180,4 +188,4 @@ const AddTrackForm: React.FC<Props> = ({ onSubmit, onCancel, error }) => {
   );
 };
 
-export default AddTrackForm;
+export default EditTrackModalForm;

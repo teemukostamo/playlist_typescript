@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Table, Icon, Checkbox } from 'semantic-ui-react';
+import EditTrackModal from './EditTrackModal';
 import {
   deleteTrackFromReport,
   checkForDelete,
@@ -72,12 +73,7 @@ const ReportTrackListItem: React.FC<Props> = ({ track, report }) => {
         />
       </Table.Cell>
       <Table.Cell>
-        {/* <EditTrackModal
-          id={track.track_id}
-          sortable_rank={track.sortable_rank}
-          report_track_id={track.report_track_id}
-          track={track}
-        /> */}
+        <EditTrackModal track={track} />
       </Table.Cell>
     </Table.Row>
   );

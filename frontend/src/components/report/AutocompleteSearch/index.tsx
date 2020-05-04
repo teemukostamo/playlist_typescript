@@ -5,7 +5,7 @@ import { addTrackToReport } from '../../../store/report/actions';
 import { setNotification } from '../../../store/notification/actions';
 import { Form, Search, Button, Header } from 'semantic-ui-react';
 
-// import AddTrackModal from './AddTrackModal';
+import AddAndReportNewTrack from './AddAndReportNewTrack';
 import { useSearchTracksHook } from '../../../hooks/searchTracksHook';
 
 import { ApplicationState } from '../../../store/types';
@@ -40,7 +40,6 @@ const AutocompleteSearch: React.FC = () => {
     _e: MouseEvent,
     { result }: AutocompleteResultType
   ) => {
-    console.log(' selected result', result);
     const newTrackToReport = {
       track_id: result.value,
       report_id: report.reportDetails?.id,
@@ -52,9 +51,8 @@ const AutocompleteSearch: React.FC = () => {
 
   const saveClick = () => {
     if (!trackToSave) {
-      dispatch(setNotification('Valitse biisi!', 'fail'));
+      dispatch(setNotification('Please select a track to add!', 'fail'));
     } else {
-      console.log(trackToSave);
       dispatch(addTrackToReport(trackToSave));
       setTrackToSave(null);
     }
@@ -100,7 +98,7 @@ const AutocompleteSearch: React.FC = () => {
           </Form.Field>
           <Form.Field width={8}>
             <Button color='green' onClick={saveClick}>
-              Add the track to the report
+              Add to report
             </Button>
           </Form.Field>
         </Form.Group>
@@ -111,7 +109,13 @@ const AutocompleteSearch: React.FC = () => {
               Advanced search
             </Button>
           </Form.Field>
-          <Form.Field width={6}> {/* <AddTrackModal /> */}</Form.Field>
+          <Form.Field width={6}>
+            {' '}
+            <AddAndReportNewTrack
+              report_id={report.reportDetails?.id}
+              sortable_rank={report.report.length + 1}
+            />
+          </Form.Field>
         </Form.Group>
       </Form>
     </div>

@@ -70,13 +70,31 @@ const CreateNewReportForm: React.FC<Props> = ({
       {({ isValid, dirty }) => {
         return (
           <Form className='form ui'>
-            <SelectField
-              label='Program'
-              name='program_id'
-              options={programOptions}
-            />
+            <label style={{ fontWeight: 'bold' }}>
+              Program{' '}
+              <Popup
+                trigger={
+                  <Icon style={{ display: 'inline' }} name='question circle' />
+                }
+                content='Select your program from the list. Contact staff if your program is not on the list'
+                style={labelStyle}
+                inverted
+              />
+            </label>
+            <SelectField label='' name='program_id' options={programOptions} />
+            <label style={{ fontWeight: 'bold' }}>
+              Program number{' '}
+              <Popup
+                trigger={
+                  <Icon style={{ display: 'inline' }} name='question circle' />
+                }
+                content='Three digit number can be found on the weekly programming schedule. Insert zero if you do not know the number  '
+                style={labelStyle}
+                inverted
+              />
+            </label>
             <Field
-              label='Program number'
+              label=''
               name='program_no'
               component={NumberField}
               min={0}
@@ -126,6 +144,13 @@ const CreateNewReportForm: React.FC<Props> = ({
       }}
     </Formik>
   );
+};
+
+const labelStyle = {
+  borderRadius: 0,
+  display: 'block',
+  opacity: 0.9,
+  padding: '2em',
 };
 
 export default CreateNewReportForm;

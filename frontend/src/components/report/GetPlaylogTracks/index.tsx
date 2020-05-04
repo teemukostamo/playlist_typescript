@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 import { Header } from 'semantic-ui-react';
-import { getPlaylogTracks, getOneReport } from '../../../store/report/actions';
+import { getPlaylogTracks } from '../../../store/report/actions';
 import { ApplicationState } from '../../../store/types';
 import { PlaylogParams } from '../../../store/report/types';
 

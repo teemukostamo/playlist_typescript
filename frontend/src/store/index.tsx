@@ -1,4 +1,4 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware, Action } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 
@@ -13,7 +13,9 @@ import searchReducer from './search/reducer';
 import trackReducer from './track/reducer';
 import userReducer from './user/reducer';
 
-const reducer = combineReducers({
+import { ApplicationState } from './types';
+
+const appReducer = combineReducers({
   album: albumReducer,
   artist: artistReducer,
   login: loginReducer,
@@ -26,7 +28,15 @@ const reducer = combineReducers({
   user: userReducer,
 });
 
+const rootReducer = (state: ApplicationState | undefined, action: Action) => {
+  if (action.type === 'LOGOUT') {
+    // eslint-disable-next-line no-param-reassign
+    state = undefined;
+  }
+  return appReducer(state, action);
+};
+
 export default createStore(
-  reducer,
+  rootReducer,
   composeWithDevTools(applyMiddleware(thunk))
 );

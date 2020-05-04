@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Modal, Segment, Button, Icon } from 'semantic-ui-react';
-import AddTrackForm from './AddTrackForm';
-import { setNotification } from '../../../store/notification/actions';
-import { addTrackToDb } from '../../../store/track/actions';
-import { AddNewTrackFormValuesType } from '../../../store/track/types';
+import { Modal, Segment, Button } from 'semantic-ui-react';
+import AddAndReportNewTrackForm from './AddAndReportNewTrackForm';
+import { setNotification } from '../../../../store/notification/actions';
+import { addNewTrack } from '../../../../store/track/actions';
+import { AddNewTrackFormValuesType } from '../../../../store/track/types';
 
-const AddTrackModal: React.FC = () => {
+interface Props {
+  report_id: number | undefined;
+  sortable_rank: number;
+}
+
+const AddAndReportNewTrack: React.FC<Props> = ({
+  report_id,
+  sortable_rank,
+}) => {
   const dispatch = useDispatch();
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [error, setError] = useState<string | undefined>();
@@ -21,8 +29,10 @@ const AddTrackModal: React.FC = () => {
     const trackToSave = {
       ...values,
       length,
+      report_id,
+      sortable_rank,
     };
-    dispatch(addTrackToDb(trackToSave));
+    dispatch(addNewTrack(trackToSave));
     dispatch(
       setNotification(
         `${trackToSave.track_title} by ${trackToSave.artist_name} has been added to database!`,
@@ -34,23 +44,24 @@ const AddTrackModal: React.FC = () => {
   return (
     <React.Fragment>
       <Button
-        floated='right'
-        color='green'
+        color='blue'
         style={{ marginBottom: '0.5rem' }}
         onClick={() => openModal()}
       >
-        <Icon name='add' />
-        Add a new track
+        Add new track
       </Button>
       <Modal open={modalOpen} onClose={closeModal} centered={false} closeIcon>
         <Modal.Header>Add a new track</Modal.Header>
         <Modal.Content>
           {error && <Segment inverted color='red'>{`Error: ${error}`}</Segment>}
-          <AddTrackForm onSubmit={submitNewTrack} onCancel={closeModal} />
+          <AddAndReportNewTrackForm
+            onSubmit={submitNewTrack}
+            onCancel={closeModal}
+          />
         </Modal.Content>
       </Modal>
     </React.Fragment>
   );
 };
 
-export default AddTrackModal;
+export default AddAndReportNewTrack;

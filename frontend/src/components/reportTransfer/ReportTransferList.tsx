@@ -23,13 +23,13 @@ const ReportTransferList: React.FC<Props> = ({
       </Container>
     );
   }
-  if (currentUser.level === 3) {
+  if (currentUser.level === 3 || currentUser.level === 2) {
     return (
       <Table>
         <Table.Header>
           <Table.Row>
             <Table.Cell>Date created</Table.Cell>
-            <Table.Cell>User</Table.Cell>
+            <Table.Cell>Created by</Table.Cell>
             <Table.Cell>Transfer file period</Table.Cell>
             <Table.Cell>Transfer file</Table.Cell>
           </Table.Row>

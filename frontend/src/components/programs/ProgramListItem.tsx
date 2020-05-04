@@ -34,12 +34,10 @@ const ProgramListItem: React.FC<Props> = ({ program }) => {
 
   const submitUpdatedProgram = (values: EditProgramFormValues) => {
     try {
-      console.log(values);
       dispatch(updateProgram(values));
       dispatch(setNotification(`${values.name} updated!`, 'success'));
       closeModal();
     } catch (e) {
-      console.error(e.response.data);
       setError(e.response.data.error);
     }
   };
@@ -59,7 +57,7 @@ const ProgramListItem: React.FC<Props> = ({ program }) => {
           onClose={closeModal}
         />
         <button
-          style={{ border: 'none', cursor: 'pointer', color: 'blue' }}
+          style={{ border: 'none', cursor: 'pointer', color: 'teal' }}
           onClick={openModal}
         >
           {program.name}

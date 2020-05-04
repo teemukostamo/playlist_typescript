@@ -73,14 +73,16 @@ const ReportTransferGenerator: React.FC<Props> = ({
       {() => {
         return (
           <Form className='form ui'>
-            <label>starting</label>
+            <label style={{ fontWeight: 'bold' }}>
+              Select month to create transfer from
+            </label>
             <Datepicker
               name='pickerDate'
-              dateFormat='dd.MM.yyyy'
-              placeholder='dd.mm.yyyy'
+              dateFormat='MMMM yyyy'
+              placeholder='Select month...'
             />
 
-            <Button type='submit' color='green'>
+            <Button style={{ marginTop: '1rem' }} type='submit' color='green'>
               Submit
             </Button>
           </Form>

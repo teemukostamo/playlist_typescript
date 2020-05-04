@@ -86,7 +86,7 @@ const UserListItem: React.FC<Props> = ({ user }) => {
           onClose={closeModal}
         />
         <button
-          style={{ border: 'none', cursor: 'pointer', color: 'blue' }}
+          style={{ border: 'none', cursor: 'pointer', color: 'teal' }}
           onClick={openModal}
         >
           {user.username}

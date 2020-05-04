@@ -17,7 +17,7 @@ const ReportTransfer: React.FC = () => {
     dispatch(getAllTransfers());
     // eslint-disable-next-line
   }, [reportList.lastTransfer]);
-  if (login.currentUser?.level === 3) {
+  if (login.currentUser?.level === 3 || login.currentUser?.level === 2) {
     return (
       <Container>
         <Header>Transfer files</Header>

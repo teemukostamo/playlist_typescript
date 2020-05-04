@@ -8,10 +8,10 @@ interface Props {
 }
 
 const InProgressReportList: React.FC<Props> = ({ inProgress }) => {
-  console.log(inProgress);
   if (inProgress === null) {
     return null;
   }
+
   if (inProgress.length === 0) {
     return (
       <Grid.Column>
@@ -22,6 +22,7 @@ const InProgressReportList: React.FC<Props> = ({ inProgress }) => {
       </Grid.Column>
     );
   }
+
   return (
     <React.Fragment>
       <Grid.Column>

@@ -1,14 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ReactDragListView from 'react-drag-listview';
-import {
-  Header,
-  Container,
-  Button,
-  Grid,
-  Popup,
-  Icon,
-} from 'semantic-ui-react';
+import { Header, Container, Button } from 'semantic-ui-react';
 import {
   getOneReport,
   getReportDetails,

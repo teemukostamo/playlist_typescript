@@ -31,44 +31,42 @@ const SearchForm = () => {
     dispatch(advancedSearch(values));
   };
   return (
-    <Grid columns={2}>
-      <Grid.Column>
-        <Formik
-          initialValues={{
-            query: '',
-            kind: 'ar',
-          }}
-          onSubmit={handleSearch}
-        >
-          {() => {
-            return (
-              <Form className='form ui'>
-                <Grid>
-                  <Grid.Column width={8}>
-                    <Field
-                      label='Search query'
-                      placeholder='Artist, album, track...'
-                      name='query'
-                      component={TextField}
-                    />
-                  </Grid.Column>
-                  <Grid.Column width={8}>
-                    <SelectField
-                      label='Search for'
-                      name='kind'
-                      options={searchTargetOptions}
-                    />
-                  </Grid.Column>
-                  <Grid.Column width={8}>
-                    <Button type='submit'>Search</Button>
-                  </Grid.Column>
-                </Grid>
-              </Form>
-            );
-          }}
-        </Formik>
-      </Grid.Column>
-    </Grid>
+    <Formik
+      initialValues={{
+        query: '',
+        kind: 'ar',
+      }}
+      onSubmit={handleSearch}
+    >
+      {() => {
+        return (
+          <Form className='form ui'>
+            <Grid>
+              <Grid.Column width={6}>
+                <Field
+                  label='Search query'
+                  placeholder='Artist, album, track...'
+                  name='query'
+                  component={TextField}
+                />
+              </Grid.Column>
+              <Grid.Column width={6}>
+                <SelectField
+                  label='Search for'
+                  name='kind'
+                  options={searchTargetOptions}
+                />
+              </Grid.Column>
+              <Grid.Column width={6}>
+                <Button color='green' type='submit'>
+                  Search
+                </Button>
+              </Grid.Column>
+            </Grid>
+          </Form>
+        );
+      }}
+    </Formik>
   );
 };
 

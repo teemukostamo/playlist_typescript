@@ -44,20 +44,23 @@ const Top100SearchForm: React.FC<Props> = ({ onSubmit }) => {
         return (
           <Form className='form ui'>
             <Grid>
-              <Grid.Column width={2}>
-                {/* <Select name='list' label='Get Top 100' options={listOptions} /> */}
-                <SelectField label='Get' name='list' options={listOptions} />
-              </Grid.Column>
               <Grid.Column width={4}>
-                <label>starting</label>
+                <SelectField
+                  label='Get Top100'
+                  name='list'
+                  options={listOptions}
+                />
+              </Grid.Column>
+              <Grid.Column width={4} style={{ marginTop: '0.2rem' }}>
+                <label style={{ fontWeight: 'bold' }}>Starting</label>
                 <Datepicker
                   name='start_date'
                   dateFormat='dd.MM.yyyy'
                   placeholder='dd.mm.yyyy'
                 />
               </Grid.Column>
-              <Grid.Column width={4}>
-                <label>ending</label>
+              <Grid.Column width={4} style={{ marginTop: '0.2rem' }}>
+                <label style={{ fontWeight: 'bold' }}>Ending</label>
                 <Datepicker
                   name='end_date'
                   dateFormat='dd.MM.yyyy'
@@ -65,7 +68,7 @@ const Top100SearchForm: React.FC<Props> = ({ onSubmit }) => {
                 />{' '}
               </Grid.Column>
             </Grid>
-            <Button type='submit' color='green'>
+            <Button style={{ marginTop: '1rem' }} type='submit' color='green'>
               Submit
             </Button>
           </Form>

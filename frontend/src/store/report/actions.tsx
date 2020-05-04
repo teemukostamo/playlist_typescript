@@ -1,11 +1,5 @@
 import { Dispatch } from 'redux';
 import {
-  AddTrackToReportParams,
-  ReportDetails,
-  ReportItem,
-  DeleteTrackFromReportParams,
-} from './types';
-import {
   GET_ONE_REPORT,
   GET_REPORT_DETAILS,
   SET_EDIT_TRACK_ID,
@@ -14,14 +8,18 @@ import {
   UPDATE_REPORT,
   CHECK_FOR_DELETE,
   UNCHECK_FOR_DELETE,
-  CREATE_NEW_PROGRAM_ON_NEW_REPORT,
+  // CREATE_NEW_PROGRAM_ON_NEW_REPORT,
   SET_LOADING,
   CLEAR_CHECKED_FOR_DELETE,
   CreateNewReportFormTypes,
   PlaylogParams,
+  AddTrackToReportParams,
+  ReportDetails,
+  ReportItem,
+  DeleteTrackFromReportParams,
 } from './types';
+
 import reportService from './services';
-import programService from '../program/services';
 
 // get one report with tracks by report id
 export const getOneReport = (id: number) => async (dispatch: Dispatch) => {
@@ -149,32 +147,32 @@ export const createReport = (newReport: CreateNewReportFormTypes) => async (
   }
 };
 
-// export const copyReport = (
-//   reportDetailsToCopy,
-//   reportTracksToCopy
-// ) => async dispatch => {
-//   dispatch({
-//     type: SET_LOADING
-//   });
-//   const report = await reportService.createReport(reportDetailsToCopy);
-//   dispatch({
-//     type: CREATE_REPORT,
-//     data: report
-//   });
-//   reportTracksToCopy.forEach(async track => {
-//     const trackToAdd = {
-//       ...track,
-//       report_id: report.id,
-//       report_track_id: null
-//     };
-//     await reportService.addTrackToReport(trackToAdd);
-//   });
-//   const newReport = await reportService.getOne(report.id);
-//   dispatch({
-//     type: GET_ONE_REPORT,
-//     data: newReport
-//   });
-// };
+export const copyReport = (
+  reportDetailsToCopy: CreateNewReportFormTypes,
+  reportTracksToCopy: Array<ReportItem>
+) => async (dispatch: Dispatch) => {
+  dispatch({
+    type: SET_LOADING,
+  });
+  const report = await reportService.createReport(reportDetailsToCopy);
+  dispatch({
+    type: CREATE_REPORT,
+    data: report,
+  });
+  reportTracksToCopy.forEach(async (track) => {
+    const trackToAdd = {
+      ...track,
+      report_id: report.id,
+      report_track_id: null,
+    };
+    await reportService.addTrackToReport(trackToAdd);
+  });
+  const newReport = await reportService.getOne(report.id);
+  dispatch({
+    type: GET_ONE_REPORT,
+    data: newReport,
+  });
+};
 
 export const updateReport = (updatedReport: ReportDetails) => async (
   dispatch: Dispatch

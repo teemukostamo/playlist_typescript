@@ -53,14 +53,7 @@ const MergePrograms: React.FC<Props> = ({ program_id, program_name }) => {
     label: `${program.id} - ${program.name}`,
     value: program.id,
   }));
-  // const getProgramToMerge = (
-  //   e: React.SyntheticEvent<HTMLElement>,
-  //   value: DropdownProps
-  // ) => {
-  //   console.log(value);
-  //   e.preventDefault();
-  //   // setProgramToMerge(value);
-  // };
+
   return (
     <Modal
       open={modalOpen}

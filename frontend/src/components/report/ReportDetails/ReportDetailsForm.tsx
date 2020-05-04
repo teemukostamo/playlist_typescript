@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import moment from 'moment';
 import { Formik, Field } from 'formik';
 import { Datepicker, Checkbox, Form } from 'react-formik-ui';
-import { Button, Grid, Popup, Icon, Header } from 'semantic-ui-react';
+import { Button, Grid, Header } from 'semantic-ui-react';
 import {
   SelectField,
   TextField,
@@ -24,16 +24,28 @@ interface Props {
   reportDetails: ReportDetails;
   onRerunChange: () => void;
   rerun: number | null | undefined;
+  duplicateReportClick: (values: ReportDetails) => void;
+  currentUser: CurrentUser | null;
 }
 
 const ReportDetailsForm: React.FC<Props> = ({
   onSubmit,
+  duplicateReportClick,
   onRerunChange,
   programOptions,
   userOptions,
   reportDetails,
   rerun,
+  currentUser,
 }) => {
+  let userField: JSX.Element | null;
+  if (currentUser?.level === 1) {
+    userField = null;
+  } else {
+    userField = (
+      <SelectField label='User' name='user_id' options={userOptions} />
+    );
+  }
   return (
     <Grid divided='vertically'>
       <Grid.Row columns={2}>
@@ -83,77 +95,85 @@ const ReportDetailsForm: React.FC<Props> = ({
               return errors;
             }}
           >
-            {({ isValid }) => {
+            {({ isValid, values }) => {
               return (
-                <Form className='form ui'>
-                  <SelectField
-                    label='Program'
-                    name='program_id'
-                    options={programOptions}
-                  />
-                  <Field
-                    label='Program number'
-                    name='program_no'
-                    component={NumberField}
-                    min={0}
-                    max={999}
-                  />
-                  <Field
-                    label='DJ'
-                    placeholder='DJ'
-                    name='program_dj'
-                    component={TextField}
-                  />
-                  <Grid style={{ marginBottom: '0.5rem' }}>
-                    <Grid.Column width={5} style={{ marginTop: '0.3rem' }}>
-                      <label>Program date</label>
-                      <Datepicker
-                        name='program_date'
-                        dateFormat='dd.MM.yyyy'
-                        placeholder='dd.mm.yyyy'
-                      />{' '}
-                    </Grid.Column>
-                    <Grid.Column width={5}>
-                      <SelectField
-                        label='Start time'
-                        name='program_start_time'
-                        options={startTimeOptions}
-                      />
-                    </Grid.Column>
-                    <Grid.Column width={5}>
-                      <SelectField
-                        label='End time'
-                        name='program_end_time'
-                        options={endTimeOptions}
-                      />
-                    </Grid.Column>
-                  </Grid>
-                  <SelectField
-                    label='Report status'
-                    name='status'
-                    options={reportStatusOptions}
-                  />
-                  <SelectField
-                    label='User'
-                    name='user_id'
-                    options={userOptions}
-                  />
-                  <Checkbox
-                    name='rerun'
-                    label='Rerun'
-                    onChange={onRerunChange}
-                    checked={!!rerun}
-                  />
+                <React.Fragment>
+                  <Form className='form ui'>
+                    <SelectField
+                      label='Program'
+                      name='program_id'
+                      options={programOptions}
+                    />
+                    <Field
+                      label='Program number'
+                      name='program_no'
+                      component={NumberField}
+                      min={0}
+                      max={999}
+                    />
+                    <Field
+                      label='DJ'
+                      placeholder='DJ'
+                      name='program_dj'
+                      component={TextField}
+                    />
+                    <Grid style={{ marginBottom: '0.5rem' }}>
+                      <Grid.Column width={5} style={{ marginTop: '0.3rem' }}>
+                        <label style={{ fontWeight: 'bold' }}>
+                          Program date
+                        </label>
+                        <Datepicker
+                          name='program_date'
+                          dateFormat='dd.MM.yyyy'
+                          placeholder='dd.mm.yyyy'
+                        />{' '}
+                      </Grid.Column>
+                      <Grid.Column width={5}>
+                        <SelectField
+                          label='Start time'
+                          name='program_start_time'
+                          options={startTimeOptions}
+                        />
+                      </Grid.Column>
+                      <Grid.Column width={5}>
+                        <SelectField
+                          label='End time'
+                          name='program_end_time'
+                          options={endTimeOptions}
+                        />
+                      </Grid.Column>
+                    </Grid>
+                    <SelectField
+                      label='Report status'
+                      name='status'
+                      options={reportStatusOptions}
+                    />
+                    {userField}
+                    <label style={{ fontWeight: 'bold' }}>Rerun</label>
+                    <Checkbox
+                      name='rerun'
+                      label=''
+                      onChange={onRerunChange}
+                      checked={!!rerun}
+                      style={{ marginTop: '0.2rem' }}
+                    />
+                    <Button
+                      style={{ marginTop: '1rem' }}
+                      type='submit'
+                      floated='left'
+                      color='green'
+                      disabled={!isValid}
+                    >
+                      Save changes
+                    </Button>
+                  </Form>
                   <Button
                     style={{ marginTop: '1rem' }}
-                    type='submit'
-                    floated='left'
-                    color='green'
-                    disabled={!isValid}
+                    onClick={() => duplicateReportClick(values)}
                   >
-                    Save changes
+                    Duplicate report
                   </Button>
-                </Form>
+                </React.Fragment>
               );
             }}
           </Formik>

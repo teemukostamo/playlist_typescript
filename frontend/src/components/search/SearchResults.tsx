@@ -13,7 +13,11 @@ interface Props {
 
 const SearchResults: React.FC<Props> = ({ search }) => {
   if (search.advancedResults.length === 0) {
-    return <div>no results. please enter a query</div>;
+    return (
+      <div style={{ textAlign: 'center', marginTop: '5rem' }}>
+        No results. Please enter a query
+      </div>
+    );
   }
   if (search.loading === true) {
     return (

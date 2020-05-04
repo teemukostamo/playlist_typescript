@@ -12,6 +12,7 @@ type SelectFieldProps = {
   name: string;
   label: string;
   options: SelectFieldOptions[];
+  placeholder?: string;
 };
 
 export const SelectField: React.FC<SelectFieldProps> = ({

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { Header, Container, Grid, Popup, Icon } from 'semantic-ui-react';
+import { Header, Container, Grid } from 'semantic-ui-react';
 import CreateNewReportForm from './CreateNewReportForm';
 import { createReport } from '../../../store/report/actions';
 import { setNotification } from '../../../store/notification/actions';
