@@ -6,12 +6,12 @@ The subject of my project is to create a song reporting tool for a radio station
 
 ### Install Instructions
 
-Install instructions is found [here](documentation/install_instructions.md)
+Install instructions [here](documentation/install_instructions.md)
 
 ### User manual
 
-User manual is found [here](documentation/user_manual.md).
+User manual [here](documentation/user_manual.md).
 
 ### Documentation
 
-Documentation for developers is found [here](documentation/documentation.md).
+Documentation for developers [here](documentation/documentation.md).

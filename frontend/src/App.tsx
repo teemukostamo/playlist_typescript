@@ -70,6 +70,12 @@ const App: React.FC = () => {
       </div>
       <Switch>
         <Route exact path='/' component={Home} />
+        <Route exact path='/reports' component={ReportList} />
+        <Route exact path='/transfer' component={ReportTransfer} />
+        <Route exact path='/top100' component={Top100} />
+        <Route exact path='/search' component={Search} />
+        <Route exact path='/programs' component={Programs} />
+        <Route exact path='/users' component={Users} />
         <Route
           path='/album/:id'
           render={({ match }) => {
@@ -94,12 +100,6 @@ const App: React.FC = () => {
             return <ReportTrackIndex id={match.params.id} />;
           }}
         />
-        <Route exact path='/reports' component={ReportList} />
-        <Route exact path='/transfer' component={ReportTransfer} />
-        <Route exact path='/top100' component={Top100} />
-        <Route exact path='/search' component={Search} />
-        <Route exact path='/programs' component={Programs} />
-        <Route exact path='/users' component={Users} />
       </Switch>
       <Footer />
     </Router>

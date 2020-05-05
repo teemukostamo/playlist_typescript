@@ -63,6 +63,17 @@ app.get('/', function (_req, res) {
   });
 });
 
+app.get('/backend-documentation', (_req, res) => {
+  res.sendFile(
+    path.resolve(`${__dirname}/public/backend_documentation.html`),
+    (err) => {
+      if (err) {
+        res.status(500).send(err);
+      }
+    }
+  );
+});
+
 app.get('/reports*', (_req, res) => {
   res.sendFile(path.resolve(`${__dirname}/src/build/index.html`));
 });
