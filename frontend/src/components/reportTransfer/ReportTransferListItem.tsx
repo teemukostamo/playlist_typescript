@@ -9,6 +9,7 @@ interface Props {
 }
 
 const RepotTransferListItem: React.FC<Props> = ({ item }) => {
+  console.log(item);
   const downloadTransfer = (filename: string) => {
     downloadReport(filename);
   };

@@ -29,7 +29,7 @@ const ReportTransferGenerator: React.FC<Props> = ({
   useEffect(() => {
     dispatch(getAllReportsByDate(moment(pickerDate).format('YYYY-MM')));
     // eslint-disable-next-line
-  }, [pickerDate]);
+  }, []);
 
   const getTransferFile = () => {
     const params = {
