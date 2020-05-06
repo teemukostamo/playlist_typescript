@@ -83,7 +83,7 @@ const FilterReportList: React.FC<Props> = ({ user, login }) => {
 
   return (
     <Grid>
-      <Grid.Column width={4}>
+      {/* <Grid.Column width={4}>
         <Formik
           initialValues={{
             userId: undefined,
@@ -106,7 +106,7 @@ const FilterReportList: React.FC<Props> = ({ user, login }) => {
             );
           }}
         </Formik>
-      </Grid.Column>
+      </Grid.Column> */}
       <Grid.Column width={4}>
         <Formik
           initialValues={{

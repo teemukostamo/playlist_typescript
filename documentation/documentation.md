@@ -10,4 +10,4 @@ To use the API with Postman, set the following Postman environment variables:
   | Content-Type | Application/json |
   | Authorization | bearer {{TOKEN}} |
 
-  [API documentation](https://htmlpreview.github.io/?https://github.com/teemukostamo/playlist_typescript/blob/master/documentation/backend_documentation.html)§
+  [API documentation](https://playlist-demo.teemukostamo.com/backend-documentation)

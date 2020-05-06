@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Grid, Dimmer, Loader, Header } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import {
   TextField,
@@ -55,6 +56,21 @@ const AlbumDetailsForm: React.FC<Props> = ({ currentAlbum, onSubmit }) => {
                   name='artist'
                   component={DisabledTextField}
                 />
+                <span>
+                  <Link
+                    style={{
+                      cursor: 'pointer',
+                      fontSize: '0.8rem',
+                      color: 'teal',
+                      marginRight: '1rem',
+                      marginLeft: '0.3rem',
+                      marginBottom: '10rem',
+                    }}
+                    to={`../artist/${currentAlbum.artist_id}`}
+                  >
+                    Edit artist info
+                  </Link>
+                </span>
                 <Field
                   label='Album name'
                   placeholder='Name'

@@ -31,8 +31,8 @@ const CreateNewReportForm: React.FC<Props> = ({
         program_no: 0,
         program_dj: `${currentUser?.first_name} ${currentUser?.last_name}`,
         program_date: moment(new Date()).format('YYYY-MM-DD'),
-        program_start_time: '',
-        program_end_time: '',
+        program_start_time: '00:00',
+        program_end_time: '01:00',
         program_id: 0,
         rerun: null,
         status: 0,
@@ -43,7 +43,6 @@ const CreateNewReportForm: React.FC<Props> = ({
       }}
       onSubmit={onSubmit}
       validate={(values) => {
-        console.log(values);
         const requiredError = 'Field is required';
         const invalidTimeError = 'Check start and end times!';
         const errors: { [field: string]: string } = {};
@@ -55,6 +54,9 @@ const CreateNewReportForm: React.FC<Props> = ({
         }
         if (values.program_end_time === '') {
           errors.program_end_time = requiredError;
+        }
+        if (Number(values.program_id) === 0) {
+          errors.program_dj = 'Please select a program';
         }
 
         if (
@@ -81,7 +83,12 @@ const CreateNewReportForm: React.FC<Props> = ({
                 inverted
               />
             </label>
-            <SelectField label='' name='program_id' options={programOptions} />
+            <SelectField
+              placeholder='Select program...'
+              label=''
+              name='program_id'
+              options={programOptions}
+            />
             <label style={{ fontWeight: 'bold' }}>
               Program number{' '}
               <Popup
