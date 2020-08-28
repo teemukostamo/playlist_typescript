@@ -13,7 +13,7 @@ A new report requires the following information:
 - Program start time
 - Program end time
 
-If desired program is not found on the list of programs, the user may create a new program by clicking the "Add new program" -button. After the required info has been filled, "Continue" -button takes the user to the current report page where songs can be added.
+If desired program is not found on the list of programs, the user may create a new program on the PROGRAMS page by clicking the "Add new program" -button. After the required info has been filled, "Continue" -button takes the user to the current report page where songs can be added.
 
 ## Adding songs to the report
 
@@ -69,8 +69,16 @@ Staff-user has the same rights as DJ, and:
 
 #### All reports by all users and duplicating reports
 
-Staff-user may browse all reports by all users. If a show is re-aired, the report of the show in question is duplicated, but with a new date and time, and the "Rerun" checkbox selected. Reruns are in red on the reports page.
+Staff-user may browse all reports by all users. If a show is re-aired, the original report of the show in question is duplicated, but with a new date and time, and the "Rerun" checkbox selected. Reruns are displayed in red on the reports page.
 
 #### Programs
 
 New programs may be added on the Programs page. Programs with active status are visible in front page's Create new report form's program listing.
+
+## Admin
+
+Admin has the same rights as Staff, and:
+
+### Users
+
+Create, edit, delete users. User status may also be set to Inactive. Incative users are displayed an error message on an attempt to log in.

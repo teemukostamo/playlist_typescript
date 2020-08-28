@@ -44,4 +44,10 @@ const deleteUser = async (id: number) => {
   return response.data;
 };
 
-export default { getAll, setToken, createUser, updateUser, deleteUser };
+export default {
+  getAll,
+  setToken,
+  createUser,
+  updateUser,
+  deleteUser,
+};
