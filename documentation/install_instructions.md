@@ -19,6 +19,9 @@
 - To deploy the entire project to Heroku, run `npm run deploy:full` in the project root directory. This assumes you have set up a Heroku remote for the repository.
 - To run the backend tests, run `npm run test` in the project root directory
 - To run the end to end test:
+
   - start the backend in test mode by running `npm run start:test` in the project root directory
   - `cd` into the frontend directory and run `npm start`
   - Open another terminal window in the frontend directory and run `npm run cypress:open`
+
+- Use username `test` and password `test` to log in with administrator priviliges
