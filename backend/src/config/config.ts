@@ -5,7 +5,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const dburi: string = process.env.DB_URI || 'localhost';
-let dbName: string = process.env.DB_NAME || 'playlist';
+let dbName: string = process.env.DB_NAME || 'playlist_demo';
 const dbSecret: string = process.env.DB_SECRET || 'salainen';
 const dbUser: string = process.env.DB_USER || 'root';
 const port: string = process.env.PORT || '5000';

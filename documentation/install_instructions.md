@@ -3,15 +3,15 @@
 - Clone the repository
 - Run `npm install` the project root directory
 - `cd frontend` and run `npm install` in the frontend root directory
-- Import data from `playlist-db.sql` into your MySQL database of choice. MySQL version 5.7.
-- Create a `.env` -file into the project root directory with the following values:
-  - `PORT` - default port is 5000
-  - `DB_URI` - default database location is `localhost`
-  - `DB_NAME` - default database name is `playlist_demo`
-  - `DB_SECRET` - your database password
-  - `DB_USER` - your database username
-  - `TEST_DB_NAME` - default test database name is `playlist_test`
-  - `SECRET` - your jsonwebtoken secret
+- Import data from `playlist-db.sql` into your MySQL database of choice. MySQL version 5.7. Use the default values described below if you wish to skip creating an `.env` file.
+- Create an `.env` -file into the project root directory with the following values:
+  - `PORT` - The port you wish to use for the server. Default port is 5000
+  - `DB_URI` - Your DB URI. Default database location is `localhost`
+  - `DB_NAME` - Your database name. Default database name is `playlist_demo`
+  - `DB_SECRET` - Your database password. Default value is `salainen`
+  - `DB_USER` - Your database username. Default value is `root`
+  - `TEST_DB_NAME` - Your test database name. Default test database name is `playlist_test`
+  - `SECRET` - Your jsonwebtoken secret. Default value is `unauthorized`
 - To start the backend in development mode, run `npm run dev` in the project root directory
 - To start the compiled build of the backend, run `npm start` in the project root directory
 - To start the frontend, run `npm start` in the frontend directory
