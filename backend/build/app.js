@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const body_parser_1 = __importDefault(require("body-parser"));
-const cors_1 = __importDefault(require("cors"));
+// import cors from 'cors';
 const path_1 = __importDefault(require("path"));
 // import db
 const database_1 = require("./src/config/database");
@@ -93,7 +93,7 @@ app.get('/track*', (_req, res) => {
     res.sendFile(path_1.default.resolve(`${__dirname}/src/build/index.html`));
 });
 app.use(body_parser_1.default.json());
-app.use(cors_1.default());
+// app.use(cors());
 app.use(logger_1.logger);
 app.use('/api/albums', albums_1.default);
 app.use('/api/artists', artists_1.default);

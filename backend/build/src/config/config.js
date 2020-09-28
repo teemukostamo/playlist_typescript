@@ -8,7 +8,7 @@ if (process.env.NODE_ENV !== 'production') {
     dotenv_1.default.config();
 }
 const dburi = process.env.DB_URI || 'localhost';
-let dbName = process.env.DB_NAME || 'playlist';
+let dbName = process.env.DB_NAME || 'playlist_demo';
 const dbSecret = process.env.DB_SECRET || 'salainen';
 const dbUser = process.env.DB_USER || 'root';
 const port = process.env.PORT || '5000';
