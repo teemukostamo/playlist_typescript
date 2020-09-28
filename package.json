@@ -1,6 +1,9 @@
 {
   "name": "playlist_typescript_backend",
   "version": "1.0.0",
+  "engines": {
+    "node": "12.x"
+  },
   "description": "Typescript refactor of playlist app.",
   "main": "backend/build/index",
   "scripts": {
