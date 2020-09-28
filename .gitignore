@@ -1,0 +1,12 @@
+node_modules
+/frontend/build
+backend/build
+.DS_STORE
+.env
+.env.local
+
+list.helper.js
+certs
+*.pem
+
+frontend/cypress/videos/
