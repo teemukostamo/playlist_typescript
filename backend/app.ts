@@ -3,6 +3,8 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import path from 'path';
 
+console.log('trying new build');
+
 // import db
 import { db } from './src/config/database';
 
