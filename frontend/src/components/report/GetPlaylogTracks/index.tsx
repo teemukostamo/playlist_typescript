@@ -21,7 +21,6 @@ const GetPlaylogTracks: React.FC = () => {
       report_id: report.reportDetails?.id || 0,
       sortable_rank_start: report.report.length,
     };
-    console.log('get playlog params', searchParams);
     dispatch(getPlaylogTracks(searchParams));
   };
 

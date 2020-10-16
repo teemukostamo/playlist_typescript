@@ -1,5 +1,6 @@
 node_modules
 /frontend/build
+/backend/build
 .DS_STORE
 .env
 .env.local

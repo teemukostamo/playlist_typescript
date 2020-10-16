@@ -1,4 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
+import mysql from 'mysql';
+
 import { db } from '../config/database';
 import { QueryTypes } from 'sequelize';
 import { Artist } from '../models/Artist';
@@ -26,6 +28,7 @@ export const getOneArtist = asyncHandler(
 // @access  Private
 export const getAllAlbumsByArtist = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
+    const id = mysql.escape(req.params.id);
     const albumlist = await db.query(
       `
       SELECT al.id as album_id
@@ -40,12 +43,12 @@ export const getAllAlbumsByArtist = asyncHandler(
      INNER JOIN playlist__artist as ar ON al.artist_id = ar.id
      INNER JOIN playlist__track as tr ON tr.album_id = al.id
      INNER JOIN playlist__report_track as rt ON rt.track_id = tr.id
-     WHERE ar.id = ${req.params.id}
+     WHERE ar.id = ${id}
      group by album_id
      ORDER BY al.name
     `,
       {
-        type: QueryTypes.SELECT
+        type: QueryTypes.SELECT,
       }
     );
     if (albumlist.length === 0) {
@@ -66,7 +69,7 @@ export const updateArtist = asyncHandler(
     const updatedArtist = await Artist.update(
       {
         name,
-        spotify_id
+        spotify_id,
       },
       { where: { id: req.params.id } }
     );

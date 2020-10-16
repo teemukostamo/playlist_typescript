@@ -1,3 +1,4 @@
+import mysql from 'mysql';
 import { Request, Response } from 'express';
 import { db } from '../config/database';
 import { QueryTypes } from 'sequelize';
@@ -19,6 +20,7 @@ export const autocompleteResults = asyncHandler(
     if (searchString.length < 3) {
       return res.status(400).json({ error: 'query too short' });
     }
+    const escapeSearchString = mysql.escape(`%${searchString}%`);
     const results = await db.query(
       `
       SELECT t.name as track_title
@@ -32,12 +34,12 @@ export const autocompleteResults = asyncHandler(
      FROM playlist__track as t
      INNER JOIN playlist__artist as ar ON t.artist_id = ar.id
      INNER JOIN playlist__album as al ON t.album_id = al.id
-     WHERE (t.name like '%${searchString}%' or ar.name like '%${searchString}%')
+     WHERE (t.name like ${escapeSearchString} or ar.name like ${escapeSearchString})
      ORDER BY t.name ASC 
      LIMIT 100
       `,
       {
-        type: QueryTypes.SELECT
+        type: QueryTypes.SELECT,
       }
     );
     return res.status(200).json(results);
@@ -56,6 +58,23 @@ export const advancedResults = asyncHandler(
     if (searchString.length < 3) {
       return res.status(400).json({ error: 'query too short' });
     }
+
+    const escapeSearchString = mysql.escape(`%${searchString}%`);
+    let escapedKind;
+    switch (kind) {
+      case 'al':
+        escapedKind = 'al';
+        break;
+      case 'ar':
+        escapedKind = 'ar';
+        break;
+      case 'tr':
+        escapedKind = 'tr';
+        break;
+      default:
+        escapedKind = '';
+    }
+
     const results = await db.query(
       `
       SELECT ar.name as artist_name
@@ -73,13 +92,13 @@ export const advancedResults = asyncHandler(
       INNER JOIN playlist__track as tr ON rt.track_id = tr.id
       INNER JOIN playlist__album as al ON tr.album_id = al.id
       INNER JOIN playlist__artist as ar ON tr.artist_id = ar.id AND al.artist_id = ar.id
-      WHERE ${kind}.name like '%${searchString}%'
+      WHERE ${escapedKind}.name like ${escapeSearchString}
       GROUP BY tr.id
       ORDER BY track_title asc
       LIMIT 1000
       `,
       {
-        type: QueryTypes.SELECT
+        type: QueryTypes.SELECT,
       }
     );
     return res.status(200).json(results);
@@ -98,7 +117,7 @@ export const merge = asyncHandler(async (req: Request, res: Response) => {
       transaction = await db.transaction();
       await Report_Track.update(
         {
-          track_id: mergeTo
+          track_id: mergeTo,
         },
         { where: { track_id: merge } }
       );
@@ -113,7 +132,7 @@ export const merge = asyncHandler(async (req: Request, res: Response) => {
       transaction = await db.transaction();
       await Track.update(
         {
-          album_id: mergeTo
+          album_id: mergeTo,
         },
         { where: { album_id: merge } }
       );
@@ -128,13 +147,13 @@ export const merge = asyncHandler(async (req: Request, res: Response) => {
       transaction = await db.transaction();
       await Album.update(
         {
-          artist_id: mergeTo
+          artist_id: mergeTo,
         },
         { where: { artist_id: merge } }
       );
       await Track.update(
         {
-          artist_id: mergeTo
+          artist_id: mergeTo,
         },
         { where: { artist_id: merge } }
       );
@@ -153,14 +172,15 @@ export const merge = asyncHandler(async (req: Request, res: Response) => {
 // @access  Private
 export const changeArtistOptions = asyncHandler(
   async (req: Request, res: Response) => {
+    const query = mysql.escape(`%${req.params.query}%`);
     const results = await db.query(
       `
     SELECT name as artist_name, id as artist_id
     FROM playlist__artist
-    WHERE name like "%${req.params.query}%"
+    WHERE name like ${query}
     `,
       {
-        type: QueryTypes.SELECT
+        type: QueryTypes.SELECT,
       }
     );
     res.status(200).json(results);
@@ -172,16 +192,17 @@ export const changeArtistOptions = asyncHandler(
 // @access  Private
 export const changeAlbumOptions = asyncHandler(
   async (req: Request, res: Response) => {
+    const query = mysql.escape(`%${req.params.query}%`);
     const results = await db.query(
       `
     SELECT al.name as album_name, al.id as album_id, al.identifier as cat_id, ar.name as artist_name
     FROM playlist__album as al
     INNER JOIN playlist__artist as ar ON al.artist_id = ar.id
-    WHERE al.name like "%${req.params.query}%"
+    WHERE al.name like ${query}
     ORDER BY album_name asc
     `,
       {
-        type: QueryTypes.SELECT
+        type: QueryTypes.SELECT,
       }
     );
     res.status(200).json(results);

@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
+import mysql from 'mysql';
 import { db } from '../config/database';
 import { QueryTypes } from 'sequelize';
 
@@ -16,7 +17,7 @@ export const getAllActivePrograms = asyncHandler(
     const programs = await db.query(
       'SELECT * FROM playlist__program WHERE display = 1 order by name asc',
       {
-        type: QueryTypes.SELECT
+        type: QueryTypes.SELECT,
       }
     );
     if (programs.length === 0) {
@@ -34,7 +35,7 @@ export const getAllPrograms = asyncHandler(
     const programs = await db.query(
       'SELECT * FROM playlist__program order by display desc, name asc',
       {
-        type: QueryTypes.SELECT
+        type: QueryTypes.SELECT,
       }
     );
     if (programs.length === 0) {
@@ -49,10 +50,11 @@ export const getAllPrograms = asyncHandler(
 // @access  Private
 export const getOneProgram = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
+    const id = mysql.escape(req.params.id);
     const program = await db.query(
-      `SELECT * FROM playlist__program WHERE id = ${req.params.id}`,
+      `SELECT * FROM playlist__program WHERE id = ${id}`,
       {
-        type: QueryTypes.SELECT
+        type: QueryTypes.SELECT,
       }
     );
     if (program.length === 0) {
@@ -74,7 +76,7 @@ export const createNewProgram = asyncHandler(
       identifier: req.body.identifier,
       name: req.body.name,
       display: 1,
-      site: 1
+      site: 1,
     });
     res.status(201).json(savedProgram);
   }
@@ -91,7 +93,7 @@ export const updateProgram = asyncHandler(
         name,
         identifier,
         site,
-        display
+        display,
       },
       { where: { id } }
     );
@@ -113,7 +115,7 @@ export const mergePrograms = asyncHandler(
       transaction = await db.transaction();
       await Report.update(
         {
-          program_id: mergeTo
+          program_id: mergeTo,
         },
         { where: { program_id: merge } }
       );

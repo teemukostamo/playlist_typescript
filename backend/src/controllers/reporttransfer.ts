@@ -8,7 +8,7 @@ const lf10 = String.fromCharCode(parseInt('&#010;', 16));
 
 import path from 'path';
 import fs from 'fs';
-
+import mysql from 'mysql';
 import windows1252 from 'windows-1252';
 
 import { Request, Response } from 'express';
@@ -112,6 +112,7 @@ interface StringifiedTrackToReport {
 export const generateTransferFile = asyncHandler(
   async (req: Request, res: Response) => {
     const { user_id, status, filename, period } = req.body;
+    const escapePeriod = mysql.escape(`${period}%`);
     const arrayWithTracks: Array<TrackToReport> = await db.query(
       `
       SELECT re.program_date
@@ -137,7 +138,7 @@ export const generateTransferFile = asyncHandler(
       INNER JOIN playlist__artist as ar ON tr.artist_id = ar.id
       INNER JOIN playlist__album as al ON al.artist_id = ar.id AND tr.album_id = al.id
       WHERE re.status = 1
-      AND re.program_date like "${period}%"
+      AND re.program_date like ${escapePeriod}
       ORDER BY program_date ASC, program_start_time ASC
       LIMIT 30000
       `,

@@ -1,4 +1,5 @@
 /* eslint-disable prefer-const */
+import mysql from 'mysql';
 import { Request, Response, NextFunction } from 'express';
 import { db } from '../config/database';
 import { QueryTypes } from 'sequelize';
@@ -16,6 +17,7 @@ import ErrorResponse from '../utils/errorResponse';
 // @access  Private
 export const getOneTrack = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
+    const id = mysql.escape(req.params.id);
     const track = await db.query(
       `SELECT t.name as track_title
       , ar.name as artist
@@ -37,7 +39,7 @@ export const getOneTrack = asyncHandler(
      FROM playlist__track as t
      INNER JOIN playlist__artist as ar ON t.artist_id = ar.id
      INNER JOIN playlist__album as al ON t.album_id = al.id
-     WHERE t.id = ${req.params.id}`,
+     WHERE t.id = ${id}`,
       {
         type: QueryTypes.SELECT,
       }
@@ -56,6 +58,7 @@ export const getOneTrack = asyncHandler(
 // @access  Private
 export const getPlayhistory = asyncHandler(
   async (req: Request, res: Response) => {
+    const id = mysql.escape(req.params.id);
     const track = await db.query(
       `
       SELECT pr.name as program_name
@@ -66,7 +69,7 @@ export const getPlayhistory = asyncHandler(
       FROM playlist__program as pr
       INNER JOIN playlist__report as re ON re.program_id = pr.id
       INNER JOIN playlist__report_track as rt ON rt.report_id = re.id
-      WHERE rt.track_id = ${req.params.id}
+      WHERE rt.track_id = ${id}
       GROUP BY re.id
       ORDER BY program_date desc
       `,

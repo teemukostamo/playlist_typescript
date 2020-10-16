@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
+import mysql from 'mysql';
 import { db } from '../config/database';
 import { QueryTypes } from 'sequelize';
 
@@ -12,6 +13,7 @@ import ErrorResponse from '../utils/errorResponse';
 // @access  Private
 export const getReportTracks = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
+    const id = mysql.escape(req.params.id);
     const report = await db.query(
       `
       SELECT rt.sortable_rank
@@ -36,7 +38,7 @@ export const getReportTracks = asyncHandler(
      INNER JOIN playlist__artist as ar ON ar.id = tr.artist_id
      INNER JOIN playlist__report_track as rt ON rt.track_id = tr.id
      INNER JOIN playlist__album as al ON tr.album_id = al.id
-     WHERE rt.report_id = ${req.params.id}
+     WHERE rt.report_id = ${id}
      ORDER BY sortable_rank asc
       `,
       {
@@ -127,13 +129,14 @@ interface ProgramDateTime {
 // @access  Public
 export const getSiteTracklist = asyncHandler(
   async (req: Request, res: Response) => {
+    const programName = mysql.escape(req.query.name);
     const dateTimes: Array<ProgramDateTime> = await db.query(
       `
     SELECT re.program_date
 		, re.program_start_time
      FROM playlist__report as re
      INNER JOIN playlist__program as pr ON re.program_id = pr.id
-     WHERE pr.name = "${req.query.name}"
+     WHERE pr.name = "${programName}"
      AND re.status = 1
      AND re.rerun is null
      ORDER BY re.program_date desc
@@ -169,7 +172,7 @@ export const getSiteTracklist = asyncHandler(
       INNER JOIN playlist__report as re ON rt.report_id = re.id
       INNER JOIN playlist__album as al ON tr.album_id = al.id
       INNER JOIN playlist__program as pr ON re.program_id = pr.id
-      WHERE pr.name = "${req.query.name}"
+      WHERE pr.name = "${programName}"
       AND re.status = 1
       AND re.program_date = "${date.substring(0, 10)}"
       ORDER BY rt.sortable_rank

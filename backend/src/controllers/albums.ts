@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
+import mysql from 'mysql';
 import { db } from '../config/database';
 import { QueryTypes } from 'sequelize';
 
@@ -12,6 +13,7 @@ import ErrorResponse from '../utils/errorResponse';
 // @access  Private
 export const getOneAlbum = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
+    const id = mysql.escape(req.params.id);
     const album = await db.query(
       `
       SELECT al.name as album_name
@@ -24,7 +26,7 @@ export const getOneAlbum = asyncHandler(
       , ar.id as artist_id
       FROM playlist__artist as ar
       INNER JOIN playlist__album as al ON al.artist_id = ar.id
-      WHERE al.id = ${req.params.id}
+      WHERE al.id = ${id}
     `,
       {
         type: QueryTypes.SELECT,
@@ -44,6 +46,7 @@ export const getOneAlbum = asyncHandler(
 // @access  Private
 export const getAlbumTracklist = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
+    const id = mysql.escape(req.params.id);
     const album = await db.query(
       `
       SELECT tr.id as track_id
@@ -57,7 +60,7 @@ export const getAlbumTracklist = asyncHandler(
      LEFT JOIN  playlist__artist as ar ON al.artist_id = ar.id
      LEFT JOIN  playlist__track as tr ON tr.album_id = al.id
      LEFT JOIN  playlist__report_track as rt ON  rt.track_id = tr.id
-     WHERE al.id = ${req.params.id}
+     WHERE al.id = ${id}
      group by track_id
      order by track_no asc, track_title asc
     `,

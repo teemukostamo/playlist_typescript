@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
+import mysql from 'mysql';
 import { db } from '../config/database';
 import { QueryTypes } from 'sequelize';
 import { Report } from '../models/Report';
@@ -11,6 +12,8 @@ import ErrorResponse from '../utils/errorResponse';
 // @access  Private
 export const getCurrentUsersReports = asyncHandler(
   async (req: Request, res: Response) => {
+    const user = mysql.escape(req.query.user);
+    const date = mysql.escape(`${req.query.date}%`);
     const reports = await db.query(
       `
       SELECT re.program_no
@@ -25,12 +28,12 @@ export const getCurrentUsersReports = asyncHandler(
       , re.user_id 
      FROM playlist__program as pr
      INNER JOIN playlist__report as re ON pr.id = re.program_id
-     WHERE re.program_date like "${req.query.date}%"
-     AND re.user_id = ${req.query.user}
+     WHERE re.program_date like ${date}
+     AND re.user_id = ${user}
      ORDER BY program_date ASC, program_start_time ASC
       `,
       {
-        type: QueryTypes.SELECT
+        type: QueryTypes.SELECT,
       }
     );
     res.status(200).json(reports);
@@ -42,6 +45,7 @@ export const getCurrentUsersReports = asyncHandler(
 // @access  Private
 export const getAllReportsByMonth = asyncHandler(
   async (req: Request, res: Response) => {
+    const date = mysql.escape(`${req.params.date}%`);
     const reports = await db.query(
       `
       SELECT re.program_no
@@ -56,11 +60,11 @@ export const getAllReportsByMonth = asyncHandler(
       , re.user_id 
      FROM playlist__program as pr
      INNER JOIN playlist__report as re ON pr.id = re.program_id
-     WHERE re.program_date like "${req.params.date}%"
+     WHERE re.program_date like ${date}
      ORDER BY program_date ASC, program_start_time ASC
       `,
       {
-        type: QueryTypes.SELECT
+        type: QueryTypes.SELECT,
       }
     );
     res.status(200).json(reports);
@@ -72,6 +76,7 @@ export const getAllReportsByMonth = asyncHandler(
 // @access  Private
 export const getCurrentUsersInProgressReports = asyncHandler(
   async (req: Request, res: Response) => {
+    const id = mysql.escape(req.params.id);
     const reports = await db.query(
       `
       SELECT re.program_no
@@ -86,11 +91,11 @@ export const getCurrentUsersInProgressReports = asyncHandler(
       , re.user_id 
      FROM playlist__program as pr
      INNER JOIN playlist__report as re ON pr.id = re.program_id
-     WHERE re.user_id="${req.params.id}" AND re.status="0"
+     WHERE re.user_id=${id} AND re.status="0"
      ORDER BY program_date ASC, program_start_time ASC
       `,
       {
-        type: QueryTypes.SELECT
+        type: QueryTypes.SELECT,
       }
     );
     res.status(200).json(reports);
@@ -104,7 +109,7 @@ export const deleteReport = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const deletedReport = await Report.update(
       {
-        status: 9
+        status: 9,
       },
       { where: { id: req.params.id } }
     );
