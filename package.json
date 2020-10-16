@@ -7,7 +7,7 @@
   "description": "Typescript refactor of playlist app.",
   "main": "backend/build/index",
   "scripts": {
-    "build": "tsc && cd backend && cp -r playlog ./build && cd build && mkdir transfers && npm run build:ui",
+    "build": "tsc && cd backend && cp -r playlog ./build && cd build && cd src && mkdir transfers && npm run build:ui",
     "build:ui": "cd frontend && npm install && npm run build",
     "deploy": "git push heroku master",
     "deploy:full": "npm run tsc && npm run build:ui && git add . && git commit -m uibuild && git push -u origin master && npm run deploy",
