@@ -19,7 +19,7 @@ A combo of two npm projects, the backend server and the frontend UI. So there ar
 - Clone the repository
 - Run `npm install` the project root directory
 - `cd frontend` and run `npm install` in the frontend root directory
-- Import data from `playlist-db.sql` into your MySQL database of choice. MySQL version 5.7. Use the default values described below if you wish to skip creating an `.env` file.
+- Import data from `seed/playlist-db.sql` into your MySQL database of choice and set database schema name to playlist_demo.
 - Create an `.env` -file into the project root directory with the following values:
   - `PORT` - The port you wish to use for the server. Default port is 5000
   - `DB_URI` - Your DB URI. Default database location is `localhost`

@@ -3,8 +3,6 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import path from 'path';
 
-console.log('trying new build');
-
 // import db
 import { db } from './src/config/database';
 
@@ -70,7 +68,7 @@ app.get('/', function (_req, res) {
 
 app.get('/backend-documentation', (_req, res) => {
   res.sendFile(
-    path.resolve(__dirname, '../../frontend/build', 'index.html'),
+    path.resolve(__dirname, '../../documentation', 'api_routes.html'),
     (err) => {
       if (err) {
         res.status(500).send(err);
