@@ -8,7 +8,7 @@ The subject of my project is to create a song reporting tool for a radio station
 
 ### Install Instructions (app created with Node v12 & MySQL v5.7)
 
-A combo of two npm projects, the backend server and the frontend UI. So there are two package.json configs and thereforce two places to run npm commands:
+A combo of two npm projects, the backend server and the frontend UI. There are two package.json configs and therefore two places to run npm commands:
 
 1.  [Node server](https://github.com/teemukostamo/playlist_typescript/tree/master/backend): ./package.json
     - deployed automatically via heroku/nodejs buildpack
@@ -19,7 +19,7 @@ A combo of two npm projects, the backend server and the frontend UI. So there ar
 - Clone the repository
 - Run `npm install` the project root directory
 - `cd frontend` and run `npm install` in the frontend root directory
-- Import data from `seed/playlist-db.sql` into your MySQL database of choice and set database schema name to playlist_demo.
+- Import data twice from `seed/playlist-db.sql` into your MySQL database of choice, in schemas `playlist_demo` and `playlist_test`.
 - Create an `.env` -file into the project root directory with the following values:
   - `PORT` - The port you wish to use for the server. Default port is 5000
   - `DB_URI` - Your DB URI. Default database location is `localhost`
