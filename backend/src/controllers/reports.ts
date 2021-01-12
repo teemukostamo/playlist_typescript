@@ -172,7 +172,7 @@ export const getSiteTracklist = asyncHandler(
       INNER JOIN playlist__report as re ON rt.report_id = re.id
       INNER JOIN playlist__album as al ON tr.album_id = al.id
       INNER JOIN playlist__program as pr ON re.program_id = pr.id
-      WHERE pr.name = "${programName}"
+      WHERE pr.name = ${programName}
       AND re.status = 1
       AND re.program_date = "${date.substring(0, 10)}"
       ORDER BY rt.sortable_rank
