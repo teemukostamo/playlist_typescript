@@ -136,7 +136,7 @@ export const getSiteTracklist = asyncHandler(
 		, re.program_start_time
      FROM playlist__report as re
      INNER JOIN playlist__program as pr ON re.program_id = pr.id
-     WHERE pr.name = "${programName}"
+     WHERE pr.name = ${programName}
      AND re.status = 1
      AND re.rerun is null
      ORDER BY re.program_date desc
